@@ -44,11 +44,13 @@ $(NAME):$(OBJ)
 	ar rcs $(NAME) $(OBJ) 
 	
 $(OBJ):$(FILES)
-	gcc $(CFLAGS) -c $(FILES)
+	gcc -c $(CFLAGS) $(FILES)
 
 clean:
 	rm -f $(OBJ)
-fclean:
+
+fclean: 
 	rm -f $(NAME) $(OBJ)
+
 re: fclean all
 .PHONY:re all fclean clean
