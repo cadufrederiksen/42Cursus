@@ -37,9 +37,12 @@ ft_putnbr_fd.c\
 ft_split.c
 
 OBJ = $(FILES:.c=.o)
+
 all:$(NAME)
+
 $(NAME):$(OBJ) 
 	ar rcs $(NAME) $(OBJ) 
+	
 $(OBJ):$(FILES)
 	gcc $(CFLAGS) -c $(FILES)
 
