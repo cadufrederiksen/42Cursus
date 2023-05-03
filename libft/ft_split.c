@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 11:25:54 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/02 17:10:15 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/05/02 17:51:21 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	**ft_split(char const *s, char c)
 
 	count_word = countword(s, c);
 	if (!s)
-		return(0);
+		return (0);
 	ptr = (char **)malloc(sizeof(char *) * (countword(s, c) + 1));
 	if (!ptr)
 		return (0);
@@ -65,23 +65,24 @@ char	**ft_split(char const *s, char c)
 		}
 	}
 	ptr[x] = NULL;
-	return (ptr); 
+	return (ptr);
 }
 
 /* int	main(void)
 {
-	char	s[]= "hola que tal";
 	char	c;
-	char **result;
-	c = ' ';
+	int		x;
 
-	result = ft_split(s,c);
+	char	s[]= "hola, que, tal ywdw wdadwd wadaw";
 	
-
-		printf("%s\n", result[0]);
-		printf("%s\n", result[1]);
-		printf("%s\n", result[2]);
-		printf("%s", result[3]);
+	c = ' ';
+	x = 0;
+	while (x <= countword(s, c))
+	{
+		printf("%s\n", ft_split(s,c)[x]);
+		x++;
+	}
+	printf("%d", countword(s, c));
 	return (0);
 }
  */
