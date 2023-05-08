@@ -35,7 +35,7 @@ ft_putchar_fd.c\
 ft_putstr_fd.c\
 ft_putendl_fd.c\
 ft_putnbr_fd.c\
-ft_split.c\
+ft_split.c
 
 
 
@@ -49,8 +49,8 @@ ft_lstadd_back.c\
 ft_lstclear.c\
 ft_lstiter.c\
 ft_lstdelone.c\
-ft_lstmap.c\
 ft_lstmap.c
+
 
 BOBJ = $(BONUS:.c=.o)
 
