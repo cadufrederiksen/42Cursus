@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/18 15:59:57 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/05 14:58:42 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/05/05 14:02:28 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/05/05 15:54:42 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	size_t	i;
+	t_list	*result;
+	t_list	*newlst;
 
-	i = 0;
-	if (dstsize > 0)
+	if (!lst || !f)
+		return (0);
+	newlst = NULL;
+	while (lst)
 	{
-		while (i < dstsize - 1 && src[i] != '\0')
+		result = ft_lstnew(f(lst->content));
+		if (!result)
 		{
-			dst[i] = src[i];
-			i++;
+			ft_lstclear(&newlst, del);
+			return (free(newlst), NULL);
 		}
-		dst[i] = '\0';
+		ft_lstadd_back(&newlst, result);
+		lst = lst->next;
 	}
-	i = 0;
-	while (src[i] != '\0')
-		i++;
-	return (i);
+	return (newlst);
 }
-/* int main()
-{
-    char og[] = "hola";
-    char dest[] = "";
-    size_t i = 0;
-    printf("%zu", ft_strlcpy(dest, og, i));
-} */

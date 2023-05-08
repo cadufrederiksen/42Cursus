@@ -1,40 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/18 15:59:57 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/05 14:58:42 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/05/05 10:43:47 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/05/05 13:53:57 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	size_t	i;
+	t_list	*aux;
 
-	i = 0;
-	if (dstsize > 0)
+	if (!new)
+		return ;
+	if (!*lst)
 	{
-		while (i < dstsize - 1 && src[i] != '\0')
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = '\0';
+		*lst = new;
+		return ;
 	}
-	i = 0;
-	while (src[i] != '\0')
-		i++;
-	return (i);
+	aux = ft_lstlast(*lst);
+	aux->next = new;
 }
-/* int main()
-{
-    char og[] = "hola";
-    char dest[] = "";
-    size_t i = 0;
-    printf("%zu", ft_strlcpy(dest, og, i));
-} */

@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 11:25:54 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/02 17:51:21 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/05/05 16:02:27 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,11 @@ int	countword(char const *s, char c)
 	return (counter);
 }
 
-char	**ft_split(char const *s, char c)
+char	**splitting(const char *s, char **ptr, char c, size_t count_word)
 {
-	size_t	count_word;
 	size_t	x;
 	size_t	len;
-	char	**ptr;
 
-	count_word = countword(s, c);
-	if (!s)
-		return (0);
-	ptr = (char **)malloc(sizeof(char *) * (countword(s, c) + 1));
-	if (!ptr)
-		return (0);
 	x = 0;
 	while (*s)
 	{
@@ -64,8 +56,25 @@ char	**ft_split(char const *s, char c)
 			s += len;
 		}
 	}
-	ptr[x] = NULL;
 	return (ptr);
+	free(ptr);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	size_t	count_word;
+	char	**ptr;
+
+	count_word = countword(s, c);
+	if (!s)
+		return (0);
+	ptr = (char **)malloc(sizeof(char *) * (countword(s, c) + 1));
+	if (!ptr)
+		return (0);
+	splitting(s, ptr, c, count_word);
+	ptr[count_word] = NULL;
+	return (ptr);
+	free(ptr);
 }
 
 /* int	main(void)
