@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:38:30 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/04/25 15:31:19 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/05/08 22:27:09 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int	ft_atoi(const char *str)
 	return (neg * x);
 }
 
-/* int	main(void)
+int	main(void)
 {
 	char num[] = " \t\v\n\r\f123";
 	printf("%d \n", ft_atoi(num));
 	//printf("%d", atoi(num));
-} */
+}
