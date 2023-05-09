@@ -38,9 +38,9 @@ int	ft_atoi(const char *str)
 	return (neg * x);
 }
 
-int	main(void)
+/* int	main(void)
 {
 	char num[] = " \t\v\n\r\f123";
 	printf("%d \n", ft_atoi(num));
 	//printf("%d", atoi(num));
-}
+} */
