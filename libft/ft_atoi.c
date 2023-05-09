@@ -6,12 +6,12 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:38:30 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/08 22:27:09 by marvin           ###   ########.fr       */
+/*   Updated: 2023/05/09 18:23:38 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <stdlib.h>
+#include <unistd.h>
 
 int	ft_atoi(const char *str)
 {

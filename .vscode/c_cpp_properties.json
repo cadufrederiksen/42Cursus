@@ -1,6 +1,18 @@
 {
     "configurations": [
         {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/usr/isnclude"
+            ],
+            "defines": [],
+            "compilerPath": "usr/bin/gcc",
+            "cStandard": "gnu11",
+            "cppStandard": "gnu++14",
+            "intelliSenseMode": "gcc-x64"
+        },
+        {
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**"
@@ -9,7 +21,9 @@
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE"
-            ]
+            ],
+            "compilerPath": "/bin/gcc",
+            "intelliSenseMode": "windows-msvc-x64"
         }
     ],
     "version": 4

@@ -87,9 +87,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 	free(ptr);
 }
 
+oi ian
 /* int main() 
 {
-	char s1[] = "aabcholaquetalbcab";
+	char s1[] = "aabcabcholaquetalbcab";
 	char set[] = "abc";
 
 	printf("%s\n", ft_strtrim(s1, set));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 13:50:55 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/04/23 16:34:39 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/05/09 17:40:11 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
-		return (1);
+		reqturn (1);
 	return (0);
 }
 
