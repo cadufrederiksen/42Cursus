@@ -2,7 +2,7 @@ NAME = libftprintf.a
 CC = gcc -c 
 FLAGS = -Wall -Wextra -Werror
 
-FILES = 
+FILES = ft_printf.c ft_putnbr.c ft_printf_helper ft_printhex.c
 
 OBJ = $(FILES:.c=.o)
 
