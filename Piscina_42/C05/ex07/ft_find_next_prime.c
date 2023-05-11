@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_helper.c                                 :+:      :+:    :+:   */
+/*   ft_find_next_prime.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/11 13:40:18 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/11 17:05:56 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/03/26 12:22:24 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/03/27 18:25:59 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <stdio.h>
 
-int	ft_putstr(char *str)
+int	ft_find_next_prime(int nb)
 {
 	int	i;
 
-	i = 0;
-	if (!str)
+	i = 2;
+	if (nb < 2)
+		return (2);
+	while (i < (nb / i))
 	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-	while (str[i])
-	{
-		write(1, &str[i], 1);
+		if (nb % i == 0)
+			return (ft_find_next_prime(nb + 1));
 		i++;
 	}
-	return (i);
-}
-
-int	ft_printsimbol(void)
-{
-	write(1, "%", 1);
-	return (1);
+	return (nb);
 }

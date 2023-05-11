@@ -1,37 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_helper.c                                 :+:      :+:    :+:   */
+/*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/11 13:40:18 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/11 17:05:56 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/03/16 10:10:51 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/03/17 11:51:35 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <unistd.h>
 
-int	ft_putstr(char *str)
+void	ft_swap(int *a, int *b)
 {
-	int	i;
+	int	tmp;
 
-	i = 0;
-	if (!str)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-	while (str[i])
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
-	return (i);
-}
-
-int	ft_printsimbol(void)
-{
-	write(1, "%", 1);
-	return (1);
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }

@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_helper.c                                 :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/11 13:40:18 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/11 17:05:56 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/03/21 10:01:09 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/03/23 20:27:58 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	ft_putstr(char *str)
+int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
+	int	j;
 
 	i = 0;
-	if (!str)
+	while (s1[i] != '\0' && s2[i] != '\0')
 	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-	while (str[i])
-	{
-		write(1, &str[i], 1);
+		if (s1[i] != s2[i])
+		{
+			j = s1[i] - s2[i];
+			return (j);
+		}
+		if (s1[i] == s2[i])
+			j = s1[i] - s2[i];
 		i++;
 	}
-	return (i);
-}
-
-int	ft_printsimbol(void)
-{
-	write(1, "%", 1);
-	return (1);
+	if (s1[i] == '\0' || s2[i] == '\0')
+		j = s1[i] - s2[i];
+	return (j);
 }

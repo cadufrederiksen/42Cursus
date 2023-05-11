@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_helper.c                                 :+:      :+:    :+:   */
+/*   ft_fibonacci.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/11 13:40:18 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/11 17:05:56 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/03/26 11:42:01 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/03/27 18:26:21 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <stdio.h>
 
-int	ft_putstr(char *str)
+int	ft_fibonacci(int index)
 {
-	int	i;
-
-	i = 0;
-	if (!str)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-	while (str[i])
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
-	return (i);
-}
-
-int	ft_printsimbol(void)
-{
-	write(1, "%", 1);
-	return (1);
+	if (index < 0)
+		return (-1);
+	if (index < 2)
+		return (index);
+	else
+		return (ft_fibonacci(index - 1) + ft_fibonacci(index - 2));
 }

@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_helper.c                                 :+:      :+:    :+:   */
+/*   ft_print.alphabet.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/11 13:40:18 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/11 17:05:56 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/03/10 13:52:52 by carmarq           #+#    #+#             */
+/*   Updated: 2023/03/15 13:32:41 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <unistd.h>
 
-int	ft_putstr(char *str)
+void	ft_print_alphabet(void)
 {
-	int	i;
+	char	letter;
 
-	i = 0;
-	if (!str)
+	letter = 'a';
+	while (letter <= 'z')
 	{
-		write(1, "(null)", 6);
-		return (6);
+		write(1, &letter, 1);
+		letter++;
 	}
-	while (str[i])
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
-	return (i);
-}
-
-int	ft_printsimbol(void)
-{
-	write(1, "%", 1);
-	return (1);
 }

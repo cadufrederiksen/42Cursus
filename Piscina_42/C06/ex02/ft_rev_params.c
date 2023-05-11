@@ -1,37 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_helper.c                                 :+:      :+:    :+:   */
+/*   ft_rev_params.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/11 13:40:18 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/11 17:05:56 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/03/23 17:38:18 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/03/27 15:24:01 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <unistd.h>
 
-int	ft_putstr(char *str)
+void	ft_putchar(char c)
 {
-	int	i;
-
-	i = 0;
-	if (!str)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-	while (str[i])
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
-	return (i);
+	write(1, &c, 1);
 }
 
-int	ft_printsimbol(void)
+void	ft_rev_params(int argc, char **argv)
 {
-	write(1, "%", 1);
-	return (1);
+	int	i;
+	int	j;
+
+	j = argc - 1;
+	while (j >= 1)
+	{
+		i = 0;
+		while (argv[j][i] != '\0')
+		{
+			ft_putchar(argv[j][i]);
+			i++;
+		}
+		ft_putchar('\n');
+		j--;
+	}
+	return ;
+}
+
+int	main(int argc, char **argv)
+{
+	if (argc > 1)
+	{
+		ft_rev_params(argc, argv);
+	}
+	return (0);
 }

@@ -1,37 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_helper.c                                 :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/11 13:40:18 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/11 17:05:56 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/03/20 12:02:15 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/03/22 16:28:15 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <unistd.h>
+#include <stdio.h>
 
-int	ft_putstr(char *str)
+unsigned int	counti(char *src)
 {
 	int	i;
 
 	i = 0;
-	if (!str)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-	while (str[i])
-	{
-		write(1, &str[i], 1);
+	while (src[i] != '\0')
 		i++;
-	}
 	return (i);
 }
 
-int	ft_printsimbol(void)
+unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 {
-	write(1, "%", 1);
-	return (1);
+	unsigned int	i;
+
+	i = 0;
+	if (size != 0)
+	{
+		while (i < size - 1 && src[i] != '\0')
+		{
+			dest[i] = src[i];
+			i++;
+		}
+		dest[i] = '\0';
+	}
+	return (counti(src));
 }

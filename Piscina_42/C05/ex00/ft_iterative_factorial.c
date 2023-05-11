@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_helper.c                                 :+:      :+:    :+:   */
+/*   ft_iterative_factorial.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/11 13:40:18 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/11 17:05:56 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/03/25 10:39:53 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/03/28 19:23:08 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <stdio.h>
 
-int	ft_putstr(char *str)
+int	ft_iterative_factorial(int nb)
 {
-	int	i;
+	unsigned int	x;
 
-	i = 0;
-	if (!str)
+	if (nb < 0)
+		return (0);
+	x = 1;
+	while (nb > 0)
 	{
-		write(1, "(null)", 6);
-		return (6);
+		x *= nb;
+		nb--;
 	}
-	while (str[i])
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
-	return (i);
-}
-
-int	ft_printsimbol(void)
-{
-	write(1, "%", 1);
-	return (1);
+	return (x);
 }

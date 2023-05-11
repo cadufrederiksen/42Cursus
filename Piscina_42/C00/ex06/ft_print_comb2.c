@@ -1,37 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_helper.c                                 :+:      :+:    :+:   */
+/*   ft_print_comb2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/11 13:40:18 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/11 17:05:56 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/03/13 10:14:33 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/03/13 18:00:17 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <unistd.h>
 
-int	ft_putstr(char *str)
+void	ft_putchar(char c)
 {
-	int	i;
-
-	i = 0;
-	if (!str)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-	while (str[i])
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
-	return (i);
+	write(1, &c, 1);
 }
 
-int	ft_printsimbol(void)
+void	ft_print_comb2(void)
 {
-	write(1, "%", 1);
-	return (1);
+	int	p1;
+	int	p2;
+
+	p1 = 0;
+	p2 = 1;
+	while (p1 <= 98)
+	{
+		p2 = p1 + 1;
+		while (p2 <= 99)
+		{
+			ft_putchar(p1 / 10 + '0');
+			ft_putchar(p1 % 10 + '0');
+			write(1, " ", 1);
+			ft_putchar(p2 / 10 + '0');
+			ft_putchar(p2 % 10 + '0');
+			if (p2 != 99 || p1 != 98)
+			{
+				write(1, ", ", 2);
+			}
+			p2++;
+		}
+		p1++;
+	}
 }

@@ -1,37 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_helper.c                                 :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/11 13:40:18 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/11 17:05:56 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/03/22 11:15:02 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/03/27 12:49:09 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <stdio.h>
 
-int	ft_putstr(char *str)
+unsigned int	to_count(char *str)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
-	if (!str)
+	while (str[i] != '\0')
 	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-	while (str[i])
-	{
-		write(1, &str[i], 1);
 		i++;
 	}
 	return (i);
 }
 
-int	ft_printsimbol(void)
+unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 {
-	write(1, "%", 1);
-	return (1);
+	unsigned int	i;
+	unsigned int	x;
+
+	i = 0;
+	x = 0;
+	if (to_count(dest) > size)
+		return (size + to_count(src));
+	while (dest[i] != '\0')
+		i++;
+	while (x < size && src[x] != '\0')
+	{
+		dest[i] = src[x];
+		i++;
+		x++;
+	}
+	dest[i] = '\0';
+	return (to_count(dest) + to_count(src));
 }

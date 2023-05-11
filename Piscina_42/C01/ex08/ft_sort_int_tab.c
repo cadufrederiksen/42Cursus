@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_helper.c                                 :+:      :+:    :+:   */
+/*   ft_sort_int_tab.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/11 13:40:18 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/11 17:05:56 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/03/16 19:10:05 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/03/17 11:59:53 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <unistd.h>
 
-int	ft_putstr(char *str)
+void	ft_sort_int_tab(int *tab, int size)
 {
+	int	x;
 	int	i;
+	int	tmp;
 
 	i = 0;
-	if (!str)
+	while (i < size)
 	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-	while (str[i])
-	{
-		write(1, &str[i], 1);
+		x = 0;
+		while (x < size - 1)
+		{
+			if (tab[x] > tab[x + 1])
+			{
+				tmp = tab[x];
+				tab[x] = tab[x + 1];
+				tab[x + 1] = tmp;
+			}
+			else
+				x++;
+		}
 		i++;
 	}
-	return (i);
-}
-
-int	ft_printsimbol(void)
-{
-	write(1, "%", 1);
-	return (1);
 }

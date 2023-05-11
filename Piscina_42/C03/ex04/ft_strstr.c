@@ -1,37 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_helper.c                                 :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/11 13:40:18 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/11 17:05:56 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/03/21 15:10:27 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/03/27 11:42:02 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <stdio.h>
 
-int	ft_putstr(char *str)
+char	*ft_strstr(char *str, char *to_find)
 {
-	int	i;
+	unsigned int	i;
+	unsigned int	x;
 
 	i = 0;
-	if (!str)
+	if (to_find[0] == '\0')
+		return (str);
+	while (str[i] != '\0')
 	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-	while (str[i])
-	{
-		write(1, &str[i], 1);
+		x = 0;
+		while (str[i + x] == to_find[x])
+			if (!to_find[++x])
+				return (str + i);
 		i++;
 	}
-	return (i);
-}
-
-int	ft_printsimbol(void)
-{
-	write(1, "%", 1);
-	return (1);
+	return (0);
 }

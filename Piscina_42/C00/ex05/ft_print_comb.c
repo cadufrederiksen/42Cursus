@@ -1,37 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_helper.c                                 :+:      :+:    :+:   */
+/*   ft_print_comb.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/11 13:40:18 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/11 17:05:56 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/03/12 16:03:32 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/03/14 17:18:33 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <unistd.h>
 
-int	ft_putstr(char *str)
+void	ft_print_all(int p1, int p2, int p3)
 {
-	int	i;
-
-	i = 0;
-	if (!str)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-	while (str[i])
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
-	return (i);
+	write(1, &p1, 1);
+	write(1, &p2, 1);
+	write(1, &p3, 1);
+	if (p1 != '7')
+		write(1, ", ", 2);
 }
 
-int	ft_printsimbol(void)
+void	ft_print_comb(void)
 {
-	write(1, "%", 1);
-	return (1);
+	int	p1;
+	int	p2;
+	int	p3;
+
+	p1 = '0';
+	while (p1 <= '7')
+	{
+		p2 = p1 + 1;
+		while (p2 <= '8')
+		{
+			p3 = p2 + 1;
+			while (p3 <= '9')
+			{
+				ft_print_all(p1, p2, p3);
+				p3++;
+			}
+			p2++;
+		}
+		p1++;
+	}
 }

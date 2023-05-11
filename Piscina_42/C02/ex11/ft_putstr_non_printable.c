@@ -1,37 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_helper.c                                 :+:      :+:    :+:   */
+/*   ft_putstr_non_printable.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/11 13:40:18 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/11 17:05:56 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/03/20 15:24:34 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/03/23 12:54:48 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <unistd.h>
 
-int	ft_putstr(char *str)
+void	ft_putchar(char c)
 {
-	int	i;
-
-	i = 0;
-	if (!str)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-	while (str[i])
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
-	return (i);
+	write(1, &c, 1);
 }
 
-int	ft_printsimbol(void)
+void	ft_putstr_non_printable(char *str)
 {
-	write(1, "%", 1);
-	return (1);
+	int		i;
+	char	*hex;
+
+	hex = "0123456789abcedf";
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] < 32 || str[i] == 127)
+		{
+			ft_putchar('\\');
+			ft_putchar(hex[str[i] / 16]);
+			ft_putchar(hex[str[i] % 16]);
+		}
+		else
+		{
+			ft_putchar(str[i]);
+		}
+		i++;
+	}
 }

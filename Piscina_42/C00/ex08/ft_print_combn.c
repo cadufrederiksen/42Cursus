@@ -1,37 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_helper.c                                 :+:      :+:    :+:   */
+/*   ft_print_combn.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/11 13:40:18 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/11 17:05:56 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/03/13 15:51:51 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/03/18 09:48:43 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+/*
 
-int	ft_putstr(char *str)
+void	ft_print(int array[], int n)
 {
-	int	i;
+	char	c;
+	int		i;
 
 	i = 0;
-	if (!str)
+	while (i < n)
 	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-	while (str[i])
-	{
-		write(1, &str[i], 1);
+		c = array[i] + '0';
+		write(1, &c, 1);
 		i++;
 	}
-	return (i);
+	if (array[0] != 10 - n)
+		write(1, ", ", 2);
 }
 
-int	ft_printsimbol(void)
+void	ft_recursive(int array[], int n, int i)
 {
-	write(1, "%", 1);
-	return (1);
+	if (i == 0)
+		array[i] = 0;
+	else
+		array[i] = array[i - 1] + 1;
+	while (array[i] < 11 - n + i)
+	{
+		if (i == n - 1)
+			ft_print(array, n);
+		else
+			ft_recursive(array, n, i + 1);
+		array[i] = array[i] + 1;
+	}
 }
+*/

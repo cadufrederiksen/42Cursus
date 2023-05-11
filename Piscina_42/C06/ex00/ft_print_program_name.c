@@ -1,37 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_helper.c                                 :+:      :+:    :+:   */
+/*   ft_print_program_name.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/11 13:40:18 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/11 17:05:56 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/03/23 16:40:48 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/03/27 22:37:13 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <unistd.h>
 
-int	ft_putstr(char *str)
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+void	ft_print_program_name(char **argv)
 {
 	int	i;
 
 	i = 0;
-	if (!str)
+	while (argv[0][i] != '\0')
 	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-	while (str[i])
-	{
-		write(1, &str[i], 1);
+		ft_putchar(argv[0][i]);
 		i++;
 	}
-	return (i);
+	ft_putchar('\n');
 }
 
-int	ft_printsimbol(void)
+int	main(int argc, char **argv)
 {
-	write(1, "%", 1);
-	return (1);
+	if (argc == 1)
+	{
+		ft_print_program_name(argv);
+	}
+	else
+		return (0);
 }
