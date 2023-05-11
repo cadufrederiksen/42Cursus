@@ -2,7 +2,7 @@ NAME = libftprintf.a
 CC = gcc -c 
 FLAGS = -Wall -Wextra -Werror
 
-FILES = ft_printf.c ft_putnbr.c ft_printf_helper ft_printhex.c
+FILES = ft_printf.c ft_putnbr.c ft_printf_helper.c ft_printhex.c
 
 OBJ = $(FILES:.c=.o)
 
@@ -18,7 +18,7 @@ clean:
 	rm -f $(OBJ)
 
 fclean: clean
-	rm .f $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 
