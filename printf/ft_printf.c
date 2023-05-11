@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 13:42:22 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/11 16:10:31 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/05/11 16:16:44 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	ft_printf(char const *str, ...)
 	//int x = 10;
 	//int *p = &x;
 
-	ft_printf(" %p %p \n", -18446744073709551615, 18446744073709551615);
-	printf(" %p %p ", (void *)-18446744073709551615, (void*)18446744073709551615);
+	ft_printf(" %p %p \n", -184, 18);
+	printf(" %p %p ", (void *)-184, (void*)184);
 	//printf("Hola que tal %% %d", -432);
 }   */
