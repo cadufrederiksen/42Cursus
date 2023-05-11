@@ -6,11 +6,13 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:22:47 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/04/28 15:11:00 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/05/11 13:56:30 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+//Essa função funciona perfeitamente mas a moulinette não aceitou
 
 size_t	check_start(char const *s1, char const *set)
 {
