@@ -1,0 +1,50 @@
+body, html{
+	text-align: center;
+	height: 100%;
+	width: 100%;
+}
+
+#tabla{
+	text-align: center;
+}
+
+#tittle{
+	font: 50px "Lato";
+}
+
+#foto > img{
+	width: 100%;
+}
+
+#description{
+	font: 20px "Lato", "sans-serif";
+	text-align: center;
+}
+
+#social > img{
+	text-align: center;
+	height: 20px;
+	width: 20px;
+}
+
+#user{
+	text-align: center;
+	font: 30px "Arial";
+}
+
+#nivel{
+	text-align: center;
+	color: gray;
+}
+
+#click{
+	background-color: black;
+	text-align: center;
+}
+ #click > a{
+	color: white;
+ }
+ 
+ td{
+	height: 40px;
+ }
