@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Ballon</title>
+</head>
+<body>
+	<div id="circle" onclick="changecolor()">
+		
+	</div>
+</body>
+
+<style>
+
+body{
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	height: 100vh;
+	margin: 0;
+}
+
+#circle{
+	width: 200px;
+	height: 200px;
+	background-color: red;
+	border-radius: 100%;
+}
+</style>
+
+<script>
+	
+	var circle = document.getElementById("circle")
+	var size = 200
+	var index = 0
+	var color = ["red", "green", "blue"]
+	
+	function changecolor()
+	{
+		
+		size += 10 
+		if(size > 420){
+			size = 200
+		}
+
+		circle.style.width = size + "px"
+		circle.style.height = size + "px"
+
+		index++
+		if(index >= color.length){
+			index = 0;
+		}
+		
+		circle.style.backgroundColor = color[index]
+	}
+
+	circle.onmouseover = function (){
+		size -= 5
+
+		if (size < 200){
+			size = 200
+		}
+
+		circle.style.width = size + "px"
+		circle.style.height = size + "px"
+
+		index--
+		if(index < 0){
+			index = color.length -1 
+		}
+
+		circle.style.backgroundColor = color[index]
+	}
+
+</script>
+</html> 
