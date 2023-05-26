@@ -6,13 +6,15 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 09:51:37 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/26 09:34:15 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/05/26 16:03:21 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+#include "get_next_line.h"
+
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*ptr;
 	size_t	i;
@@ -38,7 +40,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	free(ptr);
 }
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen(char *s)
 {
 	int	i;
 
@@ -46,4 +48,47 @@ size_t	ft_strlen(const char *s)
 	while (s[i] != '\0')
 		i++;
 	return (i);
+}
+
+int	ft_strchr(char *s, int c)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != (char)c)
+	{
+		if (s[i] == '\0')
+			return (i);
+		i++;
+	}
+	return (i);
+}
+
+char	*ft_substr(char *s, unsigned int start, size_t len)
+{
+	unsigned int	i;
+	size_t			x;
+	char			*sub;
+
+	x = 0;
+	i = start;
+	if (start >= ft_strlen(s))
+	{
+		sub = malloc(1);
+		sub[0] = 0;
+		return(sub);
+	}
+	if (len + start > ft_strlen(s))
+		len = ft_strlen(s) - start;
+	sub = (char *)malloc(len + 1);
+	if (sub == NULL || s == NULL)
+		return (0);
+	while (x < len)
+	{
+		sub[x] = s[i];
+		i++;
+		x++;
+	}
+	sub[x] = '\0';
+	return (sub);
 }

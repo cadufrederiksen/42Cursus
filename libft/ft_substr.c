@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 17:43:59 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/11 15:11:14 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/05/26 10:20:29 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,11 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	x = 0;
 	i = start;
 	if (start >= ft_strlen(s))
-		return (ft_calloc(1, 1));
+	{
+		sub = malloc(1);
+		sub[0] = 0;
+		return(sub);
+	}
 	if (len + start > ft_strlen(s))
 		len = ft_strlen(s) - start;
 	sub = (char *)malloc(len + 1);
@@ -35,7 +39,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	}
 	sub[x] = '\0';
 	return (sub);
-	free(sub);
 }
 
 /* int	main(void)

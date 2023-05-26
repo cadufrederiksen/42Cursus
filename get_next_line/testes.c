@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   testes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/18 14:42:17 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/26 10:13:20 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/05/26 10:25:22 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/05/26 10:44:46 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
-#include "libft.h"
+#include "get_next_line.h"
 
-char	*ft_strchr(const char *s, int c)
+size_t	ft_strlen(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
+}
+
+char	*ft_strchr(char *s, int c)
 {
 	size_t	i;
 
@@ -22,17 +30,15 @@ char	*ft_strchr(const char *s, int c)
 	while (s[i] != (char)c)
 	{
 		if (s[i] == '\0')
-			return (0);
+			return ((char *)&s[i]);
 		i++;
 	}
 	return ((char *)&s[i]);
 }
 
-/* int main()
-{
-    char array[] = "there is so \0ma\0ny \0 \\0 in t\0his stri\0ng !\0\0\0\0";
-    int c = '\0';
-
-    printf("%s", ft_strchr(array, c));
-    //printf("%s", strchr(array, c));
-}  */
+int main()
+{ 
+	char array[] = "hola tudo bem";
+	printf("%zu", (ft_strlen(array) - ft_strlen(ft_strchr(array, '\n'))));
+	return(0);
+}
