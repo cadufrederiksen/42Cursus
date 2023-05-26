@@ -6,55 +6,32 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 09:51:37 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/24 14:38:20 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/05/25 16:06:52 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+/* usamos strchr para encontrar os saltos de linhas em duas ocasiões: 
+1 para saber quando parar de usar a função read e 2 para guardar o que não foi lido,
+	se houver */
+char	*ft_strchr(const char *s, int c)
 {
-	unsigned int	i;
-	size_t			x;
-	char			*sub;
-
-	x = 0;
-	i = start;
-	if (start >= ft_strlen(s))
-		return (ft_calloc(1, 1));
-	if (len + start > ft_strlen(s))
-		len = ft_strlen(s) - start;
-	sub = (char *)malloc(len + 1);
-	if (sub == NULL || s == NULL)
-		return (0);
-	while (x < len)
-	{
-		sub[x] = s[i];
-		i++;
-		x++;
-	}
-	sub[x] = '\0';
-	return (sub);
-	free(sub);
-}
-
-void	*ft_calloc(size_t count, size_t size)
-{
-	char	*ptr;
-	size_t	i;
+	int	i;
 
 	i = 0;
-	ptr = (char *)malloc(count * size);
-	if (ptr == 0)
-		return (0);
-	while (i < (count * size))
+	while (s[i] != (char) c)
 	{
-		ptr[i] = 0;
+		if (s[i] == '\0')
+			return (NULL);
 		i++;
 	}
-	return (ptr);
+	return ((char *)&s[i]);
 }
 
+/* 
+usamos strjoin para adicionar a static saved o contéudo lido por read e para esvaziar saved
+ (assim cada vez utilizada essa função é chamada saved tem o contéudo de tudo que foi lido) */
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*ptr;
@@ -78,4 +55,32 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	ptr[i + x] = '\0';
 	return (ptr);
+	free(ptr);
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	char	*ptr;
+	size_t	i;
+
+	i = 0;
+	ptr = (char *)malloc(count * size);
+	if (ptr == 0)
+		return (0);
+	while (i < (count * size))
+	{
+		ptr[i] = 0;
+		i++;
+	}
+	return (ptr);
+}
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }
