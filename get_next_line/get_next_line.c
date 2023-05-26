@@ -6,107 +6,46 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 09:51:04 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/25 16:00:29 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/05/26 09:40:48 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*new_saved(char *saved)
+char *ft_join(char *stack, char *tmp)
 {
-	char	*aux;
-	char	*p;
-	int		i;
+	char *aux;
 
-	i = 0;
-	p = ft_strchr(saved, '\n');
-	if (!p)
+	if(!stack)
 	{
-		free(saved);
-		return (NULL);
+		stack = malloc(1);//"inicializar stack se não estiver inicializado"
+		stack[0] = '\0';
 	}
-	p++;
-	aux = malloc(sizeof(char) * ft_strlen(p) + 1);
-	while (*p != '\0')
-	{
-		aux[i] = *p;
-		p++;
-		i++;
-	}
-	aux[i] = '\0';
-	free(saved);
-	return (aux);
-}
-
-char	*create_line(char *saved)
-{
-	char	*line;
-	int		i;
-
-	if (!saved || !*saved)
-		return (NULL);
-	i = 0;
-	while (saved[i] != '\n' && saved[i] != '\0')
-		i++;
-	if (saved[i] == '\n')
-		i++;
-	line = malloc(sizeof(char) * i + 1);
-	if (!line)
-		return (NULL);
-	i = 0;
-	while (saved[i] != '\n' && saved[i] != '\0')
-	{
-		line[i] = saved[i];
-		i++;
-	}
-	if (saved[i] == '\n')
-		line[i++] = '\n';
-	line[i] = '\0';
-	return (line);
-}
-
-char	*ft_join(char *saved, char *tmp)
-{
-	char	*aux;
-
-	if (!saved)
-		saved = ft_calloc(1, 1);
-	if (!saved)
-		return (0);
-	aux = ft_strjoin(saved, tmp);
-	free(saved);
-	return (aux);
+	aux = ft_strjoin(stack, tmp);// colocar o contéudo de read dentro de stack;
+	free(stack);//free o contéudo que tinha em stack antes
+	return(aux);//devolve o novo contéudo de stack
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*saved;
-	char		tmp[BUFFER_SIZE + 1];
-	char		*line;
-	ssize_t		btread;
-
-	if (fd < 0 || BUFFER_SIZE < 0)
-		return (NULL);
-	btread = 1;
-	while (btread > 0)
+	static char *stack; //onde é guardado todo o contéudo lido(estática)
+	char *tmp[BUFFER_SIZE + 1];//onde se armazena o que for lido por read
+	char *line; //linha devolvida pela função
+	ssize_t btread; //quantidade de bt lidos por read
+	
+	btread = 1;// para forçar entrar no bucle
+	while(btread > 0)//dentro de um bucle porque eu preciso ler o txt mais de uma vez
 	{
-		btread = read(fd, tmp, BUFFER_SIZE);
-		if (btread < 0)
-			return (free(saved), saved = NULL, NULL);
-		tmp[btread] = '\0';
-		saved = ft_join(saved, tmp);
-		if (!saved)
-			return (NULL);
-		if (ft_strchr(saved, '\n'))
-			break ;
+		btread = read(fd, tmp, BUFFER_SIZE); //guarda o que for lido em tmp e quanto foi lido em btread
+		tmp[btread] = '\0'; //última posiçñao recebe NULL para saber onde é o final
+		stack = ft_join(stack, tmp); //add o contéudo lido de tmp em stack
+		if
 	}
-	//até aqui temos saved com tudo que foi lido, precisamos fazer uma linha
-	line = create_line(saved);
-	saved = new_saved(saved);
-	return (line);
+	return(stack);
+
 }
 
-/* int main()
+int main()
 {
 	int fd;
 	char *line;
@@ -123,4 +62,4 @@ char	*get_next_line(int fd)
 	line = get_next_line(fd);
 	printf("%s",  line);
 	return (0);
-}  */
+} 

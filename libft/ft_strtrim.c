@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:22:47 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/11 13:56:30 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/05/26 09:43:03 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 	free(ptr);
 }
 
-oi ian
 /* int main() 
 {
 	char s1[] = "aabcabcholaquetalbcab";

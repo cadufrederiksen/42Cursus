@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 14:04:45 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/09 17:35:38 by marvin           ###   ########.fr       */
+/*   Updated: 2023/05/26 09:43:27 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_isalnum(int c)
 {
-	if (c 	>= '0' && c <= '9')
+	if (c >= '0' && c <= '9')
 		return (1);
 	else if (c >= 'a' && c <= 'z')
 		return (1);
