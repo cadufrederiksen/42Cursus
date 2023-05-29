@@ -1,16 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   testes.c                                           :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/26 10:25:22 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/26 10:44:46 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/05/29 17:12:02 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/05/29 17:12:04 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
+
+char	*ft_strjoin(char *s1, char *s2)
+{
+	char	*ptr;
+	size_t	i;
+	size_t	x;
+
+	i = 0;
+	x = 0;
+	ptr = (char *)malloc((ft_strlen(s1) + ft_strlen(s2)) + 1);
+	if (ptr == NULL)
+		return (0);
+	while (s1[i] != '\0')
+	{
+		ptr[i] = s1[i];
+		i++;
+	}
+	while (s2[x] != '\0')
+	{
+		ptr[i + x] = s2[x];
+		x++;
+	}
+	ptr[i + x] = '\0';
+	return (ptr);
+}
 
 size_t	ft_strlen(char *s)
 {
@@ -22,7 +47,7 @@ size_t	ft_strlen(char *s)
 	return (i);
 }
 
-char	*ft_strchr(char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
 	size_t	i;
 
@@ -30,15 +55,8 @@ char	*ft_strchr(char *s, int c)
 	while (s[i] != (char)c)
 	{
 		if (s[i] == '\0')
-			return ((char *)&s[i]);
+			return (0);
 		i++;
 	}
 	return ((char *)&s[i]);
-}
-
-int main()
-{ 
-	char array[] = "hola tudo bem";
-	printf("%zu", (ft_strlen(array) - ft_strlen(ft_strchr(array, '\n'))));
-	return(0);
 }

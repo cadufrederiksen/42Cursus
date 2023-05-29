@@ -6,11 +6,9 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 09:51:37 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/26 16:03:21 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/05/29 16:21:25 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "get_next_line.h"
 
 #include "get_next_line.h"
 
@@ -37,7 +35,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	ptr[i + x] = '\0';
 	return (ptr);
-	free(ptr);
 }
 
 size_t	ft_strlen(char *s)
@@ -50,7 +47,7 @@ size_t	ft_strlen(char *s)
 	return (i);
 }
 
-int	ft_strchr(char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
 	size_t	i;
 
@@ -58,37 +55,8 @@ int	ft_strchr(char *s, int c)
 	while (s[i] != (char)c)
 	{
 		if (s[i] == '\0')
-			return (i);
+			return (0);
 		i++;
 	}
-	return (i);
-}
-
-char	*ft_substr(char *s, unsigned int start, size_t len)
-{
-	unsigned int	i;
-	size_t			x;
-	char			*sub;
-
-	x = 0;
-	i = start;
-	if (start >= ft_strlen(s))
-	{
-		sub = malloc(1);
-		sub[0] = 0;
-		return(sub);
-	}
-	if (len + start > ft_strlen(s))
-		len = ft_strlen(s) - start;
-	sub = (char *)malloc(len + 1);
-	if (sub == NULL || s == NULL)
-		return (0);
-	while (x < len)
-	{
-		sub[x] = s[i];
-		i++;
-		x++;
-	}
-	sub[x] = '\0';
-	return (sub);
+	return ((char *)&s[i]);
 }

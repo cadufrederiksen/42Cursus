@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 09:51:04 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/29 17:15:21 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/05/29 17:15:01 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_join(char *stack, char *tmp)
 {
@@ -85,7 +85,7 @@ char	*update_stack(char *stack)
 
 char	*get_next_line(int fd)
 {
-	static char	*stack;
+	static char	*stack[FD_MAX];
 	char		tmp[BUFFER_SIZE + 1];
 	char		*line;
 	ssize_t		btread;
@@ -97,16 +97,16 @@ char	*get_next_line(int fd)
 	{
 		btread = read(fd, tmp, BUFFER_SIZE);
 		if (btread < 0)
-			return (free(stack), stack = NULL, NULL);
+			return (free(stack[fd]), stack[fd] = NULL, NULL);
 		tmp[btread] = '\0';
-		stack = ft_join(stack, tmp);
-		if (!stack)
+		stack[fd] = ft_join(stack[fd], tmp);
+		if (!stack[fd])
 			return (NULL);
-		if (ft_strchr(stack, '\n'))
+		if (ft_strchr(stack[fd], '\n'))
 			break ;
 	}
-	line = ft_get_line(stack);
-	stack = update_stack(stack);
+	line = ft_get_line(stack[fd]);
+	stack[fd] = update_stack(stack[fd]);
 	return (line);
 }
 
