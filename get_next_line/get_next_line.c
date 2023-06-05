@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 09:51:04 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/29 17:15:21 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/05/30 12:48:27 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-/* int	main(void)
+int	main(void)
 {
 	int		fd;
 	char	*line;
@@ -130,4 +130,3 @@ char	*get_next_line(int fd)
 	free(line);
 	return (0);
 }
- */
