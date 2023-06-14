@@ -38,9 +38,12 @@ $(OBJSF):
 
 clean:
 	@$(RM) -r $(OBJS_DIR)
+	@make clean -C $(LIBFT)
 
 fclean: clean
 	@$(RM) $(NAME) 
+	@$(RM) $(LIBFT)/libft.a
+
 
 re: fclean all
 
