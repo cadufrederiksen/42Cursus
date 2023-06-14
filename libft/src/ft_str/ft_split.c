@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 11:25:54 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/05 16:02:27 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/13 16:22:53 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ char	**splitting(const char *s, char **ptr, char c, size_t count_word)
 		}
 	}
 	return (ptr);
-	free(ptr);
 }
 
 char	**ft_split(char const *s, char c)
@@ -74,7 +73,6 @@ char	**ft_split(char const *s, char c)
 	splitting(s, ptr, c, count_word);
 	ptr[count_word] = NULL;
 	return (ptr);
-	free(ptr);
 }
 
 /* int	main(void)

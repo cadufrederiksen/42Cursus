@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_printf_helper.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/17 13:03:26 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/04/25 15:32:56 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/05/11 13:40:18 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/05/11 17:05:56 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
+#include "ft_printf.h"
 
-int	ft_isalpha(int c)
+int	ft_putstr(char *str)
 {
-	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
-		return (1);
-	return (0);
+	int	i;
+
+	i = 0;
+	if (!str)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
+	while (str[i])
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
+	return (i);
 }
-/* 
-int	main(void)
+
+int	ft_printsimbol(void)
 {
-    unsigned char c;
-   
-    c = '2';
-    printf("%i", ft_isaplha(c));
-    
-} */
+	write(1, "%", 1);
+	return (1);
+}

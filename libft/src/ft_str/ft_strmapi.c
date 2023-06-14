@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/12 09:50:45 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/14 09:48:14 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/04/28 12:02:01 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/06/13 16:22:28 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-#define PUSH_SWAP_H
+#include "libft.h"
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-
-typedef struct s_numb
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int content;
-	struct s_numb *next;
-}t_numb;
+	char	*ptr;
+	size_t	i;
 
-//aqui estão definidas as estruturas mas ainda nao estão inicializadas
-typedef	struct s_state
-{
-	t_numb *pile_one;
-	t_numb *pile_two;
-}t_state;
-
-typedef
-
-int	ft_atoi(const char *str);
-int main(int argc, char** argv);
-
-#endif
-
- 
+	i = 0;
+	ptr = (char *)malloc(ft_strlen(s) + 1);
+	if (!ptr)
+		return (NULL);
+	while (s[i] != '\0')
+	{
+		ptr[i] = f(i, s[i]);
+		i++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
+}

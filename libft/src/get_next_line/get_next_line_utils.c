@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/25 18:53:04 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/04/27 10:09:01 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/05/24 09:51:37 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/05/29 16:21:25 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "get_next_line.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*ptr;
 	size_t	i;
@@ -35,11 +35,28 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	ptr[i + x] = '\0';
 	return (ptr);
-	free(ptr);
 }
 
-/* int main()
+size_t	ft_strlen(char *s)
 {
-	printf("%s", ft_strjoin("", ""));	
-	return(0);
-} */
+	int	i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != (char)c)
+	{
+		if (s[i] == '\0')
+			return (0);
+		i++;
+	}
+	return ((char *)&s[i]);
+}

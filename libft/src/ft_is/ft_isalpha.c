@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/28 12:02:01 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/01 12:09:57 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/04/17 13:03:26 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/06/13 16:23:45 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdio.h>
+#include <unistd.h>
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+int	ft_isalpha(int c)
 {
-	char	*ptr;
-	size_t	i;
-
-	i = 0;
-	ptr = (char *)malloc(ft_strlen(s) + 1);
-	if (!ptr)
-		return (NULL);
-	while (s[i] != '\0')
-	{
-		ptr[i] = f(i, s[i]);
-		i++;
-	}
-	ptr[i] = '\0';
-	return (ptr);
-	free(ptr);
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+		return (1);
+	return (0);
 }
+
+/*int	main(void)
+{
+    unsigned char c;
+   
+    c = '2';
+    printf("%i", ft_isaplha(c));
+    
+} */

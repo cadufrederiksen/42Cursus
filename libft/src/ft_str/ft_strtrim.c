@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:22:47 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/26 09:43:03 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/13 16:22:18 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 	}
 	ptr[i] = '\0';
 	return (ptr);
-	free(ptr);
 }
 
 /* int main() 
