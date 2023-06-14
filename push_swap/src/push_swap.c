@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 16:27:19 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/12 17:13:59 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/14 10:27:30 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,16 @@ t_numb *add_number (t_numb *pile_one, char *argv)
 
 int main(int argc, char** argv)
 {
-	t_state *state;
+	//t_state *state;
 	t_state *actual_state;
-	t_numb *num;
 	int x;
 	
 	x = 1;
-	actual_state = (t_state*)malloc(sizeof(state));
+	actual_state = (t_state*)malloc(sizeof(t_state));
 	if (argc == 1 || !actual_state)
 		return 0;
-	if(!state)
-		state = actual_state;
+	//if(!state)
+	//	state = actual_state;
 	while(x < argc)
 	{
 		actual_state->pile_one = add_number(actual_state->pile_one, argv[x]); //adicionar cada número recibido como argumento na lista

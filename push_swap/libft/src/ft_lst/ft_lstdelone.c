@@ -1,40 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/12 09:50:45 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/14 09:48:14 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/05/05 11:09:48 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/05/05 13:53:32 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-#define PUSH_SWAP_H
+#include "libft.h"
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-
-typedef struct s_numb
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	int content;
-	struct s_numb *next;
-}t_numb;
-
-//aqui estão definidas as estruturas mas ainda nao estão inicializadas
-typedef	struct s_state
-{
-	t_numb *pile_one;
-	t_numb *pile_two;
-}t_state;
-
-typedef
-
-int	ft_atoi(const char *str);
-int main(int argc, char** argv);
-
-#endif
-
- 
+	del(lst->content);
+	free(lst);
+}

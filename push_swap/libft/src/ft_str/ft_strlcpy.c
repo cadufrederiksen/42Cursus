@@ -1,46 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/21 16:38:30 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/12 14:54:47 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/04/18 15:59:57 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/05/05 14:58:42 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <unistd.h>
 
-int	ft_atoi(const char *str)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	long int	x;
-	int			i;
-	int			neg;
+	size_t	i;
 
-	neg = 1;
 	i = 0;
-	x = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == 45 || str[i] == 43)
+	if (dstsize > 0)
 	{
-		if (str[i] == 45)
-			neg *= -1;
-		i++;
+		while (i < dstsize - 1 && src[i] != '\0')
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
 	}
-	while (str[i] >= 48 && str[i] <= 57)
-	{
-		x = x * 10 + (str[i] - 48);
+	i = 0;
+	while (src[i] != '\0')
 		i++;
-	}
-	return (neg * x);
+	return (i);
 }
-
-/* int	main(void)
+/* int main()
 {
-	char num[] = " \t\v\n\r\f123";
-	printf("%d \n", ft_atoi(num));
-	//printf("%d", atoi(num));
+    char og[] = "hola";
+    char dest[] = "";
+    size_t i = 0;
+    printf("%zu", ft_strlcpy(dest, og, i));
 } */
