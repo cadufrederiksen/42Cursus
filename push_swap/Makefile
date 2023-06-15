@@ -12,7 +12,7 @@ AR = ar rcs
 
 #---------------SRC------------
 
-SRC_FILES = push_swap 
+SRC_FILES = push_swap instructions main
 
 #=============SRC=============#
 

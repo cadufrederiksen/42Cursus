@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 09:50:45 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/14 10:24:20 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/15 13:36:09 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,26 @@
 
 typedef struct s_numb
 {
-	int content;
-	struct s_numb *next;
+	int content; //número
+	struct s_numb *next; //posição
 }t_numb;
 
 //aqui estão definidas as estruturas mas ainda nao estão inicializadas
 typedef	struct s_state
 {
-	t_numb *pile_one;
+	t_numb *pile_one; 
 	t_numb *pile_two;
+	int size;
+	
 }t_state;
 
 int main(int argc, char** argv);
+t_numb *swap_a(t_numb *pile_one);
+t_numb *allocate_pile();
+t_state *allocate_state();
+t_numb *add_number(t_numb *pile_one, char *argv);
+t_numb *reverse_rotate_a(t_numb *pile_one);
+t_numb *rotate_a(t_numb *pile_one);
 
 #endif
 
