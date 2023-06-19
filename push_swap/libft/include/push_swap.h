@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 09:50:45 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/19 12:48:01 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/19 14:21:57 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ t_numb *rotate_a(t_numb *pile_one);
 t_numb *rotate_b(t_numb *pile_two);
 t_state *push_a (t_state *state);
 t_state *push_b (t_state *state);
+t_state *ss_function(t_state *state);
+t_state *rr_function(t_state *state);
+t_state *rrr_function(t_state *state);
 
 #endif
 

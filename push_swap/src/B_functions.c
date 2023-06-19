@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 12:18:11 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/19 12:56:26 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/19 14:50:06 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ t_state *push_b (t_state *state)
 	t_numb *aux_push;
 	t_numb *aux_pile;
 
+	if(!state->pile_two)	
+		return(state);
 	if(!state->pile_one)
 		state->pile_one = allocate_pile();
 	actual_state = state;

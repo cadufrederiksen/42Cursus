@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:55:00 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/19 13:34:35 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/19 14:50:11 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ t_state *push_a (t_state *state) //funciona quando chamada variaz vezes mas há 
 	t_numb *aux_push;
 	t_numb *aux_pile;
 	
+	if(!state->pile_one)
+		return (state);	
 	if(!state->pile_two)
 		state->pile_two = allocate_pile();//inicializamos a asegunda pila se não estiver inicializada
 	actual_state = state;
