@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 16:27:19 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/15 10:54:09 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/16 16:07:07 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@ t_numb *add_number (t_numb *pile_one, char *argv)
 	t_numb *aux;
 	t_numb *actual_pile;
 
-	aux = (t_numb *)malloc(sizeof(t_numb));
-	if(!aux)
-		return 0;
+	aux = allocate_pile();
 	aux->content = ft_atoi(argv); //recebe o número
 	aux->next = NULL; //indica o final
 	if(!pile_one)//se é a primeira vez so adiciona o valor
