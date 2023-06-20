@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 16:27:19 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/16 16:07:07 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/20 15:39:27 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,16 @@ t_numb *add_number (t_numb *pile_one, char *argv)
 
 	aux = allocate_pile();
 	aux->content = ft_atoi(argv); //recebe o número
-	aux->next = NULL; //indica o final
-	if(!pile_one)//se é a primeira vez so adiciona o valor
-		pile_one = aux;
+	if(!pile_one -> content)//se é a primeira vez so adiciona o valor
+	{
+		pile_one->content = ft_atoi(argv);
+	}
 	else //se não adicionamos à seguinte lista
 	{	
 		actual_pile = pile_one;//fazemos uma "cópia" da lista para não modificar la
 		while(actual_pile->next != NULL)
 			actual_pile = actual_pile->next;//"buscamos" o seguinte espaço livre que recebera o novo parametro
-		actual_pile -> next = aux; //recebe o novo número
+		actual_pile->next = aux; //recebe o novo número
 	}
 	return (pile_one);
 }

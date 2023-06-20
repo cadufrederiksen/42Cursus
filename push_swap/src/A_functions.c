@@ -6,28 +6,11 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:55:00 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/19 14:50:11 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/20 14:51:51 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-
-t_numb	*swap_a(t_numb *pile_one) //funciona quando chamada variaz vezes
-{
-	t_numb *aux;
-	t_numb *actual_pile;
-
-	if(!pile_one || !pile_one->next)
-		return(0);//não é possível
-	aux = allocate_pile();
-	actual_pile = pile_one; // fazemos uma cópia de pile_one
-	aux->content = actual_pile->content;              // guardamos o conteúdo a primeira posição
-	actual_pile->content = actual_pile->next->content;//a primeira posição recebe o valor da segunda
-	actual_pile->next->content = aux->content;       // a segunda recebe o valor guardado em aux
-	free(aux);
-	return (pile_one);
-}
 
 t_numb *rotate_a(t_numb *pile_one)//funciona quando chamada varia vezes
 {
@@ -86,9 +69,29 @@ t_state *push_a (t_state *state) //funciona quando chamada variaz vezes mas há 
 		actual_state->pile_two = aux_push; //colocamos esse valor na primeira posição de B se vazio
 	else
 	{
-		aux_pile = state->pile_two; //fazemos um swap para colocar o valor de auax antes dos valores que estejam em pile two
+		aux_pile = state->pile_two; //fazemos um swap para colocar o valor de aux antes dos valores que estejam em pile two
 		actual_state->pile_two = aux_push;
 		actual_state->pile_two->next = aux_pile;
 	}
 	return(state);
+}
+
+t_numb *swap_a(t_numb *pile_one)
+{
+	t_numb *aux;
+	t_numb *aux2;
+	t_numb *actual_pile;
+
+	if(!pile_one || !pile_one->next)
+		return(0);
+	aux = allocate_pile();
+	aux2 = allocate_pile();
+	actual_pile = pile_one;
+	aux = actual_pile; //salva a primeira posicao
+	aux2 = pile_one->next; //salva a segunda
+	actual_pile = actual_pile->next->next; //excluimos as duas primeiras
+	aux2 ->next = aux; //colocomas a primeeira depois da segunda(swap)
+	aux2->next->next = actual_pile;//colocomas depois o restante
+	pile_one = aux2;
+	return(pile_one);
 }

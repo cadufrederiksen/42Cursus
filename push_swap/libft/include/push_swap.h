@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 09:50:45 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/19 14:21:57 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/20 15:38:20 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 typedef struct s_numb
 {
+	int index; 
 	int content; //número
 	struct s_numb *next; //posição
 }t_numb;
