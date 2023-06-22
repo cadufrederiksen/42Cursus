@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 16:27:19 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/20 15:39:27 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/21 15:43:46 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ t_state *allocate_state()
 	if (!aux)
 		return (0);
 	aux->pile_one = NULL;
+	aux->pile_two = NULL;
 	return(aux);
 }

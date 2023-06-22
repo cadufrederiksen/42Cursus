@@ -6,29 +6,28 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:14:15 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/20 16:42:21 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/21 17:06:59 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_strcmp(char *s1, char *s2)
+int check_pile(t_numb *pile)//se estiver ordenado devolve 1 se não 0
 {
-	int n1;
-	int n2;
-
-	n1 = ft_atoi(s1);
-	n2 = ft_atoi(s2);
-	if(n1 > n2)
-		return(1);
-	if(n2 > n1)
-		return(-1);
-	return(0);
-		
+	t_numb *actual_pile;
 	
+	actual_pile = pile;
+	while(actual_pile->next != NULL)
+	{
+		if(actual_pile->index < actual_pile->next->index)
+			actual_pile = actual_pile->next;
+		else 
+			return(0);
+	}
+	return(1);
 }
 
-char	**ft_sort_params(int argc, char **argv)//montar um array que ordene os argv
+char	**ft_sort_params(int argc, char **argv)//ordena argv
 {
 	int		i;
 	int		j;
@@ -40,7 +39,7 @@ char	**ft_sort_params(int argc, char **argv)//montar um array que ordene os argv
 		i = j + 1;
 		while (i < argc)
 		{
-			if (ft_strcmp(argv[j], argv[i]) > 0)
+			if (ft_atoi(argv[j]) > ft_atoi(argv[i])) 
 			{
 				c = argv[i];
 				argv[i] = argv[j];
@@ -55,7 +54,7 @@ char	**ft_sort_params(int argc, char **argv)//montar um array que ordene os argv
 	return (argv);
 }
 
-t_numb *add_index(t_numb *pile_one, char **argv, int argc)
+t_numb *add_index(t_numb *pile_one, char **argv, int argc)//adiciona index(posição final)
 {
 	int x;
 	t_numb *actual_pile;
@@ -79,12 +78,12 @@ t_numb *add_index(t_numb *pile_one, char **argv, int argc)
 int main(int argc, char** argv)
 {
 	t_state *state;
-	
 	int x;
 
 	x = 1;
 	state = allocate_state();
 	state->pile_one = allocate_pile();
+	state->size = (argc - 1);
 	if (argc <= 1)
 		return (0);
 	while(x < argc)
@@ -92,11 +91,14 @@ int main(int argc, char** argv)
 		state->pile_one = add_number(state->pile_one, argv[x]); //adicionar cada número recibido como argumento na lista
 		x++;
 	}
-	ft_sort_params(argc, argv); 
+ 	ft_sort_params(argc, argv); 
 	add_index(state->pile_one, argv, argc);
-	state->pile_one = rotate_a(state->pile_one);
-	state->pile_one = swap_a(state->pile_one);
-	
+	if(state->size == 2) 
+		state->pile_one = size2(state->pile_one);
+ 	else if (state->size == 3)
+		state->pile_one = size3(state->pile_one);
+		else	
+		state = over3(state, state->size); 
 	while(state->pile_one != NULL)
 	{
 		printf("PILA A: %d Index: %d\n", state->pile_one->content, state->pile_one->index);
@@ -104,10 +106,9 @@ int main(int argc, char** argv)
 	}
  	while(state->pile_two != NULL)
 	{
-		printf("PILA A: %d Index: %d\n", state->pile_two->content, state->pile_two->index);
+		printf("PILA B: %d Index: %d\n", state->pile_two->content, state->pile_two->index);
 		state->pile_two = state->pile_two->next;
-	}
-	state->size = (argc - 1);
+	} 
 	printf("Size: %d\n", state->size); 
 	return (0);
 }

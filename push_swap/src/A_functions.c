@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:55:00 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/20 14:51:51 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/21 16:00:23 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ t_state *push_a (t_state *state) //funciona quando chamada variaz vezes mas há 
 		actual_state->pile_two = aux_push;
 		actual_state->pile_two->next = aux_pile;
 	}
-	return(state);
+	return(actual_state);
 }
 
 t_numb *swap_a(t_numb *pile_one)
