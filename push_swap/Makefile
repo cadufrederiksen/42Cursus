@@ -12,7 +12,7 @@ AR = ar rcs
 
 #---------------SRC------------
 
-SRC_FILES = push_swap A_functions main B_functions Both_functions Algorithm
+SRC_FILES = push_swap_utils Move_functions main Push_functions Algorithm
 
 #=============SRC=============#
 

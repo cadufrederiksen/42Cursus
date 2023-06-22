@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:14:15 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/21 17:06:59 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/22 16:57:52 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,17 @@ int main(int argc, char** argv)
 	int x;
 
 	x = 1;
+ 	if(check_args(argv) == 0)
+	{
+		write(1, "Error\n", 6);
+		return(0);
+	} 
 	state = allocate_state();
 	state->pile_one = allocate_pile();
 	state->size = (argc - 1);
 	if (argc <= 1)
 		return (0);
-	while(x < argc)
+	while(x < argc) //fazer isso em outra função
 	{
 		state->pile_one = add_number(state->pile_one, argv[x]); //adicionar cada número recibido como argumento na lista
 		x++;
