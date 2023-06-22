@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:14:15 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/22 16:57:52 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/22 18:45:31 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int check_pile(t_numb *pile)//se estiver ordenado devolve 1 se não 0
 {
 	t_numb *actual_pile;
-	
 	actual_pile = pile;
 	while(actual_pile->next != NULL)
 	{
@@ -54,27 +53,6 @@ char	**ft_sort_params(int argc, char **argv)//ordena argv
 	return (argv);
 }
 
-t_numb *add_index(t_numb *pile_one, char **argv, int argc)//adiciona index(posição final)
-{
-	int x;
-	t_numb *actual_pile;
-	
-	actual_pile = pile_one;
-	x = 1;
-	while(actual_pile != NULL)
-	{
-		x = 1;
-		while(x < argc)
-		{
-			if(actual_pile->content == ft_atoi(argv[x]))
-				actual_pile->index = x;
-			x++;
-		}
-		actual_pile = actual_pile->next;
-	}	
-	return(pile_one);
-}
-
 int main(int argc, char** argv)
 {
 	t_state *state;
@@ -102,9 +80,9 @@ int main(int argc, char** argv)
 		state->pile_one = size2(state->pile_one);
  	else if (state->size == 3)
 		state->pile_one = size3(state->pile_one);
-		else	
+	else	
 		state = over3(state, state->size); 
-	while(state->pile_one != NULL)
+	while(state->pile_one)
 	{
 		printf("PILA A: %d Index: %d\n", state->pile_one->content, state->pile_one->index);
 		state->pile_one = state->pile_one->next;

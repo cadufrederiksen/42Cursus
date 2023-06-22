@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 11:25:54 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/13 16:22:53 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/22 17:45:46 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,15 @@ int	countword(char const *s, char c)
 	return (counter);
 }
 
+void	free_cpp(char **arr, int words)
+{
+	while (words-- > 0)
+	{
+		free(arr[words]);
+	}
+	free(arr);
+}
+
 char	**splitting(const char *s, char **ptr, char c, size_t count_word)
 {
 	size_t	x;
@@ -51,6 +60,8 @@ char	**splitting(const char *s, char **ptr, char c, size_t count_word)
 			if (x < count_word)
 			{
 				ptr[x] = ft_substr(s, 0, len);
+				if(!ptr[x])
+					return(free_cpp(ptr, x), NULL);
 				x++;
 			}
 			s += len;

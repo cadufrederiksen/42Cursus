@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 09:50:45 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/22 17:06:02 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/22 18:12:11 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ t_numb *size3(t_numb *pile_one);
 t_state *over3(t_state *state, int size);
 int check_pile(t_numb *pile);
 int check_args(char **argv);
+t_numb *add_index(t_numb *pile_one, char **argv, int argc);
+char	**ft_sort_params(int argc, char **argv);
 
 #endif
 
