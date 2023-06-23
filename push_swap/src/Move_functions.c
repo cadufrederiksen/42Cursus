@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:55:00 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/22 17:06:59 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/23 16:52:45 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_numb *rotate_pile(t_numb *pile)//funciona quando chamada varia vezes
 	aux = pile;
 	aux->next = NULL; //guardo só o primeiro número de pile
 	pile = actual_pile;//atualizo sem a primeira posição
-	while (actual_pile -> next != 0)
+	while (actual_pile->next != NULL)//aqui me da seg fault!!!!!!!!
 		actual_pile = actual_pile->next; //vou ao ultimo nó da lista
 	actual_pile->next = aux; //adiciono o que tiver em aux ao final
 	free(aux);
@@ -39,8 +39,8 @@ t_numb *reverse_rotate_pile(t_numb *pile)//funciona quando chamada varia vezes
 	actual_pile = aux->next; //AP guarda todo o valor menos a primeira posição
 	while(actual_pile->next != NULL)
 	{
-			aux = aux->next; //termina na penúltima posição
-			actual_pile = actual_pile->next; //termina na ultima posição(ou seja a última vira a primeira)
+		aux = aux->next; //termina na penúltima posição
+		actual_pile = actual_pile->next; //termina na ultima posição(ou seja a última vira a primeira)
 	}
 	aux->next = NULL; //elimina a última posição
 	actual_pile->next = pile; //depois da última posição(agora primeira)adiciona o resto dos números

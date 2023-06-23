@@ -6,36 +6,29 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 17:02:32 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/22 17:06:49 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/23 12:44:35 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 t_state	*push_b(t_state *state)
-{
+{	
 	t_state	*actual_state;
 	t_numb	*aux_push;
 	t_numb	*aux_pile;
-
+	
 	if (!state->pile_two)
 		return (state);
-	if (!state->pile_one)
-		state->pile_one = allocate_pile();
 	actual_state = state;
 	aux_pile = allocate_pile();
 	aux_push = allocate_pile();
 	aux_push = actual_state->pile_two;
 	actual_state->pile_two = actual_state->pile_two->next;
 	aux_push->next = NULL;
-	if (!state->pile_one->content)
-		actual_state->pile_one = aux_push;
-	else
-	{
-		aux_pile = state->pile_one;
-		actual_state->pile_one = aux_push;
-		actual_state->pile_one->next = aux_pile;
-	}
+	aux_pile = state->pile_one;
+	actual_state->pile_one = aux_push;
+	actual_state->pile_one->next = aux_pile;
 	return (state);
 }
 
@@ -44,7 +37,6 @@ t_state *push_a (t_state *state) //funciona quando chamada variaz vezes mas há 
 	t_state *actual_state;
 	t_numb *aux_push;
 	t_numb *aux_pile;
-	
 	if(!state->pile_one)
 		return (state);	
 	if(!state->pile_two)
@@ -55,15 +47,10 @@ t_state *push_a (t_state *state) //funciona quando chamada variaz vezes mas há 
 	aux_push = actual_state->pile_one;//guardamos o primeiro valor da pile A
 	actual_state->pile_one = actual_state->pile_one->next; //excluimos esse valor
 	aux_push->next = NULL;//aux contém apenas um valor;
- 	if(!state->pile_two->content)
-		actual_state->pile_two = aux_push; //colocamos esse valor na primeira posição de B se vazio
-	else
-	{
-		aux_pile = state->pile_two; //fazemos um swap para colocar o valor de aux antes dos valores que estejam em pile two
-		aux_pile ->next = NULL;
-		actual_state->pile_two = aux_push;
-		actual_state->pile_two->next = aux_pile;
-	}
+	aux_pile = state->pile_two; //fazemos um swap para colocar o valor de aux antes dos valores que estejam em pile two
+	aux_pile ->next = NULL;
+	actual_state->pile_two = aux_push;
+	actual_state->pile_two->next = aux_pile;
 	return(actual_state);
 }
 

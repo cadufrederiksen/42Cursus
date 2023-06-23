@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 10:55:10 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/22 18:34:26 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/23 17:04:02 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,17 +68,18 @@ t_state *over3(t_state *state, int size)//testando para 5 digitos
 		}
 	}
 	state->pile_one = size3(state->pile_one);//ordena os 3 elementos de pile A(max 2 movimentos)
-	while(state->pile_two != NULL)
+	while(pushed != 0)
 	{
 		indexA = state->pile_one->index;
 		if(state->pile_two->index == (indexA - 1)) //se o índice do topo de B for o proximo de A
 		{
 			state = push_b(state);//envia para A
 			write(1, "pb\n", 3);
+			pushed--;
 		}
-		else if (state->pile_two->index < state->pile_two->next->index)//se não for, roda
+		else if (state->pile_two->index < state->pile_two->next->index)// (falta colocar alguamas condições aqui)se não for, roda
 		{
-			state->pile_two = rotate_pile(state->pile_two);
+			state->pile_two = rotate_pile(state->pile_two);//seg fault
 			write(1, "rb\n", 3);
 		}	
 	}

@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:14:15 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/22 18:45:31 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/23 12:46:19 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,19 +69,22 @@ int main(int argc, char** argv)
 	state->size = (argc - 1);
 	if (argc <= 1)
 		return (0);
-	while(x < argc) //fazer isso em outra função
+	while(x < argc)
 	{
-		state->pile_one = add_number(state->pile_one, argv[x]); //adicionar cada número recibido como argumento na lista
+		state->pile_one = add_number(state->pile_one, argv[x], x); //adicionar cada número recibido como argumento na lista
 		x++;
 	}
  	ft_sort_params(argc, argv); 
 	add_index(state->pile_one, argv, argc);
+	if (!check_pile(state->pile_one))
+	{
 	if(state->size == 2) 
-		state->pile_one = size2(state->pile_one);
+		state->pile_one = size2(state->pile_one);//funciona perfeitamente
  	else if (state->size == 3)
-		state->pile_one = size3(state->pile_one);
+		state->pile_one = size3(state->pile_one);//funciona perfeitamente
 	else	
-		state = over3(state, state->size); 
+		state = over3(state, state->size);//funciona perfeitamente com até 5 números
+	}
 	while(state->pile_one)
 	{
 		printf("PILA A: %d Index: %d\n", state->pile_one->content, state->pile_one->index);

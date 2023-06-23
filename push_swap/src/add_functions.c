@@ -6,24 +6,21 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 17:14:56 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/22 18:42:49 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/23 11:44:41 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_numb *add_number (t_numb *pile_one, char *argv)
+t_numb *add_number (t_numb *pile_one, char *argv, int x)
 {
 	t_numb *aux;
 	t_numb *actual_pile;
 
 	aux = allocate_pile();
 	aux->content = ft_atoi(argv); //recebe o número
-	if(!pile_one->content)//se é a primeira vez so adiciona o valor
-	{
-		printf("%s\n", "aqui");
+	if(x == 1)//se é a primeira vez so adiciona o valor
 		pile_one->content = ft_atoi(argv);
-	}
 	else //se não adicionamos à seguinte lista
 	{	
 		actual_pile = pile_one;//fazemos uma "cópia" da lista para não modificar la

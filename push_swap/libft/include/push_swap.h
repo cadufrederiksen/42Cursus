@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 09:50:45 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/22 18:12:11 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/23 12:05:46 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef	struct s_state
 int main(int argc, char** argv);
 t_numb *allocate_pile();
 t_state *allocate_state();
-t_numb *add_number(t_numb *pile_one, char *argv);
+t_numb *add_number(t_numb *pile_one, char *argv, int x);
 t_numb *swap_pile(t_numb *pile_one);
 t_numb *reverse_rotate_pile(t_numb *pile_one);
 t_numb *rotate_pile(t_numb *pile_one);

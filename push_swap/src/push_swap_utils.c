@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 16:27:19 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/22 17:16:03 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/23 17:11:00 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int check_args(char **argv)
 		i = 0;
 		while(argv[x][i])
 		{
-			if(argv[x][i] < '0' || argv[x][i] > '9')	
+			if((argv[x][i] < '0' || argv[x][i] > '9') && argv[x][i] != '-')	
 				return(0);
 			else 
 				i++;
