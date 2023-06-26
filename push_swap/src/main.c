@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:14:15 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/26 14:19:12 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/26 14:55:15 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int check_pile(t_numb *pile)//se estiver ordenado devolve 1 se não 0
 	actual_pile = pile;
 	while(actual_pile->next != NULL)
 	{
-		if(actual_pile->index < actual_pile->next->index)
+		if(actual_pile->final_idx < actual_pile->next->final_idx)
 			actual_pile = actual_pile->next;
 		else 
 			return(0);
@@ -87,14 +87,14 @@ int main(int argc, char** argv)
 	}
 	while(state->pile_one)
 	{
-		printf("PILA A: %d Index: %d\n", state->pile_one->content, state->pile_one->index);
+		printf("PILA A: %d final_idx: %d\n", state->pile_one->value, state->pile_one->final_idx);
 		state->pile_one = state->pile_one->next;
 	}
  	if(state->pile_two)
 	{
 		while(state->pile_two->next != NULL)
 		{
-			printf("PILA B: %d Index: %d\n", state->pile_two->content, state->pile_two->index);
+			printf("PILA B: %d final_idx: %d\n", state->pile_two->value, state->pile_two->final_idx);
 			state->pile_two = state->pile_two->next;
 		} 
 	}

@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 09:50:45 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/26 12:31:07 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/26 15:03:17 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,13 @@
 
 typedef struct s_numb
 {
-	int index; //posição final
-	int content; //número
+	int final_idx; //posição final
+	int value; //número
+	int pile_pos;//posição atual em pile
+	
 	struct s_numb *next; //posição
+
+	
 }t_numb;
 
 //aqui estão definidas as estruturas mas ainda nao estão inicializadas
