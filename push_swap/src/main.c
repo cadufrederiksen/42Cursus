@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:14:15 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/23 12:46:19 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/26 14:19:12 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,18 +83,21 @@ int main(int argc, char** argv)
  	else if (state->size == 3)
 		state->pile_one = size3(state->pile_one);//funciona perfeitamente
 	else	
-		state = over3(state, state->size);//funciona perfeitamente com até 5 números
+		state = over3_A(state);//funciona perfeitamente com até 5 números
 	}
 	while(state->pile_one)
 	{
 		printf("PILA A: %d Index: %d\n", state->pile_one->content, state->pile_one->index);
 		state->pile_one = state->pile_one->next;
 	}
- 	while(state->pile_two != NULL)
+ 	if(state->pile_two)
 	{
-		printf("PILA B: %d Index: %d\n", state->pile_two->content, state->pile_two->index);
-		state->pile_two = state->pile_two->next;
-	} 
+		while(state->pile_two->next != NULL)
+		{
+			printf("PILA B: %d Index: %d\n", state->pile_two->content, state->pile_two->index);
+			state->pile_two = state->pile_two->next;
+		} 
+	}
 	printf("Size: %d\n", state->size); 
 	return (0);
 }

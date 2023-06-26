@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 10:55:10 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/23 17:04:02 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/26 13:42:24 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,41 +47,62 @@ t_numb	*size3(t_numb *pile_one)
 	return (pile_one);
 } 
 
-t_state *over3(t_state *state, int size)//testando para 5 digitos
+t_state *over3_A(t_state *state)//testando para 5 digitos
 {
 	int pushed;
-	int indexA;
+	int last_idx;
 
 	pushed = 0;
-	while ((size - pushed) != 3 )//enquanto não tem apenas 3 numeros em pila A
+	while ((state->size - pushed) != 3 )//enquanto não tem apenas 3 numeros em pila A
 	{
-		if(state->pile_one->index <= size - 3) //se nao for nenhum dos tres ultimos 
+		last_idx = last_index(state->pile_one);
+		if(state->pile_one->index <= (state->size - 3)) //se nao for nenhum dos tres ultimos 
 		{	
 			state = push_a(state);//envia para B
 			write(1, "pa\n", 3);
 			pushed++;
 		}
-		else 
+		else
 		{
 			state->pile_one = rotate_pile(state->pile_one); // se não roda(melhorar esse algoritmo)
-			write(1, "ra\n", 3);
+			write(1, "ra\n", 4);
 		}
 	}
 	state->pile_one = size3(state->pile_one);//ordena os 3 elementos de pile A(max 2 movimentos)
+	state = over3_B(state, pushed);
+	return(state);
+}
+
+t_state *over3_B(t_state *state, int pushed)
+{
+	int target;
+	int last_idx;
+	
 	while(pushed != 0)
 	{
-		indexA = state->pile_one->index;
-		if(state->pile_two->index == (indexA - 1)) //se o índice do topo de B for o proximo de A
+		target = state->pile_one->index - 1;
+		last_idx = last_index(state->pile_two);
+		if(state->pile_two->index == target) //se o índice do topo de B for o proximo de A
 		{
 			state = push_b(state);//envia para A
 			write(1, "pb\n", 3);
 			pushed--;
 		}
-		else if (state->pile_two->index < state->pile_two->next->index)// (falta colocar alguamas condições aqui)se não for, roda
+		else if(last_idx == target)//(falta colocar alguamas condições aqui)se não for, roda
 		{
-			state->pile_two = rotate_pile(state->pile_two);//seg fault
-			write(1, "rb\n", 3);
+			state->pile_two = reverse_rotate_pile(state->pile_two);//seg fault
+			write(1, "rrb\n", 4);
+		}
+		else if(state->pile_two->next->index == target)
+		{
+			state->pile_two = swap_pile(state->pile_two);
+			write(1, "sb\n", 3);
 		}	
+		else 
+		{
+			state->pile_two = rotate_pile(state->pile_two);
+			write(1, "rb\n", 3);	
+		}
 	}
 	return(state);
-}
+} 
