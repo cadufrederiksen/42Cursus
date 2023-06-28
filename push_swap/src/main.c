@@ -6,52 +6,11 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 13:14:15 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/26 14:55:15 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/28 09:40:23 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int check_pile(t_numb *pile)//se estiver ordenado devolve 1 se não 0
-{
-	t_numb *actual_pile;
-	actual_pile = pile;
-	while(actual_pile->next != NULL)
-	{
-		if(actual_pile->final_idx < actual_pile->next->final_idx)
-			actual_pile = actual_pile->next;
-		else 
-			return(0);
-	}
-	return(1);
-}
-
-char	**ft_sort_params(int argc, char **argv)//ordena argv
-{
-	int		i;
-	int		j;
-	char	*c;
-
-	j = 1;
-	while (j < argc)
-	{
-		i = j + 1;
-		while (i < argc)
-		{
-			if (ft_atoi(argv[j]) > ft_atoi(argv[i])) 
-			{
-				c = argv[i];
-				argv[i] = argv[j];
-				argv[j] = c;
-				i++;
-			}
-			else
-				i++;
-		}
-		j++;
-	}
-	return (argv);
-}
 
 int main(int argc, char** argv)
 {
@@ -74,8 +33,8 @@ int main(int argc, char** argv)
 		state->pile_one = add_number(state->pile_one, argv[x], x); //adicionar cada número recibido como argumento na lista
 		x++;
 	}
- 	ft_sort_params(argc, argv); 
-	add_index(state->pile_one, argv, argc);
+	ft_sort_params(argc, argv); 
+	add_final_idx(state->pile_one, argv, argc);
 	if (!check_pile(state->pile_one))
 	{
 	if(state->size == 2) 

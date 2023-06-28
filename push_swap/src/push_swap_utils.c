@@ -6,63 +6,42 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 16:27:19 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/26 11:57:48 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/28 09:54:47 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_numb *allocate_pile()
+int last_index(t_numb *pile)
 {
-	t_numb *aux;
-	
-	aux = (t_numb *)malloc(sizeof(t_numb)); //inicializamos aux com memória
-	if (!aux)
-		return (0);
-	aux->next = NULL;
-	return(aux);
+	while(pile->next != 0)
+		pile = pile->next;
+	return(pile->final_idx);
 }
 
-t_state *allocate_state()
+char	**ft_sort_params(int argc, char **argv)//ordena argv
 {
-	t_state *aux;
-	
-	aux = (t_state *)malloc(sizeof(t_state)); //inicializamos aux com memória
-	if (!aux)
-		return (0);
-	aux->pile_one = NULL;
-	return(aux);
-}
+	int		i;
+	int		j;
+	char	*c;
 
-int check_args(char **argv)
-{
-	int i;
-	int x;
-	
-	x = 1;
-	while(argv[x])
+	j = 1;
+	while (j < argc)
 	{
-		i = 0;
-		while(argv[x][i])
+		i = j + 1;
+		while (i < argc)
 		{
-			if((argv[x][i] < '0' || argv[x][i] > '9') && argv[x][i] != '-')	
-				return(0);
-			else 
+			if (ft_atoi(argv[j]) > ft_atoi(argv[i])) 
+			{
+				c = argv[i];
+				argv[i] = argv[j];
+				argv[j] = c;
 				i++;
-		}		
-		x++;
-	}
-	x = 1;
-	while (argv[x])
-	{
-		i = x + 1;
-		while(argv[i])
-		{
-			if(ft_atoi(argv[x]) == ft_atoi(argv[i]))
-				return(0);
-			i++;
+			}
+			else
+				i++;
 		}
-		x++;
+		j++;
 	}
-	return(1);
+	return (argv);
 }

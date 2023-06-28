@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 10:55:00 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/23 16:52:45 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/28 09:36:10 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,3 +75,13 @@ t_state *ss_function(t_state *state)
 	swap_pile(state->pile_two);
 	return(state);
 }
+
+
+/* void swap_a(t_numb *pile_one)
+{
+	t_content aux;
+	
+	aux = pile_one->info;
+	pile_one->info = pile_one->next->info;
+	pile_one->next->info = aux;
+} */

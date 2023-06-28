@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 17:14:56 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/26 14:57:41 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/28 09:36:35 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_numb *add_number (t_numb *pile_one, char *argv, int x)
 	return (pile_one);
 }
 
-t_numb *add_index(t_numb *pile_one, char **argv, int argc)//adiciona index(posição final)
+t_numb *add_final_idx(t_numb *pile_one, char **argv, int argc)//adiciona index(posição final)
 {
 	int x;
 	t_numb *actual_pile;
@@ -51,3 +51,37 @@ t_numb *add_index(t_numb *pile_one, char **argv, int argc)//adiciona index(posi�
 	}	
 	return(pile_one);
 }
+/* 
+t_numb	*add_pile_pos(t_numb *pile)
+{
+	int pos;
+
+	pos = 0;
+	while (pile)
+	{
+		pile->pile_pos = pos;
+		pile = pile->next;
+		pos++;
+	}
+	return (pile);
+}
+ */
+/* t_numb *add_target (t_state *state)
+{
+	t_numb *pileB;
+	t_numb *pileA;
+
+	pileB = state->pile_two;
+	while(pileB)
+	{
+		pileA = state->pile_one;
+		while(pileA)
+		{
+			if (pileB->final_idx == (pileA->final_idx - 1))
+				pileB->target = pileA->pile_pos;
+			pileA = pileA->next;
+		}
+		pileB = pileB->next;
+	}
+	return(pileB);
+} */
