@@ -5,58 +5,47 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/14 13:14:15 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/28 09:40:23 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/06/28 12:35:16 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/06/29 18:35:42 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int main(int argc, char** argv)
+int main(int argc, char **argv)
 {
-	t_state *state;
+	t_state *pile_a;
+	t_state *pile_b;//saber onde incializar
+	
+	
 	int x;
-
 	x = 1;
  	if(check_args(argv) == 0)
 	{
 		write(1, "Error\n", 6);
 		return(0);
 	} 
-	state = allocate_state();
-	state->pile_one = allocate_pile();
-	state->size = (argc - 1);
-	if (argc <= 1)
-		return (0);
 	while(x < argc)
 	{
-		state->pile_one = add_number(state->pile_one, argv[x], x); //adicionar cada número recibido como argumento na lista
+		add_new(&pile_a, create_newA(argv[x]));
 		x++;
 	}
-	ft_sort_params(argc, argv); 
-	add_final_idx(state->pile_one, argv, argc);
-	if (!check_pile(state->pile_one))
+	add_final_idx(pile_a, argv, argc);
+	//pile_b = allocate_state();
+	push_pile(&pile_a, &pile_b);
+	push_pile(&pile_a, &pile_b);
+	push_pile(&pile_a, &pile_b);
+	push_pile(&pile_b, &pile_a);
+	
+	while(pile_a)
 	{
-	if(state->size == 2) 
-		state->pile_one = size2(state->pile_one);//funciona perfeitamente
- 	else if (state->size == 3)
-		state->pile_one = size3(state->pile_one);//funciona perfeitamente
-	else	
-		state = over3_A(state);//funciona perfeitamente com até 5 números
+		printf("PILA A: %d Index: %d\n", pile_a->value, pile_a->index);
+		pile_a = pile_a->next;
 	}
-	while(state->pile_one)
+	while(pile_b)
 	{
-		printf("PILA A: %d final_idx: %d\n", state->pile_one->value, state->pile_one->final_idx);
-		state->pile_one = state->pile_one->next;
+		printf("PILA B: %d Index: %d\n", pile_b->value, pile_b->index);
+		pile_b = pile_b->next;
 	}
- 	if(state->pile_two)
-	{
-		while(state->pile_two->next != NULL)
-		{
-			printf("PILA B: %d final_idx: %d\n", state->pile_two->value, state->pile_two->final_idx);
-			state->pile_two = state->pile_two->next;
-		} 
-	}
-	printf("Size: %d\n", state->size); 
-	return (0);
+	return(0);
 }

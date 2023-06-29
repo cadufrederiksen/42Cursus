@@ -12,7 +12,7 @@ AR = ar rcs
 
 #---------------SRC------------
 
-SRC_FILES = push_swap_utils Move_functions main Push_functions Algorithm add_functions checkers memory
+SRC_FILES = main checkers add_functions lst_utils utils moves
 
 #=============SRC=============#
 

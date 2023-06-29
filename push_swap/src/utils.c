@@ -1,23 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/12 16:27:19 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/28 09:54:47 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/06/29 14:52:35 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/06/29 14:52:46 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int last_index(t_numb *pile)
-{
-	while(pile->next != 0)
-		pile = pile->next;
-	return(pile->final_idx);
-}
 
 char	**ft_sort_params(int argc, char **argv)//ordena argv
 {
