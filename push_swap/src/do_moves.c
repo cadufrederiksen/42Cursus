@@ -1,48 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   do_moves.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/29 14:52:35 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/07/05 10:55:21 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/06/30 16:00:10 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/06/30 16:05:08 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	**ft_sort_params(int argc, char **argv, int j)//ordena argv
+void do_sa(t_state** pile)
 {
-	int		i;
-	char	*c;
-
-	while (j < argc)
-	{
-		i = j + 1;
-		while (i < argc)
-		{
-			if (ft_atoi(argv[j]) > ft_atoi(argv[i])) 
-			{
-				c = argv[i];
-				argv[i] = argv[j];
-				argv[j] = c;
-				i++;
-			}
-			else
-				i++;
-		}
-		j++;
-	}
-	return (argv);
+	swap_pile(pile);	
+	write(1, "sa\n", 3); 
 }
 
-int new_argc(char **argv)
+void do_ra(t_state **pile)
 {
-	int x;
-
-	x = 0;
-	while(argv[x])
-		x++;
-	return(x);
+	rotate_pile(pile);
+	write(1, "ra\n", 3);
 }
+
+void do_rra(t_state **pile)
+{
+	reverse_rotate_pile(pile);
+	write(1, "rra\n", 4);
+}
+
+void do_pb(t_state **pile_a, t_state **pile_b)
+{
+	push_pile(pile_a, pile_b);
+	write(1, "pb\n", 3);
+}
+

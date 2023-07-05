@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 15:30:01 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/22 18:13:44 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/30 13:19:43 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_list
 
 int					ft_toupper(int c);
 int					ft_tolower(int c);
-int					ft_atoi(const char *str);
+long int			ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);
 int					ft_isalnum(int c);
 int					ft_isalpha(int c);

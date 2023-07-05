@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 12:38:07 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/28 12:39:46 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/30 12:38:10 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,14 @@ int check_args(char **argv)
 		}		
 		x++;
 	}
+	return(1);
+}
+
+int check_dup(char **argv)
+{	
+	int x;
+	int i;
+	
 	x = 1;
 	while (argv[x])
 	{
@@ -45,3 +53,43 @@ int check_args(char **argv)
 	return(1);
 }
 
+int check_pile(t_state *pile)//se estiver ordenado devolve 1 se não 0
+{
+	t_state *aux;
+	aux = pile;
+	while(aux->next != NULL)
+	{
+		if(aux->index < aux->next->index)
+			aux = aux->next;
+		else 
+			return(0);
+	}
+	return(1);
+}
+
+int check_min_max(char **argv)
+{
+	int x;
+
+	x = 1;
+	while(argv[x])
+	{
+		if (ft_atoi(argv[x]) < INT_MIN || ft_atoi(argv[x]) > INT_MAX)
+			return (0);
+		x++;
+	} 
+	return(1);
+}
+
+int check_all(char **argv)
+{
+	if(!check_args(argv))
+		return(0);
+	else if(!check_dup(argv))
+		return(0);
+	else if (!check_min_max(argv))
+		return(0);
+	else 
+		return(1);
+	
+}

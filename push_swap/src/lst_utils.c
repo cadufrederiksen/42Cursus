@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 14:49:26 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/29 18:15:15 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/07/05 12:42:46 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,14 @@ t_state *last_list(t_state* lst)
 	while (lst->next != 0)
 		lst = lst->next;
 	return (lst);
+}
+
+int last_index(t_state *pile)
+{
+	t_state *aux;
+
+	aux = pile;
+	while(aux->next != 0)
+		aux = aux->next;
+	return(aux->index);
 }

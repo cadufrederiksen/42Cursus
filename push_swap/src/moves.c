@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:47:48 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/29 18:42:02 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/06/30 13:24:06 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void swap_pile(t_state** pile)
 	*pile = (*pile)->next; //aponta para o 2º nó("exclui o 1º")
 	aux->next = (*pile)->next; //aponta para o 3º de pile (pile->next->next) ou seja "exclui" o 2º
 	(*pile)->next = aux; //agora o 2º passa a ser o primeiro e aponta para aux, que tem o 1º seguido pelos outros
-
 }
 
 void rotate_pile(t_state **pile)
