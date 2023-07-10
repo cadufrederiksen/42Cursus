@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 09:50:45 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/07/05 12:49:59 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/07/07 14:40:05 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ typedef	struct s_state
 {
 	int index; 	//posição final OK!
 	int value; 	//número OK!
-	int pile_pos;	//posição atual em pile
-	int target;		//Posição em A na qual os números que estão em B deveriam "entrar"
-	int size;
-	int priceA;
-	int priceB;
+	int pile_pos;	
+	int target;		
+	int PriceA;
+	int PriceB;
+	int final_price;
 	struct s_state *next;
 	
 }t_state;
@@ -66,6 +66,12 @@ void do_pa(t_state **pile_a, t_state **pile_b);
 int new_argc(char **argv);
 void	over3_A(t_state **pile_a, t_state **pile_b);
 void Over3_B(t_state **pile_a, t_state **pile_b, int sizeB);
+int last_index(t_state *pile);
+void prices(t_state *pile_a, t_state *pile_b);
+int find_price(t_state *pile_b);
+void Over3_moves(t_state **pile_a, t_state **pile_b, int PriceA, int PriceB);
+void do_rr(t_state **pile_a, t_state **pile_b);
+void do_rrr(t_state **pile_a, t_state **pile_b);
 
 #endif
 

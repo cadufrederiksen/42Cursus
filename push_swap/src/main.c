@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 12:35:16 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/07/05 11:36:48 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:59:06 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int main(int argc, char **argv)
 	t_state *pile_a;
 	t_state *pile_b;//saber onde incializar
 	int x;
-	
+	 
 	pile_a = NULL;
 	pile_b = NULL;
 	x = 1;
@@ -38,7 +38,12 @@ int main(int argc, char **argv)
 		x++;
 	}
 	add_index(pile_a, argv, argc);
-	over3_A(&pile_a, &pile_b);
+	do_pb(&pile_a, &pile_b);
+	do_pb(&pile_a, &pile_b);
+	do_pb(&pile_a, &pile_b);
+	prices(pile_a, pile_b);
+	//printf("%d", find_price(pile_b));
+	//over3_A(&pile_a, &pile_b);
 	while(pile_a)
 	{
 		printf("PILA A: %d Index: %d Pile_Pos: %d\n", pile_a->value, pile_a->index, pile_a->pile_pos);
@@ -46,8 +51,11 @@ int main(int argc, char **argv)
 	}
 	while(pile_b)
 	{
-		printf("PILA B: %d Index: %d Pile_Pos: %d Target: %d\n", pile_b->value, pile_b->index, pile_b->pile_pos, pile_b->target);
+		printf("PILA B: %d Index: %d Pile_Pos: %d Target: %d PriceA: %d PriceB: %d Final_Price: %d \n", pile_b->value, pile_b->index, pile_b->pile_pos,
+		pile_b->target, pile_b->PriceA, pile_b->PriceB, pile_b->final_price);
 		pile_b = pile_b->next;
 	}
+	free(pile_a);
+	free(pile_b);
 	return(0);
 }

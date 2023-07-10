@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 16:00:10 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/30 16:05:08 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/07/07 12:30:53 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,3 +36,9 @@ void do_pb(t_state **pile_a, t_state **pile_b)
 	write(1, "pb\n", 3);
 }
 
+void do_rr(t_state **pile_a, t_state **pile_b)
+{
+	rotate_pile(pile_a);
+	rotate_pile(pile_b);
+	write(1, "rr\n", 3);
+}

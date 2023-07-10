@@ -12,7 +12,7 @@ AR = ar rcs
 
 #---------------SRC------------
 
-SRC_FILES = main checkers add_functions lst_utils utils moves algorithm do_moves do_moves2
+SRC_FILES = main checkers add_functions lst_utils utils moves algorithm do_moves do_moves2 prices
 
 #=============SRC=============#
 
@@ -43,7 +43,6 @@ clean:
 fclean: clean
 	@$(RM) $(NAME) 
 	@$(RM) $(LIBFT)/libft.a
-
 
 re: fclean all
 

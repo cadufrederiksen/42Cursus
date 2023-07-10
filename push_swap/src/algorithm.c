@@ -6,13 +6,13 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 19:12:51 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/07/05 12:55:19 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:54:30 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sizeA2(t_state **pile)
+void	size2(t_state **pile)
 {
 	if ((*pile)->index > (*pile)->next->index)
 	{
@@ -36,41 +36,83 @@ void	size3(t_state **pile)
 	}
 } 
 
-void	over3_A(t_state **pile_a, t_state **pile_b)//testando para 5 digitos
+void Over3_moves(t_state **pile_a, t_state **pile_b, int PriceA, int PriceB)//entra na funcao mas nao nos whiles
+{
+	while(PriceA < 0 && PriceB < 0)
+	{
+		do_rrr(pile_a, pile_b);
+		PriceA++;
+		PriceB++;
+	}
+	while(PriceA < 0)
+	{
+		do_rra(pile_a);
+		PriceA++;
+	}
+	while(PriceB < 0)
+	{
+		do_rrb(pile_b);
+		PriceB++;
+	}
+	while(PriceA > 0 && PriceB > 0)
+	{
+		do_rr(pile_a, pile_b);
+		PriceA--;
+		PriceB--;
+	}
+	while(PriceA > 0)
+	{
+		do_ra(pile_a);
+		PriceA--;
+	}
+	while(PriceB > 0)
+	{
+		do_rb(pile_b);
+		PriceB--;
+	}
+}
+
+void Over3_B(t_state **pile_a, t_state **pile_b, int sizeB)
+{
+	t_state *auxB;
+	
+	while(sizeB > 0)
+	{
+		auxB = *pile_b;
+		prices(*pile_a, *pile_b);
+		if((*pile_b)->final_price == 0 )//  && (*pile_b)->index == ((*pile_a)->index + 1))
+		{
+			do_pa(pile_b, pile_a);
+			sizeB--;
+		}
+		else
+		{
+			while(auxB->final_price != find_price(*pile_b))//aqui pode dar problema 
+				auxB = auxB->next;		
+			Over3_moves(pile_a, pile_b, auxB->PriceA, auxB->PriceB);
+		}
+	}
+	//final_sort()
+}
+void	over3_A(t_state **pile_a, t_state **pile_b)
 {
 	int sizeB;
 	int sizeA;
 
 	sizeA = calc_size(*pile_a);
 	sizeB = 0;
-	while (calc_size(*pile_a) != 3 )//enquanto não tem apenas 3 numeros em pila A
+	while (calc_size(*pile_a) != 3)//enquanto não tem apenas 3 numeros em pila A
 	{
-		if((*pile_a)->index <= (sizeA / 2)) //se nao for nenhum dos tres ultimos 
+		if((*pile_a)->index <= sizeA - 3) //se nao for nenhum dos tres ultimos 
 		{	
 			do_pb(pile_a, pile_b);//envia para B
 			sizeB++;
 		}
-		else
+		else if (last_index(*pile_a) <= sizeA - 3)
 			do_rra(pile_a); // se não roda(melhorar esse algoritmo)
+		else 
+			do_ra(pile_a);
 	}
 	size3(pile_a);
 	Over3_B(pile_a, pile_b, sizeB);
-}
-
-void Over3_B(t_state **pile_a, t_state **pile_b, int sizeB)
-{
-	while(sizeB > 0)
-	{
-		//add_target(*pile_a, *pile_b);
-		//add_pile_pos(*pile_a);
-		//add_pile_pos(*pile_b);
-		if((*pile_b)->target == 0)
-		{
-			if((*pile_b)->value > (*pile_b)->next->value)
-				do_ra(pile_b);
-			do_pa(pile_b, pile_a);
-			sizeB--;
-		}	
-		
-	}
 }

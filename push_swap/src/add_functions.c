@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 12:41:03 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/07/05 11:29:10 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/07/10 14:53:27 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,14 @@ void	add_new(t_state **lst, t_state *new)
 void	add_index(t_state *pile_a, char **argv, int argc)
 {
 	int		x;
-	int	check;
 	t_state	*tmp;
 
-	if(argv[0] == NULL)
-		check = 1;
-	else
-		check = 0;
-	ft_sort_params(argc, argv, check);
-	x = check;
+	x = 1;
+	ft_sort_params(argc, argv, x);
 	tmp = pile_a;
 	while (tmp)
 	{
-		x = check;
+		x = 1;
 		while (x < argc)
 		{
 			if (tmp->value == ft_atoi(argv[x]))
@@ -80,8 +75,12 @@ void	add_target(t_state *pileA, t_state *pileB)
 		while (auxA)
 		{
 			if (auxB->index == (auxA->index - 1))
+			{
 				auxB->target = auxA->pile_pos;
-			auxA = auxA->next;
+				break;
+			}
+			auxB->target = -1;
+			auxA = auxA->next;	
 		}
 		auxB = auxB->next;
 	}
