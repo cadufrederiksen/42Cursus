@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 14:52:35 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/07/07 14:30:00 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/07/10 16:34:22 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,3 +47,17 @@ int new_argc(char **argv)
 	return(x);
 }
 
+int calc_size(t_state *pile)
+{
+	t_state *aux;
+	int i; 
+	
+	i = 0;
+	aux = pile;
+	while(aux)
+	{ 
+		aux = aux->next;
+		i++;
+	}	
+	return(i);
+}

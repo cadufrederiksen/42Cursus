@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 12:35:16 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/07/10 15:59:06 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/07/10 16:38:51 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ int main(int argc, char **argv)
 	t_state *pile_a;
 	t_state *pile_b;//saber onde incializar
 	int x;
-	 
+	int checker;
+	
+	checker = argc;
 	pile_a = NULL;
 	pile_b = NULL;
 	x = 1;
@@ -37,13 +39,13 @@ int main(int argc, char **argv)
 		add_new(&pile_a, create_newA(argv[x]));
 		x++;
 	}
-	add_index(pile_a, argv, argc);
+	add_index(pile_a, argv, argc, checker);
+/* 	do_pb(&pile_a, &pile_b);
 	do_pb(&pile_a, &pile_b);
 	do_pb(&pile_a, &pile_b);
-	do_pb(&pile_a, &pile_b);
-	prices(pile_a, pile_b);
+	prices(pile_a, pile_b); */
 	//printf("%d", find_price(pile_b));
-	//over3_A(&pile_a, &pile_b);
+	over3_A(&pile_a, &pile_b);
 	while(pile_a)
 	{
 		printf("PILA A: %d Index: %d Pile_Pos: %d\n", pile_a->value, pile_a->index, pile_a->pile_pos);

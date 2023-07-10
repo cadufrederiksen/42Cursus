@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 09:50:45 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/07/07 14:40:05 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/07/10 16:36:24 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	add_new(t_state **lst, t_state *new);
 int check_args(char **argv);
 int main(int argc, char **argv);
 char	**ft_sort_params(int argc, char **argv, int j);
-void add_index(t_state *pile_a, char **argv, int argc);
+void add_index(t_state *pile_a, char **argv, int argc, int checker);
 void swap_pile(t_state **pile_a);
 void rotate_pile(t_state **pile);
 t_state *last_list(t_state* lst);
@@ -72,6 +72,7 @@ int find_price(t_state *pile_b);
 void Over3_moves(t_state **pile_a, t_state **pile_b, int PriceA, int PriceB);
 void do_rr(t_state **pile_a, t_state **pile_b);
 void do_rrr(t_state **pile_a, t_state **pile_b);
+void	add_index2(t_state *pile_a, char **argv, int argc);
 
 #endif
 

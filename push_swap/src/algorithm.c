@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 19:12:51 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/07/10 15:54:30 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/07/10 16:23:10 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void Over3_B(t_state **pile_a, t_state **pile_b, int sizeB)
 		}
 		else
 		{
+			prices(*pile_a, *pile_b);
 			while(auxB->final_price != find_price(*pile_b))//aqui pode dar problema 
 				auxB = auxB->next;		
 			Over3_moves(pile_a, pile_b, auxB->PriceA, auxB->PriceB);

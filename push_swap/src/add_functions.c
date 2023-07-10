@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 12:41:03 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/07/10 14:53:27 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/07/10 16:38:21 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,38 @@ void	add_new(t_state **lst, t_state *new)
 	aux->next = new;
 }
 
-void	add_index(t_state *pile_a, char **argv, int argc)
+void	add_index2(t_state *pile_a, char **argv, int argc)
+{
+	int		x;
+	t_state	*tmp;
+
+	x = 0;	
+	ft_sort_params(argc, argv, x);
+	tmp = pile_a;
+	while (tmp)
+	{
+		x = 0;
+		while (x < argc)
+		{
+			if (tmp->value == ft_atoi(argv[x]))
+				tmp->index = x + 1;
+			x++;
+		}
+		tmp = tmp->next;
+	}
+}
+
+void	add_index(t_state *pile_a, char **argv, int argc, int checker)
 {
 	int		x;
 	t_state	*tmp;
 
 	x = 1;
+	if (checker == 2)
+	{
+		add_index2(pile_a, argv, argc);
+		return ;		
+	}
 	ft_sort_params(argc, argv, x);
 	tmp = pile_a;
 	while (tmp)
@@ -86,17 +112,3 @@ void	add_target(t_state *pileA, t_state *pileB)
 	}
 }
 
-int calc_size(t_state *pile)
-{
-	t_state *aux;
-	int i; 
-	
-	i = 0;
-	aux = pile;
-	while(aux)
-	{ 
-		aux = aux->next;
-		i++;
-	}	
-	return(i);
-}
