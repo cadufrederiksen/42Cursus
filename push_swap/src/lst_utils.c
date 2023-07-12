@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 14:49:26 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/07/12 10:36:08 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/07/12 16:10:44 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_state	*create_newA(char *argv)
 {
 	t_state	*state;
 
-	state = allocate_state();
+	state = allocate_state();//aqui pode ser o problema de mem
 	state->value = ft_atoi(argv);
 	state->next = NULL;
 	return (state);

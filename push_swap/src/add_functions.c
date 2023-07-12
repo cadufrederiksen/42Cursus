@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 12:41:03 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/07/12 10:34:55 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/07/12 16:16:31 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,11 @@ void	add_target(t_state *pileA, t_state *pileB)
 			if (auxB->index == (auxA->index - 1))
 			{
 				auxB->target = auxA->pile_pos;
+				break ;
+			}
+			else if(auxB->index == (auxA->index + 1))
+			{
+				auxB->target = auxA->pile_pos + 1;
 				break ;
 			}
 			auxB->target = -1;

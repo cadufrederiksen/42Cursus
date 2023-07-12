@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 09:50:45 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/07/12 11:51:58 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/07/12 16:52:04 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_state
 	int				PriceA;
 	int				PriceB;
 	int				final_price;
+	int				size;
 	struct s_state	*next;
 
 }					t_state;
@@ -80,5 +81,6 @@ void				Over3_moves2(t_state **pile_a, t_state **pile_b, int PriceA,
 void				push_swap(int argc, char **argv, int checker);
 int					check_argv_order(char **argv, int checker);
 void select_alg(int size, t_state **pile_a, t_state **pile_b);
+void	add_target2(t_state *pile_a, t_state *pile_b);
 
 #endif
