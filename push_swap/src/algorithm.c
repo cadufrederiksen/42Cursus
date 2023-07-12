@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 19:12:51 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/07/10 16:23:10 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/07/12 11:40:03 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 void	size2(t_state **pile)
 {
 	if ((*pile)->index > (*pile)->next->index)
-	{
-		swap_pile(pile);
-		write(1, "sa\n", 3);
-	}
+		do_sa(pile);
 }
 
 void	size3(t_state **pile)
@@ -34,53 +31,38 @@ void	size3(t_state **pile)
 		else
 			do_sa(pile);
 	}
-} 
+}
 
-void Over3_moves(t_state **pile_a, t_state **pile_b, int PriceA, int PriceB)//entra na funcao mas nao nos whiles
+void	Over3_moves(t_state **pile_a, t_state **pile_b, int PriceA, int PriceB)
 {
-	while(PriceA < 0 && PriceB < 0)
+	if (PriceA > 0 || PriceB > 0)
+		Over3_moves2(pile_a, pile_b, PriceA, PriceB);
+	if (PriceA < 0 && PriceB < 0)
 	{
 		do_rrr(pile_a, pile_b);
-		PriceA++;
-		PriceB++;
+		Over3_moves(pile_a, pile_b, PriceA + 1, PriceB + 1);
 	}
-	while(PriceA < 0)
+	else if (PriceA < 0)
 	{
 		do_rra(pile_a);
-		PriceA++;
+		Over3_moves(pile_a, pile_b, PriceA + 1, PriceB);
 	}
-	while(PriceB < 0)
+	else if (PriceB < 0)
 	{
 		do_rrb(pile_b);
-		PriceB++;
-	}
-	while(PriceA > 0 && PriceB > 0)
-	{
-		do_rr(pile_a, pile_b);
-		PriceA--;
-		PriceB--;
-	}
-	while(PriceA > 0)
-	{
-		do_ra(pile_a);
-		PriceA--;
-	}
-	while(PriceB > 0)
-	{
-		do_rb(pile_b);
-		PriceB--;
+		Over3_moves(pile_a, pile_b, PriceA, PriceB + 1);
 	}
 }
 
-void Over3_B(t_state **pile_a, t_state **pile_b, int sizeB)
+void	Over3_B(t_state **pile_a, t_state **pile_b, int sizeB)
 {
-	t_state *auxB;
-	
-	while(sizeB > 0)
+	t_state	*auxB;
+
+	while (sizeB > 0)
 	{
 		auxB = *pile_b;
 		prices(*pile_a, *pile_b);
-		if((*pile_b)->final_price == 0 )//  && (*pile_b)->index == ((*pile_a)->index + 1))
+		if ((*pile_b)->final_price == 0)
 		{
 			do_pa(pile_b, pile_a);
 			sizeB--;
@@ -88,8 +70,8 @@ void Over3_B(t_state **pile_a, t_state **pile_b, int sizeB)
 		else
 		{
 			prices(*pile_a, *pile_b);
-			while(auxB->final_price != find_price(*pile_b))//aqui pode dar problema 
-				auxB = auxB->next;		
+			while (auxB->final_price != find_price(*pile_b))
+				auxB = auxB->next;
 			Over3_moves(pile_a, pile_b, auxB->PriceA, auxB->PriceB);
 		}
 	}
@@ -102,16 +84,16 @@ void	over3_A(t_state **pile_a, t_state **pile_b)
 
 	sizeA = calc_size(*pile_a);
 	sizeB = 0;
-	while (calc_size(*pile_a) != 3)//enquanto não tem apenas 3 numeros em pila A
+	while (calc_size(*pile_a) != 3)
 	{
-		if((*pile_a)->index <= sizeA - 3) //se nao for nenhum dos tres ultimos 
-		{	
-			do_pb(pile_a, pile_b);//envia para B
+		if ((*pile_a)->index <= sizeA - 3)
+		{
+			do_pb(pile_a, pile_b);
 			sizeB++;
 		}
 		else if (last_index(*pile_a) <= sizeA - 3)
-			do_rra(pile_a); // se não roda(melhorar esse algoritmo)
-		else 
+			do_rra(pile_a);
+		else
 			do_ra(pile_a);
 	}
 	size3(pile_a);

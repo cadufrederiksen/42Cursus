@@ -6,23 +6,23 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 14:52:35 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/07/10 16:34:22 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/07/12 11:35:06 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	**ft_sort_params(int argc, char **argv, int j)//ordena argv
+char	**ft_sort_params(int argc, char **argv, int j) //ordena argv
 {
-	int		i;
-	char	*c;
+	int i;
+	char *c;
 
 	while (j < argc)
 	{
 		i = j + 1;
 		while (i < argc)
 		{
-			if (ft_atoi(argv[j]) > ft_atoi(argv[i])) 
+			if (ft_atoi(argv[j]) > ft_atoi(argv[i]))
 			{
 				c = argv[i];
 				argv[i] = argv[j];
@@ -37,27 +37,27 @@ char	**ft_sort_params(int argc, char **argv, int j)//ordena argv
 	return (argv);
 }
 
-int new_argc(char **argv)
+int	new_argc(char **argv)
 {
-	int x;
+	int	x;
 
 	x = 0;
-	while(argv[x])
+	while (argv[x])
 		x++;
-	return(x);
+	return (x);
 }
 
-int calc_size(t_state *pile)
+int	calc_size(t_state *pile)
 {
 	t_state *aux;
-	int i; 
-	
+	int i;
+
 	i = 0;
 	aux = pile;
-	while(aux)
-	{ 
+	while (aux)
+	{
 		aux = aux->next;
 		i++;
-	}	
-	return(i);
+	}
+	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 14:49:26 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/07/07 14:41:53 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/07/12 10:36:08 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,25 @@
 t_state	*create_newA(char *argv)
 {
 	t_state	*state;
-	
+
 	state = allocate_state();
 	state->value = ft_atoi(argv);
 	state->next = NULL;
 	return (state);
 }
 
-t_state *allocate_state()
-{	
+t_state	*allocate_state(void)
+{
 	t_state	*state;
-	
+
 	state = NULL;
 	state = malloc(sizeof(t_state));
 	if (!state)
 		return (NULL);
-	return(state);
+	return (state);
 }
 
-t_state *last_list(t_state* lst)
+t_state	*last_list(t_state *lst)
 {
 	if (!lst)
 		return (0);
@@ -42,12 +42,12 @@ t_state *last_list(t_state* lst)
 	return (lst);
 }
 
-int last_index(t_state *pile)
+int	last_index(t_state *pile)
 {
 	t_state *aux;
 
 	aux = pile;
-	while(aux->next != 0)
+	while (aux->next != 0)
 		aux = aux->next;
-	return(aux->index);
+	return (aux->index);
 }

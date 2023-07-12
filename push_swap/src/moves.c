@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:47:48 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/06/30 13:24:06 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/07/12 11:03:57 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void reverse_rotate_pile(t_state **pile)
 
 	if(!(*pile) || !(*pile)->next)
 		return ;
-	aux = *pile; //aux guarda todo o valor de pile A
-	last = (*pile)->next; //AP guarda todo o valor menos a primeira posição
+	aux = *pile; 
+	last = (*pile)->next; 
 	while(last->next != NULL)
 	{
 		aux = aux->next; //termina na penúltima posição
