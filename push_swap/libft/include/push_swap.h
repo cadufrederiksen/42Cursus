@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 09:50:45 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/07/12 16:52:04 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/07/14 14:43:48 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void				size2(t_state **pile);
 void				size3(t_state **pile);
 int					check_pile(t_state *pile);
 void				add_pile_pos(t_state *pile);
-void				add_target(t_state *pileA, t_state *pileB);
+void				add_target(t_state *pile_a, t_state *pile_b);
 int					check_min_max(char **argv);
 int					check_all(char **argv);
 int					check_dup(char **argv);
@@ -80,7 +80,8 @@ void				Over3_moves2(t_state **pile_a, t_state **pile_b, int PriceA,
 						int PriceB);
 void				push_swap(int argc, char **argv, int checker);
 int					check_argv_order(char **argv, int checker);
-void select_alg(int size, t_state **pile_a, t_state **pile_b);
-void	add_target2(t_state *pile_a, t_state *pile_b);
-
+void				select_alg(int size, t_state **pile_a, t_state **pile_b);
+void				final_sort(t_state **pile_a);
+int					find_idx(t_state *pile, int idx);
+int					add_target2(t_state *pile_a, int idx);
 #endif

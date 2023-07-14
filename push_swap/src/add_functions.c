@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 12:41:03 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/07/12 16:16:31 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/07/14 14:57:17 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,30 +89,25 @@ void	add_pile_pos(t_state *pile)
 	}
 }
 
-void	add_target(t_state *pileA, t_state *pileB)
+void	add_target(t_state *pile_a, t_state *pile_b)
 {
 	t_state	*auxA;
 	t_state	*auxB;
 
-	auxB = pileB;
+	auxB = pile_b;
 	while (auxB)
 	{
-		auxA = pileA;
+		auxA = pile_a;
 		while (auxA)
 		{
 			if (auxB->index == (auxA->index - 1))
-			{
 				auxB->target = auxA->pile_pos;
-				break ;
-			}
 			else if(auxB->index == (auxA->index + 1))
-			{
 				auxB->target = auxA->pile_pos + 1;
-				break ;
-			}
-			auxB->target = -1;
+			else
+				auxB->target = add_target2(pile_a, auxB->index);
 			auxA = auxA->next;
 		}
-		auxB = auxB->next;
+		auxB = auxB->next;     
 	}
 }

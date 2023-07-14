@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 14:52:35 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/07/12 11:35:06 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/07/14 15:13:11 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,45 @@ int	calc_size(t_state *pile)
 		i++;
 	}
 	return (i);
+}
+
+int find_idx(t_state *pile, int idx)
+{
+	t_state *aux;
+	
+	aux = pile;
+	add_pile_pos(pile);
+	while(pile)
+	{
+		if(aux->index == idx)
+			return(aux->pile_pos);
+		aux = aux->next;	
+	}
+	return(0);
+}
+
+int add_target2(t_state *pile_a, int idx)
+{
+	t_state *aux;
+	int next_big;
+	
+	next_big = 1000;
+	aux = pile_a;
+	while (aux)
+	{
+		if (idx < aux->index)
+		{
+			if(next_big > aux->index)
+				next_big = aux->index;
+		}
+		aux = aux->next;
+	}
+	aux = pile_a;
+	while(aux)
+	{
+		if(aux->index == next_big)
+			return(aux->pile_pos);	
+		aux = aux->next;
+	}
+	return(0);	
 }
