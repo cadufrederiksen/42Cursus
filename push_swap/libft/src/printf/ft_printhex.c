@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printhex.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 13:43:25 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/11 16:12:41 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/07/21 16:10:34 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ int	count_nhex(unsigned long long n)
 	size_t	size;
 
 	size = 0;
-	if (n < 0)
-		n *= -1;
 	if (n > 15)
 	{
 		while (n != 0)

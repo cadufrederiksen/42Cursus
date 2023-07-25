@@ -3,14 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:25:11 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/07/14 15:16:34 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/07/25 12:22:32 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	size2(t_state **pile)
+{
+	if ((*pile)->index > (*pile)->next->index)
+		do_sa(pile);
+}
+
+void	size3(t_state **pile)
+{
+	while (!check_pile(*pile))
+	{
+		if ((*pile)->index > (*pile)->next->index
+			&& (*pile)->index > (*pile)->next->next->index)
+			do_ra(pile);
+		else if ((*pile)->index < (*pile)->next->index
+				&& (*pile)->next->index > (*pile)->next->next->index)
+			do_rra(pile);
+		else
+			do_sa(pile);
+	}
+}
 
 void select_alg(int size, t_state **pile_a, t_state **pile_b)
 {
@@ -20,6 +41,32 @@ void select_alg(int size, t_state **pile_a, t_state **pile_b)
 		size3(pile_a);
 	else if(size > 3)
 		over3_A(pile_a, pile_b);
+}
+
+int which_sort(t_state *pile_a)
+{
+	t_state *aux;
+	int over;
+	int under;
+
+	over = 0;
+	under = 0;
+	aux = pile_a;
+	add_pile_pos(pile_a);
+	while(aux->pile_pos <= (calc_size(pile_a) / 2))
+	{
+		if(aux->index <= calc_size(pile_a) - 3)
+		{
+			if(aux->index <= calc_size(pile_a) /2)
+				under++;
+			else if (aux->index > (calc_size(pile_a) /2))
+				over++;
+		}
+		aux = aux->next;
+	}
+	if (under >= over) //se tiver mais numeros menores 
+		return(1);
+	return(2);
 }
 
 void push_swap(int argc, char **argv, int checker)
@@ -42,25 +89,6 @@ void push_swap(int argc, char **argv, int checker)
 	if(check_pile(pile_a) == 1)
 		return ;
 	select_alg(calc_size(pile_a), &pile_a, &pile_b); 
- /* 	do_ra(&pile_a);
-	do_pb(&pile_a, &pile_b); 
-	do_pb(&pile_a, &pile_b); 
-	do_pb(&pile_a, &pile_b); 
-	do_pb(&pile_a, &pile_b); 
-	do_pb(&pile_a, &pile_b); 
-	do_pb(&pile_a, &pile_b); 
-	do_pb(&pile_a, &pile_b); 
-	do_pb(&pile_a, &pile_b); 
-	do_pb(&pile_a, &pile_b); 
-	do_ra(&pile_a);
-	do_ra(&pile_a);
-	do_pb(&pile_a, &pile_b); 
-	do_pb(&pile_a, &pile_b); 
-	size3(&pile_a);
-	do_pa(&pile_b, &pile_a); 
-	do_ra(&pile_a);
-	do_pa(&pile_b, &pile_a); 
-	prices(pile_a, pile_b);  */
  /* 	while(pile_a)
 	{
 		printf("PILA A: %d Index: %d \n", pile_a->value, pile_a->index);

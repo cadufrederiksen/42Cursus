@@ -3,35 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   algorithm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 19:12:51 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/07/14 15:17:59 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/07/25 12:25:11 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	size2(t_state **pile)
-{
-	if ((*pile)->index > (*pile)->next->index)
-		do_sa(pile);
-}
-
-void	size3(t_state **pile)
-{
-	while (!check_pile(*pile))
-	{
-		if ((*pile)->index > (*pile)->next->index
-			&& (*pile)->index > (*pile)->next->next->index)
-			do_ra(pile);
-		else if ((*pile)->index < (*pile)->next->index
-				&& (*pile)->next->index > (*pile)->next->next->index)
-			do_rra(pile);
-		else
-			do_sa(pile);
-	}
-}
 
 void final_sort(t_state **pile_a)
 {
@@ -53,6 +32,23 @@ void final_sort(t_state **pile_a)
 		do_rra(pile_a);
 		sort++;
 	}
+}
+
+int push_under(t_state **pile_a, t_state **pile_b, int sizeA)
+{
+	int sizeB; //fazer pb dos primeiros menores
+	
+	while (calc_size(*pile_a) > sizeA / 2 && calc_size(*pile_a) != 3)
+	{
+		if ((*pile_a)->index <= sizeA / 2)
+		{
+			do_pb(pile_a, pile_b);
+			sizeB++;
+		}
+		else
+			do_ra(pile_a);
+	}
+	return(sizeB);
 }
 
 void	Over3_B(t_state **pile_a, t_state **pile_b, int sizeB)
@@ -77,16 +73,18 @@ void	Over3_B(t_state **pile_a, t_state **pile_b, int sizeB)
 	}
 	final_sort(pile_a);
 }
+
 void	over3_A(t_state **pile_a, t_state **pile_b)
 {
 	int sizeB;
 	int sizeA;
 	
+	
 	sizeA = calc_size(*pile_a);
-	sizeB = 0;
+	sizeB = push_under(pile_a, pile_b, sizeA);
 	while (calc_size(*pile_a) != 3)
 	{
-		if ( (*pile_a)->index <= sizeA - 3 || (*pile_a)->index < sizeA / 2 )
+		if ((*pile_a)->index < sizeA / 2 || (*pile_a)->index <= sizeA - 3)
 		{
 			do_pb(pile_a, pile_b);
 			sizeB++;
