@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:25:11 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/07/25 12:22:32 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/07/27 17:20:55 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,32 +43,6 @@ void select_alg(int size, t_state **pile_a, t_state **pile_b)
 		over3_A(pile_a, pile_b);
 }
 
-int which_sort(t_state *pile_a)
-{
-	t_state *aux;
-	int over;
-	int under;
-
-	over = 0;
-	under = 0;
-	aux = pile_a;
-	add_pile_pos(pile_a);
-	while(aux->pile_pos <= (calc_size(pile_a) / 2))
-	{
-		if(aux->index <= calc_size(pile_a) - 3)
-		{
-			if(aux->index <= calc_size(pile_a) /2)
-				under++;
-			else if (aux->index > (calc_size(pile_a) /2))
-				over++;
-		}
-		aux = aux->next;
-	}
-	if (under >= over) //se tiver mais numeros menores 
-		return(1);
-	return(2);
-}
-
 void push_swap(int argc, char **argv, int checker)
 {
 	t_state *pile_b;
@@ -89,7 +63,7 @@ void push_swap(int argc, char **argv, int checker)
 	if(check_pile(pile_a) == 1)
 		return ;
 	select_alg(calc_size(pile_a), &pile_a, &pile_b); 
- /* 	while(pile_a)
+ 	while(pile_a)
 	{
 		printf("PILA A: %d Index: %d \n", pile_a->value, pile_a->index);
 		pile_a = pile_a->next;
@@ -99,7 +73,7 @@ void push_swap(int argc, char **argv, int checker)
 		printf("PILA B: %d Index: %d Pile_Pos: %d Target: %d PriceA: %d PriceB: %d Final_Price: %d \n", pile_b->value, pile_b->index, pile_b->pile_pos,
 		pile_b->target, pile_b->PriceA, pile_b->PriceB, pile_b->final_price);
 		pile_b = pile_b->next;
-	}    */
+	}   
 	free(pile_a);
 	free(pile_b);
 }
