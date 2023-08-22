@@ -6,110 +6,113 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 19:12:51 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/08/22 11:03:49 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/08/22 11:26:35 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-#include "push_swap.h"
-
-void	add_new(t_state **lst, t_state *new)
+void	size2(t_state **pile)
 {
-	t_state	*aux;
-
-	if (!new)
-		return ;
-	if (!*lst)
-	{
-		*lst = new;
-		return ;
-	}
-	aux = last_list(*lst);
-	aux->next = new;
+	if ((*pile)->index > (*pile)->next->index)
+		do_sa(pile);
 }
 
-void	add_index2(t_state *pile_a, char **argv, int argc)
+void	size3(t_state **pile)
 {
-	int		x;
-	t_state	*tmp;
-
-	x = 0;
-	ft_sort_params(argc, argv, x);
-	tmp = pile_a;
-	while (tmp)
+	while (!check_pile(*pile))
 	{
-		x = 0;
-		while (x < argc)
+		if ((*pile)->index > (*pile)->next->index
+			&& (*pile)->index > (*pile)->next->next->index)
+			do_ra(pile);
+		else if ((*pile)->index < (*pile)->next->index
+				&& (*pile)->next->index > (*pile)->next->next->index)
+			do_rra(pile);
+		else
+			do_sa(pile);
+	}
+}
+
+void final_sort(t_state **pile_a)
+{
+	int pos;
+	int sort;	
+
+	pos = find_idx(*pile_a, 1);
+	if(pos > calc_size(*pile_a) / 2)
+		sort = pos - calc_size(*pile_a);
+	else	
+		sort = pos;
+	while(sort > 0)
+	{
+		do_ra(pile_a);
+		sort--;
+	}
+	while(sort < 0)
+	{
+		do_rra(pile_a);
+		sort++;
+	}
+}
+
+int push_under(t_state **pile_a, t_state **pile_b, int sizeA)
+{
+	int sizeB; //fazer pb dos primeiros menores
+	
+	while (calc_size(*pile_a) > sizeA / 2 && calc_size(*pile_a) != 3)
+	{
+		if ((*pile_a)->index <= sizeA / 2)
 		{
-			if (tmp->value == ft_atoi(argv[x]))
-				tmp->index = x + 1;
-			x++;
+			do_pb(pile_a, pile_b);
+			sizeB++;
 		}
-		tmp = tmp->next;
+		else
+			do_ra(pile_a);
 	}
+	return(sizeB);
 }
 
-void	add_index(t_state *pile_a, char **argv, int argc, int checker)
+void	Over3_B(t_state **pile_a, t_state **pile_b, int sizeB)
 {
-	int		x;
-	t_state	*tmp;
-
-	x = 1;
-	if (checker == 2)
-	{
-		add_index2(pile_a, argv, argc);
-		return ;
-	}
-	ft_sort_params(argc, argv, x);
-	tmp = pile_a;
-	while (tmp)
-	{
-		x = 1;
-		while (x < argc)
-		{
-			if (tmp->value == ft_atoi(argv[x]))
-				tmp->index = x;
-			x++;
-		}
-		tmp = tmp->next;
-	}
-}
-
-void	add_pile_pos(t_state *pile)
-{
-	t_state	*aux;
-	int		pos;
-
-	aux = pile;
-	pos = 0;
-	while (aux)
-	{
-		aux->pile_pos = pos;
-		aux = aux->next;
-		pos++;
-	}
-}
-
-void	add_target(t_state *pile_a, t_state *pile_b)
-{
-	t_state	*auxA;
 	t_state	*auxB;
 
-	auxB = pile_b;
-	while (auxB)
+	while (sizeB > 0)
 	{
-		auxA = pile_a;
-		while (auxA)
+		auxB = *pile_b;
+		prices(*pile_a, *pile_b);
+		if ((*pile_b)->final_price == 0)// && (*pile_b)->index < (*pile_a)->index)
 		{
-			if (auxB->index == (auxA->index - 1))
-				auxB->target = auxA->pile_pos;
-			else if(auxB->index == (auxA->index + 1))
-				auxB->target = auxA->pile_pos + 1;
-			else
-				auxB->target = add_target2(pile_a, auxB->index);
-			auxA = auxA->next;
+			do_pa(pile_b, pile_a);
+			sizeB--;
 		}
-		auxB = auxB->next;     
+		else
+		{
+			while (auxB->final_price != find_price(*pile_b))
+				auxB = auxB->next;
+			Over3_moves(pile_a, pile_b, auxB->PriceA, auxB->PriceB);
+		}
 	}
+	final_sort(pile_a);
+}
+
+void	over3_A(t_state **pile_a, t_state **pile_b)
+{
+	int sizeB;
+	int sizeA;
+	
+	
+	sizeA = calc_size(*pile_a);
+	sizeB = push_under(pile_a, pile_b, sizeA);
+	while (calc_size(*pile_a) != 3)
+	{
+		if ((*pile_a)->index < sizeA / 2 || (*pile_a)->index <= sizeA - 3)
+		{
+			do_pb(pile_a, pile_b);
+			sizeB++;
+		}
+		else
+			do_ra(pile_a);
+	}
+	size3(pile_a);
+	Over3_B(pile_a, pile_b, sizeB);
 }

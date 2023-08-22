@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 09:50:45 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/07/14 14:43:48 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/07/25 12:22:51 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,5 @@ void				select_alg(int size, t_state **pile_a, t_state **pile_b);
 void				final_sort(t_state **pile_a);
 int					find_idx(t_state *pile, int idx);
 int					add_target2(t_state *pile_a, int idx);
+
 #endif

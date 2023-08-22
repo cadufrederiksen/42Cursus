@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 12:35:16 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/08/22 11:05:52 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/08/22 11:11:20 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 {
 	int checker;
 	checker = argc;
-	if(argc <= 1)	
+	if(argc <= 1)
 		return (0);
 	if (argc == 2)
 	{
