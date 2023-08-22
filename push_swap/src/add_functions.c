@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 12:41:03 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/07/14 14:57:17 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/08/22 11:02:48 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,3 +111,5 @@ void	add_target(t_state *pile_a, t_state *pile_b)
 		auxB = auxB->next;     
 	}
 }
+
+

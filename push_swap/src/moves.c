@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:47:48 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/07/12 11:03:57 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/08/22 11:06:14 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void swap_pile(t_state** pile)
 {
-	t_state *aux;
+	t_state *aux;  
 	
 	if(!(*pile) || !(*pile)->next)
 		return ;
