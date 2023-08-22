@@ -6,32 +6,11 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 19:12:51 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/08/22 11:26:35 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/08/22 11:37:49 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	size2(t_state **pile)
-{
-	if ((*pile)->index > (*pile)->next->index)
-		do_sa(pile);
-}
-
-void	size3(t_state **pile)
-{
-	while (!check_pile(*pile))
-	{
-		if ((*pile)->index > (*pile)->next->index
-			&& (*pile)->index > (*pile)->next->next->index)
-			do_ra(pile);
-		else if ((*pile)->index < (*pile)->next->index
-				&& (*pile)->next->index > (*pile)->next->next->index)
-			do_rra(pile);
-		else
-			do_sa(pile);
-	}
-}
 
 void final_sort(t_state **pile_a)
 {
