@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   prices.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 11:37:43 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/07/25 11:44:51 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/08/22 13:30:03 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	prices(t_state *pile_a, t_state *pile_b)//adicionar que se o número for o menor da pila_a posso fazer pa
+void	prices(t_state *pile_a, t_state *pile_b, int sizeA, int sizeB)//adicionar que se o número for o menor da pila_a posso fazer pa
 {
 	t_state	*auxB;
 
@@ -22,12 +22,12 @@ void	prices(t_state *pile_a, t_state *pile_b)//adicionar que se o número for o 
 	auxB = pile_b;
 	while (auxB)
 	{
-		if (auxB->pile_pos > (calc_size(pile_b) / 2))
-			auxB->PriceB = (auxB->pile_pos - calc_size(pile_b));
+		if (auxB->pile_pos > (sizeB / 2))
+			auxB->PriceB = (auxB->pile_pos - sizeB);
 		else
 			auxB->PriceB = auxB->pile_pos;
-		if (auxB->target > (calc_size(pile_a) / 2))
-			auxB->PriceA = (auxB->target - calc_size(pile_a));
+		if (auxB->target > (sizeA / 2))
+			auxB->PriceA = (auxB->target - sizeA);
 		else
 			auxB->PriceA = auxB->target;
 		auxB->final_price = abs(auxB->PriceA) + abs(auxB->PriceB);

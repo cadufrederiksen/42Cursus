@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 09:50:45 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/07/25 12:22:51 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/08/22 13:28:54 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ void				do_rb(t_state **pile);
 void				do_rrb(t_state **pile);
 void				do_pa(t_state **pile_a, t_state **pile_b);
 int					new_argc(char **argv);
-void				over3_A(t_state **pile_a, t_state **pile_b);
-void				Over3_B(t_state **pile_a, t_state **pile_b, int sizeB);
+void				over3_A(t_state **pile_a, t_state **pile_b, int size);
+void				Over3_B(t_state **pile_a, t_state **pile_b, int sizeB, int sizeA);
 int					last_index(t_state *pile);
-void				prices(t_state *pile_a, t_state *pile_b);
+void				prices(t_state *pile_a, t_state *pile_b, int sizeA, int sizeB);
 int					find_price(t_state *pile_b);
 void				Over3_moves(t_state **pile_a, t_state **pile_b, int PriceA,
 						int PriceB);

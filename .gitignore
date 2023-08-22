@@ -1,5 +1,6 @@
 .vscode
-.gitigonre
 .DS_Store
 .gitignore
 libft/.DS_Store
+push_swap/src/to_do.txt
+.gitignore
