@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:25:11 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/08/22 13:55:02 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/08/24 12:42:50 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	size3(t_state **pile)
 	}
 }
 
-void select_alg(int size, t_state **pile_a, t_state **pile_b)
+void select_alg(int size, t_state **pile_a, t_state **pile_b)//problema com 4 números
 {
 	if(size == 2)
 		size2(pile_a);
@@ -61,12 +61,12 @@ void push_swap(int argc, char **argv, int checker)
 	}
 	x = 1;
 	if(checker == 2)
-	x = 0;
+		x = 0;
 	add_index(pile_a, argv, argc, checker);
 	if(check_pile(pile_a) == 1)
 		return ;
 	select_alg(argc - x, &pile_a, &pile_b); 
-/*  	while(pile_a)
+ /* while(pile_a)
 	{
 		printf("PILA A: %d Index: %d \n", pile_a->value, pile_a->index);
 		pile_a = pile_a->next;

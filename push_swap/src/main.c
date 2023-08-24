@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 12:35:16 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/08/22 12:32:07 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/08/24 11:33:17 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int main(int argc, char **argv)
 	if (argc == 2)
 	{
 		argv = ft_split(argv[1] , ' ');
-		argc = new_argc(argv);
+		argc = new_argc(argv);// aqui recorre todos os números
 	}
- 	if(!check_all(argv))
+ 	if(!check_all(argv, checker))
 	{
 		write(1, "Error\n", 6);
 		return(0);

@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 09:50:45 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/08/22 13:28:54 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/08/24 11:32:10 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ typedef struct s_state
 	int				PriceA;
 	int				PriceB;
 	int				final_price;
-	int				size;
 	struct s_state	*next;
 
 }					t_state;
@@ -37,7 +36,7 @@ typedef struct s_state
 t_state				*create_newA(char *argv);
 t_state				*last_list(t_state *lst);
 void				add_new(t_state **lst, t_state *new);
-int					check_args(char **argv);
+int					check_args(char **argv, int x);
 int					main(int argc, char **argv);
 char				**ft_sort_params(int argc, char **argv, int j);
 void				add_index(t_state *pile_a, char **argv, int argc,
@@ -53,9 +52,7 @@ void				size3(t_state **pile);
 int					check_pile(t_state *pile);
 void				add_pile_pos(t_state *pile);
 void				add_target(t_state *pile_a, t_state *pile_b);
-int					check_min_max(char **argv);
-int					check_all(char **argv);
-int					check_dup(char **argv);
+int					check_all(char **argv, int checker);
 int					calc_size(t_state *pile);
 void				do_sa(t_state **pile);
 void				do_ra(t_state **pile);
@@ -79,9 +76,8 @@ void				add_index2(t_state *pile_a, char **argv, int argc);
 void				Over3_moves2(t_state **pile_a, t_state **pile_b, int PriceA,
 						int PriceB);
 void				push_swap(int argc, char **argv, int checker);
-int					check_argv_order(char **argv, int checker);
 void				select_alg(int size, t_state **pile_a, t_state **pile_b);
-void				final_sort(t_state **pile_a);
+void				final_sort(t_state **pile_a, int sizeA);
 int					find_idx(t_state *pile, int idx);
 int					add_target2(t_state *pile_a, int idx);
 

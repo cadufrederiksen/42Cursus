@@ -6,23 +6,23 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 19:12:51 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/08/22 13:52:03 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/08/24 12:26:37 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void final_sort(t_state **pile_a)
+void final_sort(t_state **pile_a, int size)
 {
 	int pos;
 	int sort;	
 
-	pos = find_idx(*pile_a, 1);
-	if(pos > calc_size(*pile_a) / 2)
-		sort = pos - calc_size(*pile_a);
+	pos = find_idx(*pile_a, 1);//buscamos a posicao do index 1
+	if(pos > size / 2)
+		sort = pos - size;
 	else	
 		sort = pos;
-	while(sort > 0)
+	while(sort > 0)//vemos se esta antes ou depois do meio e rodamos
 	{
 		do_ra(pile_a);
 		sort--;
@@ -47,9 +47,7 @@ int push_under(t_state **pile_a, t_state **pile_b, int size)
 			sizeB++;
 		}
 		else
-		{
 			do_ra(pile_a);
-		}
 	}
 	return(sizeB);
 }
@@ -75,7 +73,7 @@ void	Over3_B(t_state **pile_a, t_state **pile_b, int sizeB, int sizeA)
 			Over3_moves(pile_a, pile_b, auxB->PriceA, auxB->PriceB);
 		}
 	}
-	final_sort(pile_a);
+	final_sort(pile_a, sizeA);
 }
 
 void	over3_A(t_state **pile_a, t_state **pile_b, int size)

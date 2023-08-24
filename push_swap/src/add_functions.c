@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 12:41:03 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/08/22 12:31:51 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/08/24 12:05:46 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	add_new(t_state **lst, t_state *new)
 		return ;
 	}
 	aux = last_list(*lst);
-	aux->next = new;
+	aux->next = new;//"coloca" o novo ponteiro como proximo apos o ultimo
 }
 
 void	add_index2(t_state *pile_a, char **argv, int argc)
@@ -89,7 +89,7 @@ void	add_pile_pos(t_state *pile)
 	}
 }
 
-void	add_target(t_state *pile_a, t_state *pile_b)
+void	add_target(t_state *pile_a, t_state *pile_b) //talvez seja possivel otimizar aqui
 {
 	t_state	*auxA;
 	t_state	*auxB;

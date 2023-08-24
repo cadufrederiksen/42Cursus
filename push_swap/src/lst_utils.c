@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 14:49:26 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/07/12 16:10:44 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/08/24 11:53:58 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_state	*allocate_state(void)
 	return (state);
 }
 
-t_state	*last_list(t_state *lst)
+t_state	*last_list(t_state *lst)//devolve um ponteiro para o último nó
 {
 	if (!lst)
 		return (0);
