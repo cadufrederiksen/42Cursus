@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 19:12:51 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/08/24 12:26:37 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/08/24 15:58:45 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void final_sort(t_state **pile_a, int size)
 	int pos;
 	int sort;	
 
+	
 	pos = find_idx(*pile_a, 1);//buscamos a posicao do index 1
 	if(pos > size / 2)
 		sort = pos - size;
@@ -55,11 +56,12 @@ int push_under(t_state **pile_a, t_state **pile_b, int size)
 void	Over3_B(t_state **pile_a, t_state **pile_b, int sizeB, int sizeA)
 {
 	t_state	*auxB;
+	int smaller; 
 
 	while (sizeB > 0)
 	{
+		smaller = prices(*pile_a, *pile_b, sizeA, sizeB);//aqui tambien
 		auxB = *pile_b;
-		prices(*pile_a, *pile_b, sizeA, sizeB);
 		if ((*pile_b)->final_price == 0)
 		{
 			do_pa(pile_b, pile_a);
@@ -68,7 +70,7 @@ void	Over3_B(t_state **pile_a, t_state **pile_b, int sizeB, int sizeA)
 		}
 		else
 		{
-			while (auxB->final_price != find_price(*pile_b))
+			while (auxB->final_price != smaller)
 				auxB = auxB->next;
 			Over3_moves(pile_a, pile_b, auxB->PriceA, auxB->PriceB);
 		}
@@ -84,7 +86,7 @@ void	over3_A(t_state **pile_a, t_state **pile_b, int size)
 	
 	sizeB = push_under(pile_a, pile_b, size);
 	sizeA = size - sizeB;
-	while (sizeA != 3)
+	while (sizeA > 3)
 	{
 		if ((*pile_a)->index < size / 2 || (*pile_a)->index <= size - 3)
 		{

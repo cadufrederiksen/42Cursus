@@ -6,26 +6,12 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 12:41:03 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/08/24 12:05:46 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/08/24 15:49:27 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	add_new(t_state **lst, t_state *new)
-{
-	t_state	*aux;
-
-	if (!new)
-		return ;
-	if (!*lst)
-	{
-		*lst = new;
-		return ;
-	}
-	aux = last_list(*lst);
-	aux->next = new;//"coloca" o novo ponteiro como proximo apos o ultimo
-}
 
 void	add_index2(t_state *pile_a, char **argv, int argc)
 {
@@ -88,6 +74,41 @@ void	add_pile_pos(t_state *pile)
 		pos++;
 	}
 }
+
+int add_target2(t_state *pile_a, int idx)
+{
+	t_state *aux;
+	int next_big;
+	
+	next_big = 1000;
+	aux = pile_a;
+	while (aux)
+	{
+		if (idx < aux->index) //se o que esta no topo da pila b for menor que o topo da pilaA
+		{
+			if(next_big > aux->index)//vamos encontra o seguinte numero que seja maior que o topo da pilaB
+				next_big = aux->index;// nao o maior de todos da pila a 
+		}
+		aux = aux->next;
+	}
+	aux = pile_a;
+	while(aux)
+	{
+		if(aux->index == next_big)//uma vez que descobrimos qual é esse número encontramos a pos dele
+ 			return(aux->pile_pos);	
+		aux = aux->next;
+	}
+	return(0);	
+}
+
+/*
+Pila A 		Pila B
+4 			1
+3
+7
+9	
+queremos encontrar o 3 e não o 9 porque ele é o target do 1
+*/
 
 void	add_target(t_state *pile_a, t_state *pile_b) //talvez seja possivel otimizar aqui
 {

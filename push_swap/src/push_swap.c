@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:25:11 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/08/24 12:42:50 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/08/24 15:58:37 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void push_swap(int argc, char **argv, int checker)
 	if(check_pile(pile_a) == 1)
 		return ;
 	select_alg(argc - x, &pile_a, &pile_b); 
- /* while(pile_a)
+ 	while(pile_a)
 	{
 		printf("PILA A: %d Index: %d \n", pile_a->value, pile_a->index);
 		pile_a = pile_a->next;
@@ -76,7 +76,7 @@ void push_swap(int argc, char **argv, int checker)
 		printf("PILA B: %d Index: %d Pile_Pos: %d Target: %d PriceA: %d PriceB: %d Final_Price: %d \n", pile_b->value, pile_b->index, pile_b->pile_pos,
 		pile_b->target, pile_b->PriceA, pile_b->PriceB, pile_b->final_price);
 		pile_b = pile_b->next;
-	}    */
+	}    
 	free(pile_a);
 	free(pile_b);
 }
