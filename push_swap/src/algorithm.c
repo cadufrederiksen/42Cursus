@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 19:12:51 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/08/24 15:58:45 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/08/28 17:21:51 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int push_under(t_state **pile_a, t_state **pile_b, int size)
 	int sizeB; //fazer pb dos primeiros menores
 
 	sizeB = 0;
-	while (sizeB < size / 2)
+	while (sizeB < size / 2 && (size - sizeB) > 3)
 	{
-		if ((*pile_a)->index <= size / 2)
+		if ((*pile_a)->index <= size / 2 )
 		{
 			do_pb(pile_a, pile_b);
 			sizeB++;
@@ -70,7 +70,7 @@ void	Over3_B(t_state **pile_a, t_state **pile_b, int sizeB, int sizeA)
 		}
 		else
 		{
-			while (auxB->final_price != smaller)
+			while (auxB->final_price != smaller && auxB->next != NULL)
 				auxB = auxB->next;
 			Over3_moves(pile_a, pile_b, auxB->PriceA, auxB->PriceB);
 		}

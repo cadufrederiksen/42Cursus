@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 14:52:35 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/08/24 15:05:31 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/08/28 18:18:22 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int find_idx(t_state *pile, int idx)
 	t_state *aux;
 	
 	aux = pile;
+
 	add_pile_pos(pile);
 	while(pile)
 	{

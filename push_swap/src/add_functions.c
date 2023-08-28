@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 12:41:03 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/08/24 15:49:27 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/08/28 17:41:33 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,9 @@ int add_target2(t_state *pile_a, int idx)
 {
 	t_state *aux;
 	int next_big;
+	int pos;
 	
+	pos = 0;
 	next_big = 1000;
 	aux = pile_a;
 	while (aux)
@@ -87,18 +89,14 @@ int add_target2(t_state *pile_a, int idx)
 		if (idx < aux->index) //se o que esta no topo da pila b for menor que o topo da pilaA
 		{
 			if(next_big > aux->index)//vamos encontra o seguinte numero que seja maior que o topo da pilaB
+			{
 				next_big = aux->index;// nao o maior de todos da pila a 
+				pos = aux->pile_pos;
+			}	
 		}
 		aux = aux->next;
 	}
-	aux = pile_a;
-	while(aux)
-	{
-		if(aux->index == next_big)//uma vez que descobrimos qual é esse número encontramos a pos dele
- 			return(aux->pile_pos);	
-		aux = aux->next;
-	}
-	return(0);	
+	return(pos);	
 }
 
 /*
