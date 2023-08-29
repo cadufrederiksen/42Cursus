@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 13:42:22 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/24 13:08:05 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/08/29 10:58:14 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,8 @@ int	ft_printf(char const *str, ...)
 	return (resultlen);
 }
 
-/*  int	main(void)
+/* int	main(int argc, char **argv)
 {
-	//int x = 10;
-	//int *p = &x;
+	
 
-	ft_printf(" uhola %p %p \n", -184, 18);
-	printf(" %p %p ", (void *)-184, (void*)184);
-	//printf("Hola que tal %% %d", -432);
-}    */
+}     */

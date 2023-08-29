@@ -23,12 +23,11 @@ OBJSF = .cache_exists #checkar se existe
 
 all:$(NAME)
 
-$(NAME):	$(OBJS) #fazaer um make dentro de libft, copiar tudo e mover para push_swap e compilar libft.a
+$(NAME):	$(OBJS) #fazer um make dentro de libft, copiar tudo e mover para push_swap e compilar libft.a
 	@make -C $(LIBFT)
 	@cp $(LIBFT)/libft.a .
 	@mv libft.a $(NAME)
 	@$(CC) $(OBJS) -o $(NAME) $(LIBFT)/libft.a 
-	
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c | $(OBJSF)	
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@

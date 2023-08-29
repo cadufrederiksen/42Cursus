@@ -1,7 +1,7 @@
 #---------------PADRÃO------------
 
 NAME = libft.a
-INCLUDES = include/ 
+INCLUDES = include
 SRCS_DIR = src/
 OBJS_DIR = obj/
 CC = gcc
