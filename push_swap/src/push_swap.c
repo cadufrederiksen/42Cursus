@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:25:11 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/08/28 17:24:14 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/08/29 10:40:43 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,21 @@ void select_alg(int size, t_state **pile_a, t_state **pile_b)//problema com 4 n�
 		over3_A(pile_a, pile_b, size);
 }
 
+void	free_pile(t_state **pile)
+{
+	t_state *aux;
+
+	if(!pile | !*pile)
+		return ;
+	while(*pile)
+	{
+		aux = (*pile)->next; //ponteiro para o próximo nó
+		free(*pile); //libera nó atual
+		*pile = aux;
+	}
+	*pile = NULL;
+}
+
 void push_swap(int argc, char **argv, int checker)
 {
 	t_state *pile_b;
@@ -66,7 +81,7 @@ void push_swap(int argc, char **argv, int checker)
 	if(check_pile(pile_a) == 1)
 		return ;
 	select_alg(argc - x, &pile_a, &pile_b); 
- 	while(pile_a)
+/*  	while(pile_a)
 	{
 		printf("PILA A: %d Index: %d \n", pile_a->value, pile_a->index);
 		pile_a = pile_a->next;
@@ -76,7 +91,7 @@ void push_swap(int argc, char **argv, int checker)
 		printf("PILA B: %d Index: %d Pile_Pos: %d Target: %d PriceA: %d PriceB: %d Final_Price: %d \n", pile_b->value, pile_b->index, pile_b->pile_pos,
 		pile_b->target, pile_b->PriceA, pile_b->PriceB, pile_b->final_price);
 		pile_b = pile_b->next;
-	}    
-	free(pile_a);
-	free(pile_b);
+	}     */
+	free_pile(&pile_a);
+	free_pile(&pile_b);
 }
