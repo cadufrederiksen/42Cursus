@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:25:11 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/08/29 10:40:43 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/08/29 15:23:32 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void push_swap(int argc, char **argv, int checker)
 		x = 0;
 	add_index(pile_a, argv, argc, checker);
 	if(check_pile(pile_a) == 1)
-		return ;
+		exit(0);
 	select_alg(argc - x, &pile_a, &pile_b); 
 /*  	while(pile_a)
 	{
