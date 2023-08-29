@@ -6,13 +6,14 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 09:50:45 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/08/24 14:11:23 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/08/29 15:18:23 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include "ft_printf.h"
 # include "libft.h"
 # include <limits.h>
 # include <stdio.h>
@@ -64,9 +65,10 @@ void				do_rrb(t_state **pile);
 void				do_pa(t_state **pile_a, t_state **pile_b);
 int					new_argc(char **argv);
 void				over3_A(t_state **pile_a, t_state **pile_b, int size);
-void				Over3_B(t_state **pile_a, t_state **pile_b, int sizeB, int sizeA);
-int					last_index(t_state *pile);
-int				prices(t_state *pile_a, t_state *pile_b, int sizeA, int sizeB);
+void				Over3_B(t_state **pile_a, t_state **pile_b, int sizeB,
+						int sizeA);
+int					prices(t_state *pile_a, t_state *pile_b, int sizeA,
+						int sizeB);
 int					find_price(t_state *pile_b);
 void				Over3_moves(t_state **pile_a, t_state **pile_b, int PriceA,
 						int PriceB);
