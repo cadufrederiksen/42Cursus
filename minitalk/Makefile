@@ -32,8 +32,12 @@ all:$(NAME) $(NAME2)
 $(NAME):	$(OBJS) #fazer um make dentro de libft, copiar tudo e mover para push_swap e compilar libft.a
 	@make -C $(LIBFT)
 	@cp $(LIBFT)/libft.a .
-	@mv libft.a $(NAME)
+	@mv libft.a $(NAME) 
 	@$(CC) $(OBJS) -o $(NAME) $(LIBFT)/libft.a 
+
+$(NAME2):	$(OBJS2)
+	@cp $(LIBFT)/libft.a .
+	@mv libft.a $(NAME2) 
 	@$(CC) $(OBJS2) -o $(NAME2) $(LIBFT)/libft.a 
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c | $(OBJSF)	
@@ -47,7 +51,7 @@ clean:
 	@make clean -C $(LIBFT)
 
 fclean: clean
-	@$(RM) $(NAME) 
+	@$(RM) $(NAME) $(NAME2)
 	@$(RM) $(LIBFT)/libft.a
 
 re: fclean all
