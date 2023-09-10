@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:23:15 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/09/05 16:26:40 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/09/08 15:34:49 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 #include <signal.h>
+#include <sys/types.h>
 
 int	ft_recursive_power(int nb, int power)
 {
@@ -24,61 +25,71 @@ int	ft_recursive_power(int nb, int power)
 		return (nb * ft_recursive_power(nb, power - 1));
 }
 
-int byte_to_letter(char *byte)
+
+void get_len(int *bit, int *len_received, int sig, char **string)//len ok!
 {
-	char result;
-	int i;
+	static int len = 0;
 	
-	i = 0;
-	result = 0;
-	while(i < 8)
+	if(sig == SIGUSR1)
+		len += ft_recursive_power(2, *bit);
+	if(*bit == 31)
 	{
-		if (byte[i] == '0')
-			i++;
-		else if(byte[i] == '1')
-		{
-			result += ft_recursive_power(2, 7 - i);
-			i++;
-		}
+		*string = (char *)ft_calloc(len + 1, 1);
+		*bit = 0;
+		*len_received = 1;
+		len = 0;
+		return;
 	}
-	write(1, &result, 1);
-	return(0);
+	(*bit)++;		
 }
 
-void handler (int sig)//descobrir como fazer um loop
+void return_values(int *len_received, char **string, int *index)
 {
-	char *byte;
-	static int i;
-	
-	i = 0;
-	
-	byte = (char*)malloc(9);
-	if(sig == SIGUSR1)
-		byte[i++] = '0';
-	else 
-		byte[i++] = '1';
-	byte[8] = '\0';
-	if (i == 8)
+	*len_received = 0;
+	if(string)
 	{
-		ft_printf("%s", "hello");
-		byte_to_letter(byte);
-		i = 0;
+		ft_putendl_fd(*string, 1);
+		free(*string);
+		string = 0;
 	}
+	*index = 0;
+}
+
+void get_info (int sig)//descobrir como fazer um loop
+{
+	static char *string = 0; //string a ser devolvida
+	static int bit = 0; //quantidade de bits recebidos
+	static int index = 0; //posicao do array
+	static int len_received = 0; //flag para saber qnd acaba len
+	static int char_bit = 0; //valor char do byte
+	
+	if(!len_received)
+		get_len(&bit, &len_received, sig, &string);
+	else 
+	{
+		if(sig == SIGUSR1)
+			char_bit += ft_recursive_power(2, bit);
+		if(bit == 7)
+		{
+			string[index++] = char_bit;
+			bit = 0;
+			if(char_bit == 0)
+				return (return_values(&len_received, &string, &index));
+			char_bit = 0;
+			return ;
+		}
+		bit++;	
+	}			
 }
 
 int main(void)
 {
 	int pid;
-	struct sigaction sa;
-
 	pid = getpid();
 	ft_printf("Pid es: %d\n", pid);
-	sa.sa_handler = handler;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = 0;
-	sigaction(SIGUSR1, &sa, NULL);
-	sigaction(SIGUSR2, &sa, NULL);
-	pause();
 	
-	return (0);
+	signal(SIGUSR1, get_info);
+	signal(SIGUSR2, get_info);
+	while(1)	
+		usleep(100);
 }
