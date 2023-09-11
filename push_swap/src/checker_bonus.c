@@ -1,15 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_recursive_power.c                               :+:      :+:    :+:   */
+/*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/25 19:42:38 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/09/11 10:50:25 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/09/11 15:02:39 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/09/11 15:59:44 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "push_swap.h"
 
-cc
+int main (int argc, char **argv)
+{
+	push_swap(argc, argv, argc);
+	get_next_line(1);
+}

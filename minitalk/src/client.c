@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:23:13 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/09/05 16:12:08 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/09/11 14:44:06 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,52 +14,36 @@
 #include "ft_printf.h"
 #include <signal.h>
 
-void send_sig(char *byte, pid_t pid)
+void send_len (pid_t pid, int len)
 {
 	int i;
-	
-	i = 0;
-	while(byte[i] != '\0')
+
+	i = -1;
+	while(++i < 32)
 	{
-		if(byte[i] == '1')
-		{
-			ft_printf("%d\n", kill(pid, SIGUSR2));
-			write(1, "sent 2\n", 7);
-		}
-		else if (byte[i] == '0')
-		{
-			ft_printf("%d\n", kill(pid, SIGUSR1));
-			write(1, "sent 1\n", 7);
-		}
-		i++;
-	} 
+		if(len & 1)
+			kill(pid, SIGUSR1);
+		else 
+			kill(pid, SIGUSR2);
+		len = len >> 1;
+		usleep(100);
+	}
 }
 
-void letter_to_byte(int letter, char *byte, pid_t pid)
+void send_char(int bit, pid_t pid)
 {
 	int i;
-	int flag;
 	
-	flag = 1;
-	i = 7;
-	while (i >= 0)
+	i = -1;
+	while(++i < 8)
 	{
-		if (letter == 1 && flag == 0)
-			byte[i--] = '0';
-		else if (letter == 1 && flag == 1)
-		{
-			byte[i--] = '1';
-			flag--;
-		}
-		else
-		{
-			byte[i] = (letter % 2) + 48;
-			letter = letter / 2;
-			i--;
-		}
-	}
-	byte[8] = '\0';
-	send_sig(byte, pid);
+		if(bit & 1)
+			kill(pid, SIGUSR1);//envia 1
+		else 
+			kill(pid, SIGUSR2);	//envia 0
+		bit = bit >> 1;
+		usleep(100);
+	} 
 }
 
 int main(int argc, char **argv)
@@ -68,14 +52,15 @@ int main(int argc, char **argv)
 		exit(0);
 	pid_t pid;
 	char *string;
-	int i;
-	char *byte;
-	
-	byte = (char *)malloc(9);
-	i = 0;
+	int i; 
+	int len;
+
+	i = -1;
 	string = argv[2];
 	pid = ft_atoi(argv[1]);
-	while(string[i])
-		letter_to_byte(string[i++], byte, pid);
-	return (0);
+	len = ft_strlen(string);
+	send_len(pid, len);
+	while(string[++i])
+		send_char(string[i], pid);
+	send_char(string[i], pid);
 }

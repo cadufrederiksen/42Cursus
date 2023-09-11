@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:23:09 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/08/24 11:52:31 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/09/11 14:18:09 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	check_args(char **argv, int x)
 	}
 	return (1);
 }
-
 
 int	check_pile(t_state *pile) //se estiver ordenado devolve 1 se não 0
 {

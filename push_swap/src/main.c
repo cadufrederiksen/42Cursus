@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 12:35:16 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/08/29 15:17:46 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/09/11 14:16:07 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ int main(int argc, char **argv)
 		exit(0);
 	} 
 	push_swap(argc, argv, checker);
-	//system("leaks push_swap");
+	system("leaks push_swap");
 	return(0);
 }
