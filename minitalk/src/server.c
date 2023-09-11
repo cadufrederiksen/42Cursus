@@ -6,13 +6,14 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:23:15 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/09/11 14:42:16 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/09/11 17:20:18 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 #include <signal.h>
+#include <sys/types.h>
 
 int	ft_recursive_power(int nb, int power)
 {
