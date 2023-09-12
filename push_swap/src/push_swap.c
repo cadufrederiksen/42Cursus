@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:25:11 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/09/11 14:10:00 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/09/12 14:33:02 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,29 +69,18 @@ void push_swap(int argc, char **argv, int checker)
 	x = 1;
 	if(checker == 2)
 		x = 0;
-	while(x < argc)
+	if(!check_all(argv, checker, &pile_a))
 	{
-		add_new(&pile_a, create_newA(argv[x]));
-		x++;
-	}
-	x = 1;
-	if(checker == 2)
-		x = 0;
+		ft_putendl_fd("Error", 2);
+		exit(2);
+	} 
 	add_index(pile_a, argv, argc, checker);
 	if(check_pile(pile_a) == 1)
+	{
+		free_pile(&pile_a);
 		exit(0);
+	} 
 	select_alg(argc - x, &pile_a, &pile_b); 
- 	/* while(pile_a)
-	{
-		printf("PILA A: %d Index: %d \n", pile_a->value, pile_a->index);
-		pile_a = pile_a->next;
-	}
-	 while(pile_b)
-	{
-		printf("PILA B: %d Index: %d Pile_Pos: %d Target: %d PriceA: %d PriceB: %d Final_Price: %d \n", pile_b->value, pile_b->index, pile_b->pile_pos,
-		pile_b->target, pile_b->PriceA, pile_b->PriceB, pile_b->final_price);
-		pile_b = pile_b->next;
-	}     */
 	free_pile(&pile_a);
 	free_pile(&pile_b);
 }

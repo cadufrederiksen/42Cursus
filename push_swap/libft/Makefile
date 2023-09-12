@@ -47,7 +47,7 @@ SRC_FILES += $(addprefix $(PRINTF_DIR), $(PRINTF))
 #---------------GNL------------
 
 GNL_DIR = get_next_line/
-GNL = get_next_line get_next_line_utils
+GNL = get_next_line 
 SRC_FILES += $(addprefix $(GNL_DIR), $(GNL))
 
 #=============SRC=============#

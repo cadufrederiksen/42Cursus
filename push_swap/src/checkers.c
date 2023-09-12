@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:23:09 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/09/11 14:18:09 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/09/12 13:26:43 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,15 @@ int	check_num(char *argv)
 	return(1);
 }
 
-int	check_args(char **argv, int x)
+int	check_args(char **argv, int x, t_state **pile_a)
 {
 	int	i;
+	
 
 	while (argv[x])
 	{
 		i = x + 1;	
-		if (!check_num(argv[x]) || ft_atoi(argv[x]) < INT_MIN || ft_atoi(argv[x]) > INT_MAX)
+		if (!check_num(argv[x]) || ft_atoi(argv[x]) < INT_MIN || ft_atoi(argv[x]) > INT_MAX)//passo daqui pode adc
 				return(0); 
 		while (argv[i])
 		{
@@ -42,6 +43,7 @@ int	check_args(char **argv, int x)
 				return(0);
 			i++;
 		}
+		add_new(pile_a, create_newA(argv[x]));
 		x++;
 	}
 	return (1);
@@ -50,6 +52,7 @@ int	check_args(char **argv, int x)
 int	check_pile(t_state *pile) //se estiver ordenado devolve 1 se não 0
 {
 	t_state *aux;
+	
 	aux = pile;
 	while (aux->next != NULL)
 	{
@@ -61,14 +64,14 @@ int	check_pile(t_state *pile) //se estiver ordenado devolve 1 se não 0
 	return (1);
 }
 
-int	check_all(char **argv, int checker)
+int	check_all(char **argv, int checker, t_state **pile_a)
 {
 	int x; 
 
 	x = 1;
 	if(checker == 2)
 		x = 0;
-	if (!check_args(argv, x))
+	if (!check_args(argv, x, pile_a))
 		return (0);
 	else
 		return (1);
