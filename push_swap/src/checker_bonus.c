@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 15:02:39 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/09/12 15:38:31 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/09/12 15:42:35 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void init_checker(char **argv, int checker)
 	pile_b = NULL;
 	if(!check_all(argv, checker, &pile_a))
 		exit(2);
+	line = get_next_line(0);//stdout = 0
 	while(line)
 	{
 		line = get_next_line(0);//stdout = 0
