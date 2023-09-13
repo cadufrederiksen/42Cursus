@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+          /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   checker_bonus.c                                    :+:      :+:    :+:   */
@@ -15,88 +15,75 @@
 
 void check_moves2(t_state **a, t_state **b, char *line)
 {
-	if(line[0] == 'r' && line[1] == 'r' && line[2] == 'a')
+	if(line[0] == 'p' && line[1] == 'a' && line[2] == '\n')
+		push_pile(b, a);
+	else if(line[0] == 'p' && line[1] == 'b' && line[2] == '\n')
+		push_pile(a, b);
+	else if(line[0] == 'r' && line[1] == 'r' && line[2] == 'a' && line[3] == '\n')
 		reverse_rotate_pile(a);
 	
-	if(line[0] == 'r' && line[1] == 'r' && line[2] == 'b')
+	else if(line[0] == 'r' && line[1] == 'r' && line[2] == 'b' && line[3] == '\n')
 		reverse_rotate_pile(b);
 	
-	if(line[0] == 'r' && line[1] == 'r' && line[2] == 'r')
+	else if(line[0] == 'r' && line[1] == 'r' && line[2] == 'r' && line[3] == '\n')
 	{
 		reverse_rotate_pile(b);
 		reverse_rotate_pile(a);
 	}	
 }
 
-void check_moves(t_state **a, t_state **b, char *line)
+char *check_moves(t_state **a, t_state **b, char *line)
 {
-	if(line[0] == 's' && line[1] == 'a')
+	if(line[0] == 's' && line[1] == 'a' && line[2] == '\n')
 		swap_pile(a);
-	
-	if(line[0] == 's' && line[1] == 'b')		
+	else if(line[0] == 's' && line[1] == 'b' && line[2] == '\n')		
 		swap_pile(b);
-	
-	if(line[0] == 's' && line[1] == 's')
+	else if(line[0] == 's' && line[1] == 's' && line[2] == '\n')
 	{
 		swap_pile(a);
 		swap_pile(b);
 	}
-	
-	if(line[0] == 'r' && line[1] == 'a')
+	else if(line[0] == 'r' && line[1] == 'a' && line[2] == '\n')
 		rotate_pile(a);
-	
-	if(line[0] == 'r' && line[1] == 'b')
+	else if(line[0] == 'r' && line[1] == 'b' && line[2] == '\n')
 		rotate_pile(b);
-	
-	if(line[0] == 'r' && line[1] == 'r')
+	else if(line[0] == 'r' && line[1] == 'r' && line[2] == '\n')
 	{
 		rotate_pile(b);
 		rotate_pile(a);
 	}
-	
-	if(line[0] == 'p' && line[1] == 'a')
-		push_pile(b, a);
-	
-	if(line[0] == 'p' && line[1] == 'b')
-		push_pile(a, b);
 	else
 		check_moves2(a, b, line);
+	return(get_next_line(0));
 }
 
-void init_checker(char **argv, int checker)
+void init_checker(t_state **a, t_state **b)
 {
+	char *tmp;
 	char *line;
-	t_state *pile_b;
-	t_state *pile_a;
-	
-	pile_a = NULL;
-	pile_b = NULL;
-	if(!check_all(argv, checker, &pile_a))
-		exit(2);
+
 	line = get_next_line(0);//stdout = 0
-	while(line)
+	while(line && *line != '\n')
 	{
-		line = get_next_line(0);//stdout = 0
-		check_moves(&pile_a, &pile_b, line);
+		tmp = line;
+		line = check_moves(a, b, line); 
+		free(tmp);
 	}
-	if(check_pile(pile_a) == 1)
-		ft_putendl_fd("OK", 1);
-	else
+	if(!check_pile(*a) || *b)
 		ft_putendl_fd("KO", 1);
-	while(pile_a)
-	{
-		ft_printf("Value: %d, Index: %d\n", pile_a->value, pile_a->index);
-		pile_a = pile_a->next;
-	}
-	free_pile(&pile_a);
-	free_pile(&pile_b);	
+	else
+		ft_putendl_fd("OK", 1);
 	free(line);
 }
 
 int main (int argc, char **argv)
 {
 	int checker;
-
+	t_state *pile_b;
+	t_state *pile_a;
+	
+	pile_a = NULL;
+	pile_b = NULL;
 	checker = argc;	
 	if(argc <= 1)	
 		return (0);
@@ -105,6 +92,9 @@ int main (int argc, char **argv)
 		argv = ft_split(argv[1] , ' ');
 		argc = new_argc(argv);// aqui recorre todos os números
 	}
-	push_swap(argc, argv, checker);
-	init_checker(argv, checker);
+	if(!check_all(argv, checker, &pile_a))
+		exit(2);
+	init_checker(&pile_a, &pile_b);
+	free_pile(&pile_a);
+	free_pile(&pile_b);	
 }

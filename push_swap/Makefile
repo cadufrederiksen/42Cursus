@@ -31,7 +31,7 @@ OBJS_BONUS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(BONUS_FILE)))
 
 OBJSF = .cache_exists #checkar se existe
 
-all:$(NAME) bonus
+all:$(NAME)
 
 $(NAME):	$(OBJS_UTILS) $(OBJS_MAIN) #fazer um make dentro de libft, copiar tudo e mover para push_swap e compilar libft.a
 	@make -C $(LIBFT)
