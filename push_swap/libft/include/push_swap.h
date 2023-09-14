@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 09:50:45 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/09/12 15:41:58 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/09/14 11:56:27 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,6 @@ void				final_sort(t_state **pile_a, int sizeA);
 int					find_idx(t_state *pile, int idx);
 int					add_target2(t_state *pile_a, int idx);
 void				free_pile(t_state **pile);
-void				init_checker(char **argv, int checker);
+void				init_checker(t_state **a, t_state **b);
 
 #endif

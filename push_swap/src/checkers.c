@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:23:09 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/09/12 13:26:43 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/09/14 11:54:28 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	check_pile(t_state *pile) //se estiver ordenado devolve 1 se não 0
 	aux = pile;
 	while (aux->next != NULL)
 	{
-		if (aux->index < aux->next->index)
+		if (aux->value < aux->next->value)
 			aux = aux->next;
 		else
 			return (0);
