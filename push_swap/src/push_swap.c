@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:25:11 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/09/12 14:33:02 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/09/13 15:34:47 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,15 @@ void select_alg(int size, t_state **pile_a, t_state **pile_b)//problema com 4 n�
 
 void	free_pile(t_state **pile)
 {
-	t_state *aux;
+	t_state *pile_aux;
 
 	if(!pile | !*pile)
 		return ;
 	while(*pile)
 	{
-		aux = (*pile)->next; //ponteiro para o pr처ximo n처
+		pile_aux = (*pile)->next; //ponteiro para o pr처ximo n처
 		free(*pile); //libera n처 atual
-		*pile = aux;
+		*pile = pile_aux;
 	}
 	*pile = NULL;
 }
@@ -81,6 +81,11 @@ void push_swap(int argc, char **argv, int checker)
 		exit(0);
 	} 
 	select_alg(argc - x, &pile_a, &pile_b); 
+/* 	while(pile_a)
+	{
+		ft_printf("Value: %d, Index: %d\n", pile_a->value, pile_a->index);
+		pile_a = pile_a->next;
+	} */
 	free_pile(&pile_a);
 	free_pile(&pile_b);
 }
