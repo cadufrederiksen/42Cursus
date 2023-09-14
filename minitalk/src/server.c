@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:23:15 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/09/11 17:20:18 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/09/14 12:36:38 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void get_info (int sig)
 {
 	static char *string = 0;//string a ser devolvida 
 	static int index = 0;//posicao na string
-	static int len_flag = 0;//se recebeu oou nao len
+	static int len_flag = 0;//se recebeu ou nao len
 	static int byte_char = 0;//char em numero
 	static int bits_received = 0;//quantidade de bits recebidos
 	
@@ -86,10 +86,9 @@ void get_info (int sig)
 int main(void)
 {
 	int pid;
-
+	
 	pid = getpid();
 	ft_printf("Pid es: %d\n", pid);
-	//mudar nome do handler
 	signal(SIGUSR1, get_info);
 	signal(SIGUSR2, get_info);
 	while(1)

@@ -6,12 +6,9 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 15:02:39 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/09/14 11:59:53 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/09/14 12:46:52 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "push_swap.h"
-#include "get_next_line.h"
 
 #include "push_swap.h"
 #include "get_next_line.h"

@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:23:13 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/09/11 17:22:50 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/09/14 12:32:49 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ int main(int argc, char **argv)
 
 	i = -1;
 	string = argv[2];
+
+
+	
 	pid = ft_atoi(argv[1]);
 	len = ft_strlen(string);
 	send_len(pid, len);
