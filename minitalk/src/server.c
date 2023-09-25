@@ -5,15 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/29 14:23:15 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/09/14 12:36:38 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/09/25 12:55:42 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/09/25 16:25:33 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "ft_printf.h"
-#include <signal.h>
-#include <sys/types.h>
+#include <minitalk.h>
 
 int	ft_recursive_power(int nb, int power)
 {
@@ -25,72 +22,31 @@ int	ft_recursive_power(int nb, int power)
 		return (nb * ft_recursive_power(nb, power - 1));
 }
 
-
-void get_len(int *len_flag, int *bits_received, char **string, int sig)
+void get_info(int sig)
 {
-	static int len = 0;
+	static int bits = 0;
+	static int byte_value = 0;
 	
-	if(sig == SIGUSR1)
-		len += ft_recursive_power(2, *bits_received);
-	if (*bits_received == 31)
+	if (sig == SIGUSR1)
+		byte_value += ft_recursive_power(2, 7 - bits);//checar se é por bits mesmo
+	bits++;
+	if(bits == 8)//pode ser 7
 	{
-		*string = malloc(len + 1);
-		*bits_received = 0;
-		*len_flag = 1;
-		len = 0;
+		if(!byte_value)
+			write(1, "\n", 1);
+		write(1, &byte_value, 1);
+		bits = 0;
+		byte_value = 0;
 		return ;
 	}
-	(*bits_received)++;	
-}	
-
-void return_string(char **string, int *index, int *len_flag)
-{
-	*len_flag = 0;
-	if(*string)
-	{
-		ft_putendl_fd(*string, 1);
-		free(*string);
-		string = 0;
-	}
-	*index = 0;
-}
-
-void get_info (int sig)
-{
-	static char *string = 0;//string a ser devolvida 
-	static int index = 0;//posicao na string
-	static int len_flag = 0;//se recebeu ou nao len
-	static int byte_char = 0;//char em numero
-	static int bits_received = 0;//quantidade de bits recebidos
-	
-	if(!len_flag)
-		get_len(&len_flag, &bits_received, &string, sig);
-	else 
-	{
-		if (sig == SIGUSR1)
-			byte_char += ft_recursive_power(2, bits_received);
-		if(bits_received == 7)
-		{
-			string[index++] = byte_char;
-			bits_received = 0;
-			if (byte_char == 0)
-				return(return_string(&string, &index, &len_flag));				
-			byte_char = 0;
-			return ;
-		}
-		bits_received++;
-	}
-	
 }
 
 int main(void)
 {
-	int pid;
-	
-	pid = getpid();
-	ft_printf("Pid es: %d\n", pid);
+	ft_printf("Pid: %d\n", getpid());
 	signal(SIGUSR1, get_info);
 	signal(SIGUSR2, get_info);
 	while(1)
 		usleep(100);
+	return (0);
 }

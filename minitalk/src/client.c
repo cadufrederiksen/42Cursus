@@ -5,67 +5,44 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/29 14:23:13 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/09/14 12:32:49 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/09/25 12:55:39 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/09/25 16:26:35 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "ft_printf.h"
-#include <signal.h>
-#include <sys/types.h>
+#include <minitalk.h>
 
 
-void send_len (pid_t pid, int len)
+void send_byte(int c, pid_t pid)
 {
-	int i;
+	int bits;
 
-	i = -1;
-	while(++i < 32)
+	bits = 7;
+	while(bits >= 0)
 	{
-		if(len & 1)
-			kill(pid, SIGUSR1);
-		else 
-			kill(pid, SIGUSR2);
-		len = len >> 1;
-		usleep(100);
+		if((c >> bits) & 1)
+			kill(pid, SIGUSR1); //envia 1
+		else
+			kill(pid, SIGUSR2); //envia 0
+		usleep(50);
+		bits--;
 	}
-}
-
-void send_char(int bit, pid_t pid)
-{
-	int i;
-	
-	i = -1;
-	while(++i < 8)
-	{
-		if(bit & 1)
-			kill(pid, SIGUSR1);//envia 1
-		else 
-			kill(pid, SIGUSR2);	//envia 0
-		bit = bit >> 1;
-		usleep(100);
-	} 
 }
 
 int main(int argc, char **argv)
 {
 	if (argc != 3)
-		exit(0);
-	pid_t pid;
-	char *string;
-	int i; 
-	int len;
+		exit (0);
+	int i;
+	char *str;
 
-	i = -1;
-	string = argv[2];
-
-
-	
-	pid = ft_atoi(argv[1]);
-	len = ft_strlen(string);
-	send_len(pid, len);
-	while(string[++i])
-		send_char(string[i], pid);
-	send_char(string[i], pid);
+	str = argv[2];
+	i = 0;
+	while(str[i])
+	{
+		send_byte(str[i], ft_atoi(argv[1]));
+		i++;
+	}
+	send_byte(0, ft_atoi(argv[1]));//enviar caracter nulo
+	return (0);
 }

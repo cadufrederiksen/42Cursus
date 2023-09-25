@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:25:11 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/09/13 15:34:47 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/09/19 11:50:11 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,6 @@ void push_swap(int argc, char **argv, int checker)
 		exit(0);
 	} 
 	select_alg(argc - x, &pile_a, &pile_b); 
-/* 	while(pile_a)
-	{
-		ft_printf("Value: %d, Index: %d\n", pile_a->value, pile_a->index);
-		pile_a = pile_a->next;
-	} */
 	free_pile(&pile_a);
 	free_pile(&pile_b);
 }

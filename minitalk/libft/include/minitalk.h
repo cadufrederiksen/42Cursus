@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:27:48 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/08/29 16:42:47 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/09/19 10:42:48 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 #include "libft.h"
 #include "ft_printf.h"
 #include <signal.h>
-
-//nao sei como funciona dois main
-int main(int argc, char **argv);
-
+#include <sys/types.h>
 
 #endif

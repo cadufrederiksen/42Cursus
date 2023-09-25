@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 15:02:39 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/09/14 12:46:52 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/09/25 13:55:28 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void check_moves2(t_state **a, t_state **b, char *line)
 	}	
 }
 
-char *check_moves(t_state **a, t_state **b, char *line)
+char *check_moves(t_state **a, t_state **b, char *line)  //se nao tiver nenhum imprimir erro e verificar se há alguma coisa em a ou b
 {
 	if(line[0] == 's' && line[1] == 'a' && line[2] == '\n')
 		swap_pile(a);
