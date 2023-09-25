@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 12:55:42 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/09/25 16:35:29 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/09/25 17:07:23 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void get_info(int sig)
 	static int byte_value = 0;
 	
 	if (sig == SIGUSR1)
-		byte_value += ft_recursive_power(2, 7 - bits);
+		byte_value += ft_recursive_power(2, 7 - bits);//checar se é por bits mesmo
 	bits++;
-	if(bits == 8)
+	if(bits == 8)//pode ser 7
 	{
 		if(!byte_value)
 			write(1, "\n", 1);
