@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 15:02:39 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/09/25 13:55:28 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/09/25 16:54:32 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 void check_moves2(t_state **a, t_state **b, char *line)
 {
-	if(line[0] == 'p' && line[1] == 'a' && line[2] == '\n')
+	if(line[0] == 'p' && line[1] == 'a' && line[2] == '\n' && *b)
 		push_pile(b, a);
-	else if(line[0] == 'p' && line[1] == 'b' && line[2] == '\n')
+	else if(line[0] == 'p' && line[1] == 'b' && line[2] == '\n' && *a)
 		push_pile(a, b);
 	else if(line[0] == 'r' && line[1] == 'r' && line[2] == 'a' && line[3] == '\n')
 		reverse_rotate_pile(a);
@@ -30,6 +30,15 @@ void check_moves2(t_state **a, t_state **b, char *line)
 		reverse_rotate_pile(b);
 		reverse_rotate_pile(a);
 	}	
+	else 
+	{
+		if(a)
+			free_pile(a);
+		if(b)
+			free_pile(b);
+		ft_putendl_fd("Invalid instruction", 2);
+		exit(2);
+	}
 }
 
 char *check_moves(t_state **a, t_state **b, char *line)  //se nao tiver nenhum imprimir erro e verificar se há alguma coisa em a ou b

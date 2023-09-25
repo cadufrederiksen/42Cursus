@@ -6,12 +6,11 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 12:55:39 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/09/25 16:26:35 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/09/25 16:35:18 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minitalk.h>
-
 
 void send_byte(int c, pid_t pid)
 {

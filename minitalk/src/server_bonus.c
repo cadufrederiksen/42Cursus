@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client_bonus.c                                     :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:23:13 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/09/25 13:03:55 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/09/25 16:46:43 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void get_info (int sig, siginfo_t *info, void *context)
 	bits_received++;
 	if(bits_received == 8)
 	{
-		bits_received = 0;
 		if (byte_char == 0)
 		{
 			write(1, "\n", 1);
@@ -44,6 +43,7 @@ void get_info (int sig, siginfo_t *info, void *context)
 		}
 		if(byte_char != 0)
 			write(1, &byte_char, 1);
+		bits_received = 0;
 		byte_char = 0;
 	}
 	kill(client_pid, SIGUSR1);
