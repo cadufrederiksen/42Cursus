@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 14:23:13 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/09/25 16:46:43 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/09/26 18:07:52 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,22 @@ void get_info (int sig, siginfo_t *info, void *context)
 	(void)context;
 	client_pid = info->si_pid;
 	if (sig == SIGUSR1)
-		byte_char += ft_recursive_power(2, bits_received);
+		byte_char += ft_recursive_power(2, 7 - bits_received);
+	else if (sig == SIGUSR2)	
+		byte_char += 0;
 	bits_received++;
 	if(bits_received == 8)
 	{
-		if (byte_char == 0)
+		ft_printf("%d\n", bits_received);
+		ft_printf("%c\n", byte_char);
+		bits_received = 0;
+		if (byte_char == 0)//ta vindo aqui toda hora
 		{
 			write(1, "\n", 1);
 			kill(client_pid, SIGUSR2);
 		}
-		if(byte_char != 0)
+		else
 			write(1, &byte_char, 1);
-		bits_received = 0;
 		byte_char = 0;
 	}
 	kill(client_pid, SIGUSR1);

@@ -73,9 +73,6 @@ $(NAME2_BONUS):	$(OBJS2_BONUS)
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c | $(OBJSF)	
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-$(OBJSF):
-	mkdir -p $(OBJS_DIR)
-
 clean:
 	$(RM) -r $(OBJS_DIR)
 	make clean -C $(LIBFT)
