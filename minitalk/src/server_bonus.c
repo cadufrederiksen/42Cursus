@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+ /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   server_bonus.c                                     :+:      :+:    :+:   */
@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "minitalk.h"
-
 
 int	ft_recursive_power(int nb, int power)
 {
@@ -32,26 +31,21 @@ void get_info (int sig, siginfo_t *info, void *context)
 	(void)context;
 	client_pid = info->si_pid;
 	if (sig == SIGUSR1)
-		byte_char += ft_recursive_power(2, 7 - bits_received);
-	else if (sig == SIGUSR2)	
-		byte_char += 0;
+		byte_char += ft_recursive_power(2, bits_received);
 	bits_received++;
 	if(bits_received == 8)
 	{
-		ft_printf("%d\n", bits_received);
-		ft_printf("%c\n", byte_char);
 		bits_received = 0;
 		if (byte_char == 0)//ta vindo aqui toda hora
 		{
 			write(1, "\n", 1);
 			kill(client_pid, SIGUSR2);
 		}
-		else
+		if (byte_char != 0)
 			write(1, &byte_char, 1);
 		byte_char = 0;
 	}
 	kill(client_pid, SIGUSR1);
-	usleep(100);
 }
 
 int main(void)
@@ -59,7 +53,6 @@ int main(void)
 	struct sigaction	info; //definição de sigaction
 	info.sa_flags = SA_SIGINFO;
 	info.sa_sigaction = get_info;
-	sigemptyset(&info.sa_mask);
 	int pid;
 	
 	pid = getpid();
