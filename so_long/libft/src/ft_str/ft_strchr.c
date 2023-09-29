@@ -1,46 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/21 16:38:30 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/09/28 16:20:03 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/04/18 14:42:17 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/05/26 10:13:20 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <unistd.h>
+#include <string.h>
+#include "libft.h"
 
-long int	ft_atoi(const char *str)
+char	*ft_strchr(const char *s, int c)
 {
-	long int	x;
-	int			i;
-	long int	neg;
+	size_t	i;
 
-	neg = 1;
 	i = 0;
-	x = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == 45 || str[i] == 43)
+	while (s[i] != (char)c)
 	{
-		if (str[i] == 45)
-			neg *= -1;
+		if (s[i] == '\0')
+			return (0);
 		i++;
 	}
-	while (str[i] >= 48 && str[i] <= 57)
-	{
-		x = x * 10 + (str[i] - 48);
-		i++;
-	}
-	return (neg * x);
+	return ((char *)&s[i]);
 }
 
-/* int	main(void)
+/* int main()
 {
-	char num[] = " -2147483649";
-	printf("%ld \n", ft_atoi(num));
-	//printf("%d", atoi(num));
+    char array[] = "there is so \0ma\0ny \0 \\0 in t\0his stri\0ng !\0\0\0\0";
+    int c = '\0';
+
+    printf("%s", ft_strchr(array, c));
+    //printf("%s", strchr(array, c));
 }  */

@@ -1,46 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_memcpr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/21 16:38:30 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/09/28 16:20:03 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/04/21 14:53:06 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/04/23 17:14:26 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <unistd.h>
+#include <string.h>
 
-long int	ft_atoi(const char *str)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	long int	x;
-	int			i;
-	long int	neg;
+	unsigned char	*s1u;
+	unsigned char	*s2u;
+	size_t			i;
 
-	neg = 1;
+	s1u = (unsigned char *)s1;
+	s2u = (unsigned char *)s2;
 	i = 0;
-	x = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == 45 || str[i] == 43)
+	if (n == 0)
+		return (0);
+	while (i < n)
 	{
-		if (str[i] == 45)
-			neg *= -1;
+		if (s1u[i] != s2u[i])
+			return (s1u[i] - s2u[i]);
 		i++;
 	}
-	while (str[i] >= 48 && str[i] <= 57)
-	{
-		x = x * 10 + (str[i] - 48);
-		i++;
-	}
-	return (neg * x);
+	return (0);
 }
 
-/* int	main(void)
+/* int main()
 {
-	char num[] = " -2147483649";
-	printf("%ld \n", ft_atoi(num));
-	//printf("%d", atoi(num));
-}  */
+    char s1[] = "carlos";
+    char s2[] = "carlod";
+    printf("%i \n", ft_memcmp(s1, s2, 6));
+    printf("%i", memcmp(s1, s2, 6));
+} */

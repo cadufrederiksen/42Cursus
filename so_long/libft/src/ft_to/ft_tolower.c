@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/29 14:27:48 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/09/28 16:20:37 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/04/18 12:13:56 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/04/28 14:46:38 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include <stdio.h>
 
-# include "ft_printf.h"
-# include "libft.h"
-# include <signal.h>
-# include <sys/types.h>
+int	ft_tolower(int c)
+{
+	if (c >= 'A' && c <= 'Z')
+		c += 32;
+	return (c);
+}
 
-#endif
+/* int main()
+{
+    unsigned char c;
+
+    c = '@';
+    printf("%c", ft_tolower(c));
+}
+ */

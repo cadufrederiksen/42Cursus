@@ -1,21 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/29 14:27:48 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/09/28 16:20:37 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/05/05 14:02:28 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/05/05 15:54:42 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "libft.h"
 
-# include "ft_printf.h"
-# include "libft.h"
-# include <signal.h>
-# include <sys/types.h>
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+{
+	t_list	*result;
+	t_list	*newlst;
 
-#endif
+	if (!lst || !f)
+		return (0);
+	newlst = NULL;
+	while (lst)
+	{
+		result = ft_lstnew(f(lst->content));
+		if (!result)
+		{
+			ft_lstclear(&newlst, del);
+			return (free(newlst), NULL);
+		}
+		ft_lstadd_back(&newlst, result);
+		lst = lst->next;
+	}
+	return (newlst);
+}

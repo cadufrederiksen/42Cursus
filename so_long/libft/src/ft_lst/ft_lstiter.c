@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/29 14:27:48 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/09/28 16:20:37 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/05/05 13:54:44 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/05/05 14:01:18 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "libft.h"
 
-# include "ft_printf.h"
-# include "libft.h"
-# include <signal.h>
-# include <sys/types.h>
-
-#endif
+void	ft_lstiter(t_list *lst, void (*f)(void *))
+{
+	while (lst)
+	{
+		f(lst -> content);
+		lst = lst->next;
+	}
+}

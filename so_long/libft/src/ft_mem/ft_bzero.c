@@ -1,46 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/21 16:38:30 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/09/28 16:20:03 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/04/19 12:33:10 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/04/23 16:26:42 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <unistd.h>
+#include <string.h>
 
-long int	ft_atoi(const char *str)
+void	ft_bzero(void *s, size_t n)
 {
-	long int	x;
-	int			i;
-	long int	neg;
+	unsigned int	i;
+	unsigned char	*b;
 
-	neg = 1;
 	i = 0;
-	x = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == 45 || str[i] == 43)
+	b = s;
+	while (i < n)
 	{
-		if (str[i] == 45)
-			neg *= -1;
+		b[i] = '\0';
 		i++;
 	}
-	while (str[i] >= 48 && str[i] <= 57)
-	{
-		x = x * 10 + (str[i] - 48);
-		i++;
-	}
-	return (neg * x);
 }
 
-/* int	main(void)
+/* int main ()
 {
-	char num[] = " -2147483649";
-	printf("%ld \n", ft_atoi(num));
-	//printf("%d", atoi(num));
-}  */
+   char s[] = "hola";
+   size_t n = 1;
+   ft_bzero(s, n); 
+   //bzero(s, n);
+   printf("%s", s);
+} */

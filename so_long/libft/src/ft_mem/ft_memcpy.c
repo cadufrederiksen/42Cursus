@@ -1,46 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/21 16:38:30 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/09/28 16:20:03 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/04/19 14:00:36 by carmarqu          #+#    #+#             */
+/*   Updated: 2023/04/25 15:29:38 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <unistd.h>
+#include <string.h>
 
-long int	ft_atoi(const char *str)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	long int	x;
-	int			i;
-	long int	neg;
+	unsigned int	i;
+	unsigned char	*dest;
+	unsigned char	*source;
 
-	neg = 1;
 	i = 0;
-	x = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == 45 || str[i] == 43)
+	dest = (unsigned char *)dst;
+	source = (unsigned char *)src;
+	if (source == NULL && dest == NULL)
+		return (0);
+	while (i < n)
 	{
-		if (str[i] == 45)
-			neg *= -1;
+		dest[i] = source[i];
 		i++;
 	}
-	while (str[i] >= 48 && str[i] <= 57)
-	{
-		x = x * 10 + (str[i] - 48);
-		i++;
-	}
-	return (neg * x);
+	return (dst);
 }
 
 /* int	main(void)
 {
-	char num[] = " -2147483649";
-	printf("%ld \n", ft_atoi(num));
-	//printf("%d", atoi(num));
-}  */
+		unsigned char src[] = "";
+	unsigned char dest[] = "";
+	size_t n = 11;
+	printf("%s \n", ft_memcpy(((void *)0), ((void *)0), 3));
+	printf("%s", memcpy(dest, src, n));*/
