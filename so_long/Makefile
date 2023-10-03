@@ -1,41 +1,39 @@
 #---------------PADRÃO------------
 NAME = so_long
-INCLUDES = libft/include/ 
+LIBMLX = MLX42
+HEADERS = -I libft/include/ -I $(LIBMLX)/include
 SRCS_DIR = src/
 OBJS_DIR = obj/
 LIBFT = libft
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I
-RM = rm -f
+CFLAGS = -Wall -Wextra -Werror
 AR = ar rcs
+LIBS = $(LIBMLX)/libmlx42.a -lglfw -L "/Users/carmarqu/.brew/opt/glfw/lib/"
+
 
 #---------------SRC------------
 
-SRC_FILES = 
-
-MAIN_FILE = 
+SRC_FILES = main
 
 #=============SRC=============#
 
-SRCS_MAIN = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(MAIN_FILE))) #adicionar .c e .o aos arquivos
-OBJS_MAIN = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(MAIN_FILE)))
+OBJS_FILES = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRC_FILES)))
 
-SRCS_UTILS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRC_FILES))) #adicionar .c e .o aos arquivos
-OBJS_UTILS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRC_FILES)))
+OBJSF = $(OBJS_DIR) 
 
-OBJSF = $(OBJS_DIR) #checkar se existe
+all:libmlx $(NAME)
 
-all:$(NAME)
+libmlx: 
+	make -C $(LIBMLX)
 
-$(NAME):	$(OBJS_UTILS) $(OBJS_MAIN) #fazer um make dentro de libft, copiar tudo e mover para push_swap e compilar libft.a
+$(OBJS_DIR)%.o : $(SRCS_DIR)%.c | $(OBJSF)	
+	$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@ 
+
+$(NAME):	$(OBJS_FILES)
 	make -C $(LIBFT)
 	cp $(LIBFT)/libft.a .
 	mv libft.a $(NAME)
-	$(NAME): $(OBJS_UTILS)
-	$(CC) $(OBJS_UTILS) $(OBJS_MAIN) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(LIBFT)/libft.a 
-
-$(OBJS_DIR)%.o : $(SRCS_DIR)%.c | $(OBJSF)	
-	$(CC) $(CFLAGS) $(INCLUDES) -Imlx -c $< -o $@
+	$(CC) $(CFLAGS) $(OBJS_FILES) $(LIBFT)/libft.a  $(LIBS) $(HEADERS) -o $(NAME) 
 
 $(OBJSF):
 	mkdir -p $(OBJS_DIR)
@@ -43,11 +41,13 @@ $(OBJSF):
 clean:
 	$(RM) -r $(OBJS_DIR)
 	make clean -C $(LIBFT)
+	make clean -C $(LIBMLX)
 
 fclean: clean
 	$(RM) $(NAME) $(NAME2)
 	$(RM) $(LIBFT)/libft.a
+	make fclean -C $(LIBMLX)
 
 re: fclean all
 
-.PHONY:re all fclean clean bonus
+.PHONY:re all fclean clean bonus libmlx

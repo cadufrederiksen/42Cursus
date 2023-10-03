@@ -20,13 +20,13 @@ MAIN_FILE = main
 BONUS_FILE = checker_bonus
 #=============SRC=============#
 
-SRCS_MAIN = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(MAIN_FILE))) #adicionar .c e .o aos arquivos
+#SRCS_MAIN = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(MAIN_FILE))) #adicionar .c e .o aos arquivos
 OBJS_MAIN = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(MAIN_FILE)))
 
-SRCS_UTILS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRC_FILES))) #adicionar .c e .o aos arquivos
+#SRCS_UTILS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRC_FILES))) #adicionar .c e .o aos arquivos
 OBJS_UTILS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRC_FILES)))
 
-SRCS_BONUS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(BONUS_FILE))) #adicionar .c e .o aos arquivos
+#SRCS_BONUS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(BONUS_FILE))) #adicionar .c e .o aos arquivos
 OBJS_BONUS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(BONUS_FILE)))
 
 OBJSF = .cache_exists #checkar se existe
