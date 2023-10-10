@@ -6,16 +6,17 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:05:59 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/10/03 16:02:27 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/10/10 15:03:55 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include "MLX42.h"
 
 int main(void)
 {
 	void *mlx;
 
-	mlx = mlx_new_image();
+	//mlx = mlx_init();
 	
 }

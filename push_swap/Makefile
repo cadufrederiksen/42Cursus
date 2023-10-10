@@ -33,13 +33,13 @@ OBJSF = .cache_exists #checkar se existe
 
 all:$(NAME)
 
-$(NAME):	$(OBJS_UTILS) $(OBJS_MAIN) #fazer um make dentro de libft, copiar tudo e mover para push_swap e compilar libft.a
+$(NAME):$(OBJSF)	$(OBJS_UTILS) $(OBJS_MAIN) #fazer um make dentro de libft, copiar tudo e mover para push_swap e compilar libft.a
 	@make -C $(LIBFT)
 	@cp $(LIBFT)/libft.a .
 	@mv libft.a $(NAME)
 	@$(CC) $(OBJS_UTILS) $(OBJS_MAIN) -o $(NAME) $(LIBFT)/libft.a 
 
-$(OBJS_DIR)%.o : $(SRCS_DIR)%.c | $(OBJSF)	
+$(OBJS_DIR)%.o : $(SRCS_DIR)%.c 
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(OBJSF):
@@ -47,13 +47,13 @@ $(OBJSF):
 
 bonus: $(NAME2)
 
-$(NAME2):	$(OBJS_UTILS) $(OBJS_BONUS)
+$(NAME2):$(OBJSF)	$(OBJS_UTILS) $(OBJS_BONUS)
 	@make -C $(LIBFT)
 	@cp $(LIBFT)/libft.a .
 	@mv libft.a $(NAME2)
 	@$(CC) $(OBJS_UTILS) $(OBJS_BONUS) -o $(NAME2) $(LIBFT)/libft.a 
 
-$(OBJS_DIR)%.o : $(SRCS_DIR)%.c | $(OBJSF)	
+$(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
