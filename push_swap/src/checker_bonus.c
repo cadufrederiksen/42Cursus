@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 15:02:39 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/09/25 16:54:32 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/10/17 11:23:56 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,7 @@ void check_moves2(t_state **a, t_state **b, char *line)
 		reverse_rotate_pile(a);
 	}	
 	else 
-	{
-		if(a)
-			free_pile(a);
-		if(b)
-			free_pile(b);
+	{		
 		ft_putendl_fd("Invalid instruction", 2);
 		exit(2);
 	}
