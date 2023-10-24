@@ -13,7 +13,7 @@ LIBS = $(LIBMLX)/libmlx42.a -lglfw -L "/Users/carmarqu/.brew/opt/glfw/lib/"
 
 #---------------SRC------------
 
-SRC_FILES = main
+SRC_FILES = main map map_check
 
 #=============SRC=============#
 
