@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:05:59 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/10/24 16:33:47 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:03:03 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	resize_ptr(int32_t width, int32_t height, void* param)
 
 void init_game(t_data *data)
 {
-	data->mlx_ptr = mlx_init(1980, 1080, "so_long", NULL);
+	data->mlx_ptr = mlx_init(1980, 1080, "so_long", 1);
 	mlx_resize_hook(data->mlx_ptr, &resize_ptr, data);//alguma coisa está errada
 	//mlx_key_hook(data->mlx_ptr, &key_press, NULL);
 	mlx_loop(data->mlx_ptr);
@@ -55,7 +55,6 @@ int	main(int argc, char **argv)
 	i = ft_strlen(argv[1]) - 1;
 	if(argv[1][i] == 'r' && argv[1][i - 1] == 'e' && argv[1][i - 2] == 'b' && argv[1][i - 3] == '.')
 	{
-		ft_printf("%s\n", argv[1]);
 		if(!map_check(argv[1], data))//quando sai daqui o mapa ja esta em **map e ja foi checkado
 			return(0);
 	}
