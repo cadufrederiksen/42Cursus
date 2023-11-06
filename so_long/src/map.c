@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:50:12 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/11/06 10:12:48 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/11/06 15:40:08 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,11 @@ int check_line (char *line, t_data *data)
 		else if(line[i] == 'E')
 			data->flag_e++;
 		else if(line[i] == 'P')
+		{
 			data->flag_p++;
+			data->y = data->ver_len;
+			data->x = i;	
+		} 
 		i++;
 	}
 	if((i != data->hor_len || data->flag_e > 1 || data->flag_p > 1))

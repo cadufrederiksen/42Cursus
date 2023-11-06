@@ -6,13 +6,11 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:05:59 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/10/25 16:03:03 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/11/06 16:00:47 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "MLX42/MLX42.h"
-#include "get_next_line.h"
 
 void init_var(t_data *data)
 {
@@ -33,10 +31,12 @@ void	resize_ptr(int32_t width, int32_t height, void* param)
 
 void init_game(t_data *data)
 {
-	data->mlx_ptr = mlx_init(1980, 1080, "so_long", 1);
-	mlx_resize_hook(data->mlx_ptr, &resize_ptr, data);//alguma coisa está errada
-	//mlx_key_hook(data->mlx_ptr, &key_press, NULL);
+	data->mlx_ptr = mlx_init(data->hor_len * 32, data->ver_len * 32, "so_long", 1); //*32 para terem um mesmo tamanho
+	mlx_resize_hook(data->mlx_ptr, &resize_ptr, data);
+	mlx_key_hook(data->mlx_ptr, &moves, data);
+	create_text(data);
 	mlx_loop(data->mlx_ptr);
+	mlx_terminate(data->mlx_ptr);
 }
 
 int	main(int argc, char **argv)

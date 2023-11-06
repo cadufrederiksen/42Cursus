@@ -6,27 +6,88 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:12:04 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/11/06 10:59:54 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/11/06 16:21:47 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int create_text(t_data *data)
+int put_img(t_data *data, char c, int x, int i)//c é o caracter do mapa e y e x a posição
+{
+	if (c == '1')
+		mlx_image_to_window(data->mlx_ptr, data->img->wall, x * 32, i * 32);
+	if (c == '0')
+		mlx_image_to_window(data->mlx_ptr, data->img->floor, x * 32, i * 32);
+	if (c == 'C')
+		mlx_image_to_window(data->mlx_ptr, data->img->colec, x * 32, i * 32);
+	if (c == 'E')
+		mlx_image_to_window(data->mlx_ptr, data->img->exit, x * 32, i * 32);
+	if (c == 'P')
+		mlx_image_to_window(data->mlx_ptr, data->img->main, x * 32, i * 32);
+	return(1);
+}
+
+int img_to_win(t_data *data)
+{
+	int i;
+	int x;
+
+	x = 0;
+	while (x < data->hor_len)
+	{
+		i = 0;
+		
+		while (i < data->ver_len)
+		{
+			put_img(data, data->map[i][x], x, i);
+			i++;
+		}
+		x++;
+	}
+	return (1);
+}
+
+int create_img(t_data *data)
+{
+	data->img = malloc(sizeof(t_image));
+	if (!data->img)
+		return(0);
+	data->img->main = mlx_texture_to_image(data->mlx_ptr, data->text->main);
+	data->img->colec = mlx_texture_to_image(data->mlx_ptr, data->text->colec);
+	data->img->floor = mlx_texture_to_image(data->mlx_ptr, data->text->floor);
+	data->img->exit = mlx_texture_to_image(data->mlx_ptr, data->text->exit);
+	data->img->wall = mlx_texture_to_image(data->mlx_ptr, data->text->wall);
+	mlx_delete_texture(data->text->main);
+	mlx_delete_texture(data->text->colec);
+	mlx_delete_texture(data->text->floor);
+	mlx_delete_texture(data->text->exit);
+	mlx_delete_texture(data->text->wall);
+ 	if(!img_to_win(data))
+		return(0); 
+	return (1);
+}
+
+int create_text(t_data *data)//a imagem ainda ta muito grande 
 {
 	data->text = malloc(sizeof(t_texture));
 	if (!data->text)
 		return (0);
-	data->text->onça = mlx_load_png("../so_long/png/onça.png");
-	if (!data->text->onça)
+	data->text->main = mlx_load_png("../so_long/png/onça32.png");
+	if (!data->text->main)
 		return (0);
-	data->img = malloc(sizeof(t_image));
-	if (data->img)
+	data->text->colec = mlx_load_png("../so_long/png/bife32.png");
+	if (!data->text->colec)
+		return (0);
+	data->text->floor = mlx_load_png("../so_long/png/mato32.png");
+	if (!data->text->floor)
+		return (0);
+	data->text->exit = mlx_load_png("../so_long/png/emato32.png");
+	if (!data->text->exit)
+		return (0);
+	data->text->wall = mlx_load_png("../so_long/png/rio32.png");
+	if (!data->text->wall)
+		return (0);
+	if (!create_img(data))	
 		return(0);
-	data->img->onça = mlx_texture_to_image(data->mlx_ptr, data->text->onça);
-	if (data->img->onça)
-		return(0);
-	mlx_delete_texture(data->text->onça);
-	mlx_image_to_window(data->mlx_ptr, data->img->onça, 890, 540);
 	return (1);
 }
