@@ -6,13 +6,11 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:50:12 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/10/24 16:36:48 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/11/06 10:12:48 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "MLX42/MLX42.h"
-#include "get_next_line.h"
 
 int	ft_fill_map(char *map_name, t_data *data)
 {

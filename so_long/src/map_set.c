@@ -6,13 +6,11 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:58:06 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/10/24 16:01:44 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/11/06 10:12:52 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "MLX42/MLX42.h"
-#include "get_next_line.h"
 
 int border_check(t_data *data)
 {
