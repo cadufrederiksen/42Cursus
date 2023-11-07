@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:58:06 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/11/07 11:58:14 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:33:41 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void flood_fill(int x, int y, t_data *data)
 	}
 	if (data->map[x][y] == '0')
 		data->map[x][y] = 'x';
-	flood_fill(x - 1, y, data);
 	flood_fill(x, y - 1, data);
+	flood_fill(x - 1, y, data);
 	flood_fill(x + 1, y, data);
 	flood_fill(x, y + 1, data);
 }
