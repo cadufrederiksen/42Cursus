@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:50:12 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/11/06 15:40:08 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/11/07 11:53:16 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,12 @@ int map_check(char *name, t_data *data)
 		return(0);
 	if(!border_check(data))
 		return(0);
+	flood_fill(data->x, data->y, data);
+	if (data->ff_c != data->col_total || data->ff_e != 1)
+	{
+		ft_printf("ff Error");
+		return(0);
+	}
+	regen_map(data);
 	return(1);
 }

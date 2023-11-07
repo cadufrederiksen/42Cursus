@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:05:59 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/11/06 16:00:47 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:02:58 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void init_var(t_data *data)
 	data->col_total = 0;
 	data->flag_e = 0;
 	data->flag_p = 0;
+	data->ff_c = 0;
+	data->ff_e = 0;
 } 
 
 void	resize_ptr(int32_t width, int32_t height, void* param)
@@ -37,6 +39,7 @@ void init_game(t_data *data)
 	create_text(data);
 	mlx_loop(data->mlx_ptr);
 	mlx_terminate(data->mlx_ptr);
+	ft_printf("%d", data->col_total);
 }
 
 int	main(int argc, char **argv)
@@ -56,13 +59,8 @@ int	main(int argc, char **argv)
 	if(argv[1][i] == 'r' && argv[1][i - 1] == 'e' && argv[1][i - 2] == 'b' && argv[1][i - 3] == '.')
 	{
 		if(!map_check(argv[1], data))//quando sai daqui o mapa ja esta em **map e ja foi checkado
-			return(0);
+			return(0);//se isso falhaar tenho que livrar memória 
 	}
 	init_game(data);
-	while(x < data->ver_len)
-	{
-		ft_printf("%s\n", data->map[x]);
-		x++;
-	}
 	return(0);
 }
