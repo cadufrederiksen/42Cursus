@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 14:42:17 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/05/26 10:13:20 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/11/09 14:23:01 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,3 @@ char	*ft_strchr(const char *s, int c)
 	}
 	return ((char *)&s[i]);
 }
-
-/* int main()
-{
-    char array[] = "there is so \0ma\0ny \0 \\0 in t\0his stri\0ng !\0\0\0\0";
-    int c = '\0';
-
-    printf("%s", ft_strchr(array, c));
-    //printf("%s", strchr(array, c));
-}  */
