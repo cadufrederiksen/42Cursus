@@ -12,7 +12,6 @@
 
 #include "so_long.h"
 
-
 void move_up(t_data *data)
 {
 	if(data->map[data->y - 1][data->x] == '0')
@@ -20,6 +19,8 @@ void move_up(t_data *data)
 		mlx_image_to_window(data->mlx_ptr, data->img->main_l, data->x * 32, (data->y - 1) * 32);	
 		mlx_image_to_window(data->mlx_ptr, data->img->floor, data->x * 32, data->y * 32);	
 		data->y--;
+		data->total_moves++;
+		ft_printf("Total moves: %d\n", data->total_moves);
 	}
 	else if (data->map[data->y - 1][data->x] == 'C')
 	{
@@ -28,9 +29,14 @@ void move_up(t_data *data)
 		data->col_total--;
 		data->y--;
 		data->map[data->y][data->x] = '0';
+		data->total_moves++;
+		ft_printf("Total moves: %d\n", data->total_moves);
 	}
 	else if (data->map[data->y - 1][data->x] == 'E' && data->col_total == 0)	
+	{
 		mlx_close_window(data->mlx_ptr);
+		ft_printf("Total moves: %d\n", ++data->total_moves);
+	}
 }
 
 void move_down(t_data *data)
@@ -40,6 +46,8 @@ void move_down(t_data *data)
 		mlx_image_to_window(data->mlx_ptr, data->img->main_l, data->x * 32, (data->y + 1) * 32);	
 		mlx_image_to_window(data->mlx_ptr, data->img->floor, data->x * 32, data->y * 32);	
 		data->y++;
+		data->total_moves++;
+		ft_printf("Total moves: %d\n", data->total_moves);
 	}
 	else if (data->map[data->y + 1][data->x] == 'C')
 	{
@@ -48,9 +56,14 @@ void move_down(t_data *data)
 		data->col_total--;
 		data->y++;
 		data->map[data->y][data->x] = '0';
+		data->total_moves++;
+		ft_printf("Total moves: %d\n", data->total_moves);
 	}
 	else if (data->map[data->y + 1][data->x] == 'E' && data->col_total == 0)	
+	{
 		mlx_close_window(data->mlx_ptr);
+		ft_printf("Total moves: %d\n", ++data->total_moves);
+	}
 }
 
 void move_left(t_data *data)
@@ -60,6 +73,8 @@ void move_left(t_data *data)
 		mlx_image_to_window(data->mlx_ptr, data->img->floor, data->x * 32, data->y * 32);
 		mlx_image_to_window(data->mlx_ptr, data->img->main_r, (data->x - 1) * 32, data->y * 32);
 		data->x--;
+		data->total_moves++;
+		ft_printf("Total moves: %d\n", data->total_moves);
 	}	
 	else if (data->map[data->y][data->x - 1] == 'C')
 	{
@@ -68,9 +83,14 @@ void move_left(t_data *data)
 		data->col_total--;
 		data->x--;
 		data->map[data->y][data->x] = '0';
+		data->total_moves++;
+		ft_printf("Total moves: %d\n", data->total_moves);
 	}
 	else if (data->map[data->y][data->x - 1] == 'E' && data->col_total == 0)	
+	{
 		mlx_close_window(data->mlx_ptr);
+		ft_printf("Total moves: %d\n", ++data->total_moves);
+	}
 }
 
 void move_right(t_data *data)
@@ -80,6 +100,8 @@ void move_right(t_data *data)
 		mlx_image_to_window(data->mlx_ptr, data->img->floor, data->x * 32, data->y * 32);
 		mlx_image_to_window(data->mlx_ptr, data->img->main_l, (data->x + 1) * 32, data->y * 32);
 		data->x++;
+		data->total_moves++;
+		ft_printf("Total moves: %d\n", data->total_moves);
 	}	
 	else if (data->map[data->y ][data->x + 1] == 'C')
 	{
@@ -88,15 +110,22 @@ void move_right(t_data *data)
 		data->col_total--;
 		data->x++;
 		data->map[data->y][data->x] = '0';
+		data->total_moves++;
+		ft_printf("Total moves: %d\n", data->total_moves);
 	}
 	else if (data->map[data->y][data->x + 1] == 'E' && data->col_total == 0)	
+	{
 		mlx_close_window(data->mlx_ptr);
+		ft_printf("Total moves: %d\n", ++data->total_moves);
+	}
 }
+
 void moves(mlx_key_data_t keydata, void *param)
 {
 	t_data *data;
 
 	data = param; 
+	data->map[data->y][data->x] = '0';
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		mlx_close_window(data->mlx_ptr);
 	if((keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN) && keydata.action == MLX_PRESS)
@@ -108,4 +137,3 @@ void moves(mlx_key_data_t keydata, void *param)
 	if((keydata.key == MLX_KEY_D || keydata.key == MLX_KEY_RIGHT) && keydata.action == MLX_PRESS)
 		move_right(data);
 }
-

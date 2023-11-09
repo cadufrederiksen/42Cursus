@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:50:12 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/11/07 15:38:57 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/11/09 12:57:04 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_fill_map(char *map_name, t_data *data)
 	{
 		data->map[x] = malloc(data->hor_len + 1);//talvez mudar o strlen_map
 		if(!data->map[x])
-			return(0);
+			return(0);//precisa fazer free dos anteriores se houver erro
 		ft_strlcpy(data->map[x], line, data->hor_len + 1);
 		free(line);
 		line = get_next_line(fd);
@@ -88,7 +88,7 @@ int format_check(char *map_name, t_data *data)
 			return(0); 
 		data->hor_len = ft_strlen_map(line);
 		if(!check_line(line, data))
-			return(free(line), close(fd), 0);//precisa fazer free dos anteriores se houver erro
+			return(free(line), close(fd), 0);
 		free(line);
 		line = get_next_line(fd);
 		data->ver_len++;
@@ -100,16 +100,13 @@ int format_check(char *map_name, t_data *data)
 
 int map_check(char *name, t_data *data)
 {
-	if(!format_check(name, data))//checka 
-		return(0);
+	if(!format_check(name, data))
+		return(ft_printf("Error: Map format wrong\n"), 0);
 	if(!border_check(data))
-		return(0);
+		return(ft_printf("Error: Map format wrong\n"), 0);
 	flood_fill(data->x, data->y, data);
 	if (data->ff_c != data->col_total || data->ff_e != 1)
-	{
-		ft_printf("ff Error");
-		return(0);
-	}
+		return(ft_printf("Error: Unplayable map\n"), 0);
 	regen_map(data);
 	return(1);
 }

@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:06:37 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/11/07 14:26:38 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/11/09 12:57:58 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,15 @@ typedef struct s_data
 
 } t_data;
 
-
+int		main(int argc, char **argv);
+void	init_game(t_data *data);
 int		map_check(char *map_name, t_data *data);
 int		border_check(t_data *data);
 int		create_text(t_data *data);
 void	moves(mlx_key_data_t keydata, void *param);
 void	flood_fill(int x, int y, t_data *data);
 void	regen_map(t_data *data);
+void	init_var(t_data *data);
+void	ft_free(t_data *data);
 
 #endif
