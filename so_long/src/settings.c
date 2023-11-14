@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 11:02:57 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/11/09 13:58:49 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/11/14 14:40:14 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,17 @@ void	resize_ptr(int32_t width, int32_t height, void *param)
 	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
 }
 
-void	init_game(t_data *data)
+int	init_game(t_data *data)
 {
 	data->mlx_ptr = mlx_init(data->hor_len * 32, data->ver_len * 32,
 			"so_long", 1);
 	mlx_resize_hook(data->mlx_ptr, &resize_ptr, data);
 	mlx_key_hook(data->mlx_ptr, &moves, data);
 	if (!create_text(data))
-	{
-		ft_map_free(data);
-		free(data);
-		exit(2);
-	}
+		return (0);
 	mlx_loop(data->mlx_ptr);
 	mlx_terminate(data->mlx_ptr);
+	return (1);
 }
 
 void	ft_map_free(t_data *data)
