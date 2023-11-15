@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 11:02:57 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/11/14 15:48:39 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/11/15 10:38:05 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	init_var(t_data *data)
 	data->flag_p = 0;
 	data->ff_c = 0;
 	data->ff_e = 0;
-	data->total_moves = 0;
 }
 
 void	resize_ptr(int32_t width, int32_t height, void *param)
@@ -35,7 +34,7 @@ void	resize_ptr(int32_t width, int32_t height, void *param)
 int	init_game(t_data *data)
 {
 	data->mlx_ptr = mlx_init(data->hor_len * 32, data->ver_len * 32,
-			"so_long", 1);
+			"so_long_bonus", 1);
 	mlx_resize_hook(data->mlx_ptr, &resize_ptr, data);
 	mlx_key_hook(data->mlx_ptr, &moves, data);
 	if (!create_text(data))

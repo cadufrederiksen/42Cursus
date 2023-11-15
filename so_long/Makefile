@@ -27,28 +27,28 @@ OBJSF = $(OBJS_DIR)
 
 all:libmlx $(NAME)
 
-$(OBJS_DIR)%.o : $(SRCS_DIR)%.c | $(OBJSF)
-	$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@ 
-
-$(NAME):	$(OBJS_FILES)
+$(NAME): $(OBJSF) $(OBJS_FILES)
 	make -C $(LIBFT)
 	cp $(LIBFT)/libft.a .
 	mv libft.a $(NAME)
 	$(CC) $(CFLAGS) $(OBJS_FILES) $(LIBFT)/libft.a $(LIBS) $(HEADERS) -o $(NAME) 
+
+$(OBJS_DIR)%.o : $(SRCS_DIR)%.c
+	$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@ 
 
 $(OBJSF):
 	mkdir -p $(OBJS_DIR)
 
 bonus:libmlx $(NAME2)
 
-$(OBJS_DIR)%.o : $(SRCS_BN_DIR)%.c | $(OBJSF)
-	$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@ 
-
-$(NAME2):	$(OBJS_BONUS)
+$(NAME2): $(OBJSF)	$(OBJS_BONUS)
 	make -C $(LIBFT)
 	cp $(LIBFT)/libft.a .
 	mv libft.a $(NAME2)
 	$(CC) $(CFLAGS) $(OBJS_BONUS) $(LIBFT)/libft.a $(LIBS) $(HEADERS) -o $(NAME2) 
+
+$(OBJS_DIR)%.o : $(SRCS_BN_DIR)%.c | 
+	$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@ 
 
 libmlx: 
 	make -C $(LIBMLX)
@@ -58,9 +58,10 @@ clean:
 	make clean -C $(LIBFT)
 	make clean -C $(LIBMLX)
 
-fclean: clean
+fclean:
+	$(RM) -r $(OBJS_DIR)
 	$(RM) $(NAME) $(NAME2)
-	$(RM) $(LIBFT)/libft.a
+	make fclean -C $(LIBFT)
 	make fclean -C $(LIBMLX)
 
 re: fclean all

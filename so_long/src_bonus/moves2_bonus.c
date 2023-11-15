@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 15:00:05 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/11/14 17:03:22 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/11/15 10:39:11 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	move_left2(t_data *data)
 		mlx_close_window(data->mlx_ptr);
 		ft_printf("You lost the game!\n");
 	}
-	
 }
 
 void	move_right2(t_data *data)
@@ -69,13 +68,13 @@ void	move_right2(t_data *data)
 	}
 }
 
-void print_moves(t_data *data)
+void	print_moves(t_data *data)
 {
-	static int moves = 1;
-	char *str;
+	static int	moves = 1;
+	char		*str;
 
 	str = ft_itoa(moves);
-	if(data->mv_count)
+	if (data->mv_count)
 		mlx_delete_image(data->mlx_ptr, data->mv_count);
 	data->mv_count = mlx_put_string(data->mlx_ptr, str, 1, 1);
 	free(str);
