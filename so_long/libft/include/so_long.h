@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+ /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
@@ -45,7 +45,7 @@ typedef struct s_data
 	mlx_t				*mlx_ptr;
 	char				**map;
 	int					ver_len;//quantidade de colunas () y
-	int					hor_len;//quantidade de fileiras x
+	int					hor_len;//quantidade de fileiras y
 	int					col_total;//quantidade de coletáveis
 	int					flag_e;//total de e's
 	int					flag_p;//total de p's
@@ -63,7 +63,7 @@ int						map_check(char *map_name, t_data *data);
 int						border_check(t_data *data);
 int						create_text(t_data *data);
 void					moves(mlx_key_data_t keydata, void *param);
-void					flood_fill(int x, int y, t_data *data);
+void					flood_fill(int y, int x, t_data *data);
 void					regen_map(t_data *data);
 void					init_var(t_data *data);
 void					ft_map_free(t_data *data);

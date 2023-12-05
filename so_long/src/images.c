@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:12:04 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/11/14 14:54:17 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/12/05 11:26:01 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,22 +72,22 @@ int	create_text(t_data *data)
 	data->text = malloc(sizeof(t_texture));
 	if (!data->text)
 		return (0);
-	data->text->main_r = mlx_load_png("../so_long/png/onça_dir_32.png");
+	data->text->main_r = mlx_load_png("png/onça_dir_32.png");
 	if (!data->text->main_r)
 		return (0);
-	data->text->main_l = mlx_load_png("../so_long/png/onça_esq_32.png");
+	data->text->main_l = mlx_load_png("png/onça_esq_32.png");
 	if (!data->text->main_l)
 		return (0);
-	data->text->colec = mlx_load_png("../so_long/png/bife_32.png");
+	data->text->colec = mlx_load_png("png/bife_32.png");
 	if (!data->text->colec)
 		return (0);
-	data->text->floor = mlx_load_png("../so_long/png/mato_32.png");
+	data->text->floor = mlx_load_png("png/mato_32.png");
 	if (!data->text->floor)
 		return (0);
-	data->text->exit = mlx_load_png("../so_long/png/emato_32.png");
+	data->text->exit = mlx_load_png("png/emato_32.png");
 	if (!data->text->exit)
 		return (0);
-	data->text->wall = mlx_load_png("../so_long/png/rio_32.png");
+	data->text->wall = mlx_load_png("png/rio_32.png");
 	if (!data->text->wall)
 		return (0);
 	create_img(data);

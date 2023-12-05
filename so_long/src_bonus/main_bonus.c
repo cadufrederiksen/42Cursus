@@ -6,16 +6,11 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:05:59 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/11/14 16:52:16 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/12/05 12:42:16 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
-
-void	ft_leaks(void)
-{
-	system("leaks -q so_long_bonus");
-}
 
 int	main(int argc, char **argv)
 {
@@ -29,7 +24,6 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (2);
 	i = ft_strlen(argv[1]) - 1;
-	atexit(ft_leaks);
 	if (argv[1][i] == 'r' && argv[1][i - 1] == 'e' && argv[1][i - 2] == 'b'
 		&& argv[1][i - 3] == '.')
 	{

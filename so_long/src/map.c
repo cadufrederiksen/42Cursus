@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:50:12 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/11/09 14:08:35 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/12/05 12:54:13 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int	map_check(char *name, t_data *data)
 	if (!border_check(data))
 		return (ft_printf("Error: Map format wrong\n"), ft_map_free(data),
 			free(data), 0);
-	flood_fill(data->x, data->y, data);
+	flood_fill(data->y, data->x, data);
 	if (data->ff_c != data->col_total || data->ff_e != 1)
 		return (ft_printf("Error: Unplayable map\n"), ft_map_free(data),
 			free(data), 0);

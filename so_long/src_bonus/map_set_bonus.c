@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:58:06 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/11/14 16:17:56 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/12/05 12:55:41 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,28 +34,28 @@ int	border_check(t_data *data)
 	return (1);
 }
 
-void	flood_fill(int x, int y, t_data *data)
+void	flood_fill(int y, int x, t_data *data)
 {
-	if (data->map[x][y] == '1' || data->map[x][y] == 'x'
-		|| data->map[x][y] == 'c' || data->map[x][y] == 'e'
-		|| data->map[x][y] == 'H')
+	if (data->map[y][x] == '1' || data->map[y][x] == 'x'
+		|| data->map[y][x] == 'c' || data->map[y][x] == 'e'
+		|| data->map[y][x] == 'H')
 		return ;
-	if (data->map[x][y] == 'C')
+	if (data->map[y][x] == 'C')
 	{
 		data->ff_c++;
-		data->map[x][y] = 'c';
+		data->map[y][x] = 'c';
 	}
-	if (data->map[x][y] == 'E')
+	if (data->map[y][x] == 'E')
 	{
-		data->map[x][y] = 'e';
+		data->map[y][x] = 'e';
 		data->ff_e++;
 	}
-	if (data->map[x][y] == '0')
-		data->map[x][y] = 'x';
-	flood_fill(x, y - 1, data);
-	flood_fill(x - 1, y, data);
-	flood_fill(x + 1, y, data);
-	flood_fill(x, y + 1, data);
+	if (data->map[y][x] == '0')
+		data->map[y][x] = 'x';
+	flood_fill(y, x - 1, data);
+	flood_fill(y - 1, x, data);
+	flood_fill(y + 1, x, data);
+	flood_fill(y, x + 1, data);
 }
 
 void	regen_map(t_data *data)

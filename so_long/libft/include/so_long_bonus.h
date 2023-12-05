@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 11:06:37 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/11/14 17:00:54 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/12/05 12:40:50 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,15 @@ typedef struct s_data
 	struct s_image		*img;
 	mlx_t				*mlx_ptr;
 	char				**map;
-	int					ver_len;//quantidade de colunas () y
-	int					hor_len;//quantidade de fileiras x
-	int					col_total;//quantidade de coletáveis
-	int					flag_e;//total de e's
-	int					flag_p;//total de p's
+	int ver_len;   //quantidade de colunas () y
+	int hor_len;   //quantidade de fileiras x
+	int col_total; //quantidade de coletáveis
+	int flag_e;    //total de e's
+	int flag_p;    //total de p's
 	int					x;
-	int					y;//x e y são as posições inicias do personagem ("P")
-	int					ff_c;//contador de c's de flood_fill
-	int					ff_e;//contador de e's de flood fill
+	int y;    //x e y são as posições inicias do personagem ("P")
+	int ff_c; //contador de c's de flood_fill
+	int ff_e; //contador de e's de flood fill
 	mlx_image_t			*mv_count;
 
 }						t_data;
@@ -65,7 +65,7 @@ int						map_check(char *map_name, t_data *data);
 int						border_check(t_data *data);
 int						create_text(t_data *data);
 void					moves(mlx_key_data_t keydata, void *param);
-void					flood_fill(int x, int y, t_data *data);
+void					flood_fill(int y, int x, t_data *data);
 void					regen_map(t_data *data);
 void					init_var(t_data *data);
 void					ft_map_free(t_data *data);

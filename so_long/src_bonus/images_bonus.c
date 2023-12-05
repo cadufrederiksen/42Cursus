@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 10:12:04 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/11/15 10:38:18 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/12/05 12:55:15 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,13 @@ int	create_img(t_data *data)
 
 int	create_text2(t_data *data)
 {
-	data->text->exit = mlx_load_png("../so_long/png/emato_32.png");
+	data->text->exit = mlx_load_png("png/emato_32.png");
 	if (!data->text->exit)
 		return (0);
-	data->text->wall = mlx_load_png("../so_long/png/rio_32.png");
+	data->text->wall = mlx_load_png("png/rio_32.png");
 	if (!data->text->wall)
 		return (0);
-	data->text->hunter_r = mlx_load_png("../so_long/png/hunter_r_32.png");
+	data->text->hunter_r = mlx_load_png("png/hunter_r_32.png");
 	if (!data->text->hunter_r)
 		return (0);
 	return (1);
@@ -91,16 +91,16 @@ int	create_text(t_data *data)
 	data->text = malloc(sizeof(t_texture));
 	if (!data->text)
 		return (0);
-	data->text->main_r = mlx_load_png("../so_long/png/onça_dir_32.png");
+	data->text->main_r = mlx_load_png("png/onça_dir_32.png");
 	if (!data->text->main_r)
 		return (0);
-	data->text->main_l = mlx_load_png("../so_long/png/onça_esq_32.png");
+	data->text->main_l = mlx_load_png("png/onça_esq_32.png");
 	if (!data->text->main_l)
 		return (0);
-	data->text->colec = mlx_load_png("../so_long/png/bife_32.png");
+	data->text->colec = mlx_load_png("png/bife_32.png");
 	if (!data->text->colec)
 		return (0);
-	data->text->floor = mlx_load_png("../so_long/png/mato_32.png");
+	data->text->floor = mlx_load_png("png/mato_32.png");
 	if (!data->text->floor)
 		return (0);
 	if (!create_text2(data))
