@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:07:37 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/11/30 16:35:11 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/12/05 15:08:24 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	main(int argc, char **argv)
 {
 	t_data	data;
+	//pthread_t monitor;
 	int		x;
 
 	x = 0;
@@ -27,6 +28,7 @@ int	main(int argc, char **argv)
 		pthread_create(&data.tid[x], NULL, &routine, (void *)&data.philo[x]);
 		x++;
 	}
+	//pthread_create(&monitor, NULL, &check, (void *)&data);
 	x = 0;
 	while (x < data.num_philo)
 	{

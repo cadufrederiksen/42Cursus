@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:05:30 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/11/30 16:34:20 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/12/05 14:11:40 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct s_philo //estrutura do filosofo
 	pthread_mutex_t *l_fork;// vai apontar para o garfo da esquerda dentro do array fork
 	pthread_mutex_t *r_fork;
 	
-	
 }	t_philo;
 typedef struct s_data
 {
@@ -44,6 +43,7 @@ typedef struct s_data
 	int laps; // numero de vezes que ja comeu
 	int final_lap; //opcional
 	size_t start_time; //tempo que começou o programa (milisegundos)
+	pthread_mutex_t write;
 	pthread_mutex_t *forks; //array com mutex para os garfos
 	
 }	t_data;
@@ -58,5 +58,6 @@ void	dream(t_philo *philo);
 void	think(t_philo *philo);
 void	eat(t_philo *philo);
 int		check_args(int argc, char **argv);
+void	*check(void *arg);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:07:37 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/11/30 16:35:23 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/12/05 14:22:44 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	init_mutex(t_data *data)//inicializa os mutexes e aponta os ponteiros
 	int	x;
 
 	x = 0;
+	pthread_mutex_init(&data->write, NULL);
 	while (x++ < data->num_philo)
 	    pthread_mutex_init(&data->forks[x], NULL);
 	data->philo[0].l_fork = &data->forks[data->num_philo - 1];
@@ -78,7 +79,6 @@ int init_data(t_data *data, int argc, char **argv)//guarda os args e inicializa 
 	data->dead_flag = 0;
 	data->laps = 0;
 	init_mem(data);
-	printf("\n");
 	init_mutex(data);
 	init_philos(data);
 	return (1);

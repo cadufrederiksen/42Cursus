@@ -1,6 +1,5 @@
 #---------------PADRÃO------------
 NAME = philo
-INCLUDES = philo.h
 SRCS_DIR = src/
 OBJS_DIR = obj/
 CC = gcc
@@ -20,7 +19,7 @@ OBJSF = $(OBJS_DIR)
 all:$(NAME)
 
 $(NAME):$(OBJSF)	$(OBJS_UTILS)
-	$(CC) $(OBJS_UTILS) $(INCLUDES) -o $(NAME)
+	$(CC) $(OBJS_UTILS) -o $(NAME)
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 	$(CC) $(CFLAGS) -c $< -o $@

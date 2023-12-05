@@ -3,18 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:07:37 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/11/30 16:34:15 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/12/05 15:56:43 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-/* void *routine(void *arg)
+/* void *check(void *arg)
 {
-	
+	t_data *data;
+
+	data = (t_data *)arg;
+	while ()
+	{
+		
+	}
+	return (0);
 } */
 
 void	*routine(void *arg)
@@ -24,14 +31,10 @@ void	*routine(void *arg)
 	philo = (t_philo *)arg;
 	while (philo->data->dead_flag != 1 && philo->data->laps != philo->data->final_lap)
 	{
-		if(philo->data->philo[philo->id].status == 1 
-				|| philo->data->philo[philo->id - 2].status == 1)
-			think(philo);
-		else
-		{
-			eat(philo);
-			dream(philo);
-		}
+		if(philo->id % 2 == 0)
+			ft_usleep(1);
+		dream(philo);
+		eat(philo);
 	}
 	return (0);
 }
