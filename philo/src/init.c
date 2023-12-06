@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:07:37 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/12/05 14:22:44 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/12/06 15:39:29 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	init_mutex(t_data *data)//inicializa os mutexes e aponta os ponteiros
 	pthread_mutex_init(&data->write, NULL);
 	while (x++ < data->num_philo)
 	    pthread_mutex_init(&data->forks[x], NULL);
-	data->philo[0].l_fork = &data->forks[data->num_philo - 1];
-	data->philo[0].r_fork = &data->forks[0];
+	data->philo[0].r_fork = &data->forks[data->num_philo - 1];
+	data->philo[0].l_fork = &data->forks[0];
 	x = 1;
 	while (x < data->num_philo)//cada filosofo tem um mutex de seus garfos
 	{

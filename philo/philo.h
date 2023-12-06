@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:05:30 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/12/05 14:11:40 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/12/06 15:02:58 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 
 typedef struct s_philo //estrutura do filosofo
 {
+	pthread_t t1;//identificador das threads
+	struct s_data *data;// ponteiro para data
 	int id;//número de id de cada philo
 	int last_meal;//tempo da ultima refeiçao
 	int status;//flag para saber a açao do philo
-	pthread_t t1;//identificador das threads
-	struct s_data *data;// ponteiro para data
 	pthread_mutex_t lock;
 	pthread_mutex_t *l_fork;// vai apontar para o garfo da esquerda dentro do array fork
 	pthread_mutex_t *r_fork;
