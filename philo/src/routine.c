@@ -6,33 +6,39 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:07:37 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/12/06 16:57:32 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/12/11 17:08:11 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-/* void *check(void *arg)
+int	ft_dead(t_philo *philo)
 {
-	t_data *data;
-
-	data = (t_data *)arg;
-	while ()
+	if (philo->last_meal >= philo->data->death_time)
 	{
-		
+		pthread_mutex_lock(&philo->data->done);
+		philo->data->break_flag = 1;
+		pthread_mutex_unlock(&philo->data->done);
+		pthread_mutex_lock(&philo->data->write);
+		printf("%ld Philo %d died\n", (get_time() - philo->data->start_time), philo->id);
+		pthread_mutex_unlock(&philo->data->write);
 	}
 	return (0);
-} */
+}
 
-void	*routine(void *arg)
+void	*routine(void *arg) 
 {
 	t_philo *philo;
 
 	philo = (t_philo *)arg;
-	while (philo->data->dead_flag != 1 && philo->data->laps != philo->data->final_lap)
+	while (philo->data->break_flag != 1)
 	{
-		if ((philo->id % 2 == 0 || philo->id == philo->data->num_philo) && philo->data->laps == 0)
-			dream(philo);//nao mandar para funcao, apenas printar
+		ft_dead(philo);
+		if ((philo->id % 2 == 0 || philo->id == philo->data->num_philo) && philo->laps == 0)
+		{
+			print_msg(3, philo);
+			ft_usleep(philo->data->eat_time);
+		}
 		eat(philo);
 		dream(philo);
 	}

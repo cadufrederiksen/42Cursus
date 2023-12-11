@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:07:37 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/12/06 15:39:29 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/12/11 17:00:35 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	init_mutex(t_data *data)//inicializa os mutexes e aponta os ponteiros
 
 	x = 0;
 	pthread_mutex_init(&data->write, NULL);
+	pthread_mutex_init(&data->done, NULL);
 	while (x++ < data->num_philo)
 	    pthread_mutex_init(&data->forks[x], NULL);
 	data->philo[0].r_fork = &data->forks[data->num_philo - 1];
@@ -39,10 +40,10 @@ int	init_philos(t_data *data)//inicializa cada philo dentro do array
 	x = 0;
 	while (x < data->num_philo)
 	{
+		data->philo[x].laps = 0;
 		data->philo[x].data = data;
 		data->philo[x].id = x + 1;
 		data->tid[x] = data->philo[x].t1;
-		pthread_mutex_init(&data->philo[x].lock, NULL);
 		data->philo->status = 0;
 		x++;
 	}
@@ -76,8 +77,7 @@ int init_data(t_data *data, int argc, char **argv)//guarda os args e inicializa 
 	else
 		(*data).final_lap = -1;
 	(*data).start_time = get_time();
-	data->dead_flag = 0;
-	data->laps = 0;
+	data->break_flag = 0;
 	init_mem(data);
 	init_mutex(data);
 	init_philos(data);

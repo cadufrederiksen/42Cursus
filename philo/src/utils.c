@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:07:37 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/12/05 14:15:19 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/12/11 15:33:12 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	check_args(int argc, char **argv)
 	return (1);
 }
 
-void	free_mutex(t_data *data)
+/* void	free_mutex(t_data *data)
 {
 	int	x;
 
@@ -47,7 +47,7 @@ void	free_mutex(t_data *data)
 	}
 	free(data->forks);
 }
-
+ */
 int	ft_atoi(const char *str)
 {
 	long int	x;
