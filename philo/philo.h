@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:05:30 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/12/11 17:00:19 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/12/14 16:17:03 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef struct s_philo //estrutura do filosofo
 	struct s_data *data;// ponteiro para data
 	int id;//número de id de cada philo
 	int last_meal;//tempo da ultima refeiçao
-	int status;//flag para saber a açao do philo
 	int laps; // numero de vezes que ja comeu
 	
 	pthread_mutex_t *l_fork;// vai apontar para o garfo da frente dentro do array fork
@@ -61,5 +60,6 @@ void	think(t_philo *philo);
 void	eat(t_philo *philo);
 int		check_args(int argc, char **argv);
 void	*check(void *arg);
+void	*ft_dead(void *arg);
 
 #endif

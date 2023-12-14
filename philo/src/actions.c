@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:07:37 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/12/11 16:58:55 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/12/14 16:07:27 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,32 +35,23 @@ void	dream(t_philo *philo)
 {
 	if (philo->data->break_flag == 1)
 		return ;
-	if (philo->status == 2)
-	{
-		print_msg(2, philo);
-		ft_usleep(philo->data->sleep_time);
-	}
-	else if (philo->status != 3)
-		print_msg(3, philo);
-	philo->status = 3;
+	print_msg(2, philo);//printa que vai comer
+	ft_usleep(philo->data->sleep_time);//espera
+	print_msg(3, philo);//printa que ta pensando
 }
-
 
 void	eat(t_philo *philo)
 {
 	if (philo->data->break_flag == 1)
 		return ;
-	philo->status = 1;
 	if (philo->id == philo->data->num_philo)
 		pthread_mutex_lock(&philo->data->forks[philo->id - 1]);//trava o da frente
-		
 	pthread_mutex_lock(&philo->data->forks[philo->id]);
 	print_msg(4, philo);
 	print_msg(1, philo);
-	ft_usleep(philo->data->eat_time);
 	philo->last_meal = get_time() - philo->data->start_time;//essa subtracao da o num pequeno
+	ft_usleep(philo->data->eat_time);
 	philo->laps++;
-	philo->status = 2;
 	pthread_mutex_unlock(&philo->data->forks[philo->id - 1]);
 	pthread_mutex_unlock(&philo->data->forks[philo->id]);
 }

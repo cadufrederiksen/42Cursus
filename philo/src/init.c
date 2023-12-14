@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:07:37 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/12/11 17:00:35 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/12/14 15:47:52 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	init_philos(t_data *data)//inicializa cada philo dentro do array
 		data->philo[x].data = data;
 		data->philo[x].id = x + 1;
 		data->tid[x] = data->philo[x].t1;
-		data->philo->status = 0;
+		data->philo[x].last_meal = 0;
 		x++;
 	}
 	return (1);
