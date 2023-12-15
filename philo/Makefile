@@ -19,7 +19,7 @@ OBJSF = $(OBJS_DIR)
 all:$(NAME)
 
 $(NAME):$(OBJSF)	$(OBJS_UTILS)
-	$(CC) $(OBJS_UTILS) -o $(NAME)
+	$(CC)  $(OBJS_UTILS) -o $(NAME)
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -36,3 +36,5 @@ fclean: clean
 re: fclean all
 
 .PHONY:re all fclean clean bonus
+
+#-fsanitize=thread -g3
