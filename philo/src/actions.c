@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:07:37 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/12/15 12:56:36 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/12/21 17:59:08 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ void	eat(t_philo *philo)
 	print_msg(1, philo);
 	philo->last_meal = get_time() - philo->data->start_time;//essa subtracao da o num pequeno
 	ft_usleep(philo->data->eat_time);
+	pthread_mutex_lock(&philo->data->lap);
 	philo->laps++;
+	pthread_mutex_unlock(&philo->data->lap);
 	if (philo->id == 1)
 		pthread_mutex_unlock(&philo->data->forks[philo->data->num_philo - 1]);//trava o da frente
 	else

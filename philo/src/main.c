@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:07:37 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/12/14 16:15:12 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/12/21 17:53:40 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 	pthread_t dead;
+	pthread_t laps_n;
 	int		x;
 
 	x = 0;
@@ -30,6 +31,7 @@ int	main(int argc, char **argv)
 	}
 	x = 0;
 	pthread_create(&dead, NULL, &ft_dead, (void *)&data);
+	pthread_create(&laps_n, NULL, &laps_count, (void *)&data);
 	while (x < data.num_philo)
 	{
 		pthread_join(data.tid[x], NULL);
