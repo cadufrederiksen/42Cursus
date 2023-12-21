@@ -6,11 +6,21 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:07:37 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/12/21 18:05:31 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/12/22 00:24:11 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
+
+void	case_one(t_data *data)
+{
+	data->break_flag = 1;
+	pthread_mutex_lock(&data->write);
+	printf("%ld Philo 1 has taken a fork\n", (get_time() - data->start_time));
+	ft_usleep(data->death_time);
+	printf("%ld Philo 1 died\n", (get_time() - data->start_time));
+	pthread_mutex_unlock(&data->write);
+}
 
 int dead_check(t_philo *philo)
 {
@@ -73,6 +83,8 @@ void	*routine(void *arg)
 	t_philo *philo;
 
 	philo = (t_philo *)arg;
+	if (philo->data->num_philo == 1)
+		case_one(philo->data);
 	while (philo->data->break_flag != 1)
 	{
 		if ((philo->id % 2 == 0 || philo->id == philo->data->num_philo) && philo->laps == 0)

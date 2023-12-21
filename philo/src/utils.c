@@ -6,11 +6,29 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:07:37 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/12/21 15:12:12 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/12/22 00:40:08 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
+
+void	ft_free(t_data *data)
+{
+	int	x;
+
+	x = data->num_philo;
+	pthread_mutex_destroy(&data->write);
+	pthread_mutex_destroy(&data->done);
+	pthread_mutex_destroy(&data->lap);
+	while (x > 0)
+	{
+		pthread_mutex_destroy(&data->forks[x]);//nao sei se precisa fazer um free dos poteros		
+		x--;
+	}
+	free(data->philo);
+	free(data->tid);
+	free(data->forks);
+}
 
 int	check_args(int argc, char **argv)
 {
@@ -34,20 +52,7 @@ int	check_args(int argc, char **argv)
 	}
 	return (1);
 }
-
-/* void	free_mutex(t_data *data)
-{
-	int	x;
-
-	x = data->num_philo - 1;
-	while (x > 0)
-	{
-		pthread_mutex_destroy(&data->forks[x]);
-		x--;
-	}
-	free(data->forks);
-}
- */ 
+ 
 int	ft_atoi(const char *str)
 {
 	long int	x;

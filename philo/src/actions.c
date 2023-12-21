@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:07:37 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/12/21 17:59:08 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/12/22 00:41:33 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	print_msg(int status, t_philo *philo)
 		printf("%ld Philo %d is thinking\n", (get_time() - philo->data->start_time), philo->id);
 	if (status == 4 && philo->data->break_flag == 0)
 	{
-		printf("%ld Philo %d has taken a l_fork\n", (get_time() - philo->data->start_time), philo->id);
-		printf("%ld Philo %d has taken a r_fork\n", (get_time() - philo->data->start_time), philo->id);
+		printf("%ld Philo %d has taken a fork\n", (get_time() - philo->data->start_time), philo->id);
+		printf("%ld Philo %d has taken a fork\n", (get_time() - philo->data->start_time), philo->id);
 	}
 	pthread_mutex_unlock(&philo->data->write);
 }

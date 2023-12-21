@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:05:30 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/12/21 17:57:42 by carmarqu         ###   ########.fr       */
+/*   Updated: 2023/12/22 00:24:53 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	*routine(void *arg);
 int		ft_atoi(const char *str);
 size_t	get_time(void);
 int		init_data(t_data *data, int argc, char **argv);
-void	free_mutex(t_data *data);
+void	ft_free(t_data *data);
 int		ft_usleep (size_t time);
 void	dream(t_philo *philo);
 void	think(t_philo *philo);
