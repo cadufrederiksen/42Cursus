@@ -19,7 +19,7 @@ OBJSF = $(OBJS_DIR)
 all:$(NAME)
 
 $(NAME):$(OBJSF)	$(OBJS_UTILS)
-	$(CC)  $(OBJS_UTILS) -o $(NAME)
+	$(CC)  $(OBJS_UTILS)  -fsanitize=thread -g3 -o $(NAME)
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 	$(CC) $(CFLAGS) -c $< -o $@

@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:07:37 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/01/08 11:47:41 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/01/08 14:21:55 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(int argc, char **argv)
 		x++;
 	}
 	if (data.num_philo > 1)
-		pthread_create(&dead, NULL, &ft_dead, (void *)&data);	
+		pthread_create(&dead, NULL, &ft_end, (void *)&data);
 	join_th(&data, &dead);
 	ft_free(&data);
 	return (0);

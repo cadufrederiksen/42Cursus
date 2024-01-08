@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:05:30 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/01/08 11:44:27 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/01/08 14:22:45 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ typedef struct s_data
 	pthread_mutex_t write;
 	pthread_mutex_t lap;
 	pthread_mutex_t *forks; //array com mutex para os garfos
+	int				argc;
 	
 }	t_data;
 
-void	*laps_count(void *arg);
 void	print_msg(int status, t_philo *philo);
 void	*routine(void *arg);
 int		ft_atoi(const char *str);
@@ -62,6 +62,6 @@ void	think(t_philo *philo);
 void	eat(t_philo *philo);
 int		check_args(int argc, char **argv);
 void	*check(void *arg);
-void	*ft_dead(void *arg);
+void	*ft_end(void *arg);
 
 #endif

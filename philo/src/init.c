@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:07:37 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/01/08 11:43:12 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/01/08 14:18:15 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int init_data(t_data *data, int argc, char **argv)//guarda os args e inicializa 
 	(*data).death_time = ft_atoi(argv[2]);
 	(*data).eat_time = ft_atoi(argv[3]);
 	(*data).sleep_time = ft_atoi(argv[4]);
+	(*data).argc = argc;
 	if (argc == 6)
 		(*data).final_lap = ft_atoi(argv[5]);
 	else

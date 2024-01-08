@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:07:37 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/01/08 11:49:54 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/01/08 14:22:12 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,36 @@ int dead_check(t_philo *philo)
 		philo->data->break_flag = 1;
 		pthread_mutex_unlock(&philo->data->done);
 		pthread_mutex_lock(&philo->data->write);
-		if (philo->laps != philo->data->final_lap)
-			printf("%ld Philo %d died\n", (get_time() - philo->data->start_time), philo->id);
+		printf("%ld Philo %d died\n", (get_time() - philo->data->start_time), philo->id);
 		pthread_mutex_unlock(&philo->data->write);
 	}
 	return (0);
 }
 
-void	*ft_dead(void *arg)
+void	ft_laps(t_data *data)
+{
+	int x;
+	int end;
+
+	end = 0;
+	x = 0;
+	while (x < data->num_philo)
+	{
+		pthread_mutex_lock(&data->lap);
+		if (data->philo[x].laps >= data->final_lap)
+			end++;
+		pthread_mutex_unlock(&data->lap);
+		x++;
+	}	
+	if (end == data->num_philo)
+	{
+		pthread_mutex_lock(&data->done);
+		data->break_flag = 1;
+		pthread_mutex_unlock(&data->done);
+	}
+}
+
+void	*ft_end(void *arg)
 {
 	t_data	*data;
 	int		x;
@@ -46,6 +68,7 @@ void	*ft_dead(void *arg)
 	data = (t_data *)arg;
 	while (data->break_flag != 1)
 	{
+		ft_laps(data);
 		dead_check(&data->philo[x]);
 		x++;
 		if (x == data->num_philo - 1)
@@ -61,8 +84,10 @@ void	*routine(void *arg)
 	philo = (t_philo *)arg;
 	if (philo->data->num_philo == 1)
 		case_one(philo->data);
-	while (philo->data->break_flag != 1 && philo->laps < philo->data->final_lap)
+	while (philo->data->break_flag != 1)
 	{
+		if (philo->laps >= philo->data->final_lap && philo->data->final_lap != -1)
+			break;
 		if ((philo->id % 2 == 0 || philo->id == philo->data->num_philo) && philo->laps == 0)
 		{
 			print_msg(3, philo);
@@ -73,3 +98,4 @@ void	*routine(void *arg)
 	}
 	return (0);
 }
+
