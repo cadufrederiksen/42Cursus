@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:07:37 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/01/08 15:30:36 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/01/08 17:30:59 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ void	case_one(t_data *data)
 
 int dead_check(t_philo *philo)
 {
-	if (philo->last_meal + philo->data->death_time < (get_time() - philo->data->start_time))//se o tempo atual é menor que a ultima refeicao + o tmp de morte
+	int lm;
+	pthread_mutex_lock(&philo->data->lap);
+	lm = philo->last_meal;
+	pthread_mutex_unlock(&philo->data->lap);
+	if (lm + philo->data->death_time < (get_time() - philo->data->start_time))//se o tempo atual é menor que a ultima refeicao + o tmp de morte
 	{
 		pthread_mutex_lock(&philo->data->done);
 		philo->data->break_flag = 1;
@@ -86,8 +90,15 @@ void	*routine(void *arg)
 	philo = (t_philo *)arg;
 	if (philo->data->num_philo == 1)
 		case_one(philo->data);
-	while (philo->data->break_flag != 1)
+	while (1)
 	{
+		pthread_mutex_lock(&philo->data->done);
+		if (philo->data->break_flag == 1)
+		{
+			pthread_mutex_unlock(&philo->data->done);
+			break ;
+		}
+		pthread_mutex_unlock(&philo->data->done);
 		if (philo->laps >= philo->data->final_lap && philo->data->final_lap != -1)
 			break;
 		if ((philo->id % 2 == 0 || philo->id == philo->data->num_philo) && philo->laps == 0)
