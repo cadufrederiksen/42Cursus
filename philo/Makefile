@@ -2,7 +2,7 @@
 NAME = philo
 SRCS_DIR = src/
 OBJS_DIR = obj/
-CC = gcc
+CC = gcc -fsanitize=thread -g3
 CFLAGS = -Wall -Wextra -Werror -pthread
 RM = rm -f
 AR = ar rcs
@@ -19,7 +19,7 @@ OBJSF = $(OBJS_DIR)
 all:$(NAME)
 
 $(NAME):$(OBJSF)	$(OBJS_UTILS)
-	$(CC)  $(OBJS_UTILS)  -fsanitize=thread -g3 -o $(NAME)
+	$(CC)  $(OBJS_UTILS) -o $(NAME)
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 	$(CC) $(CFLAGS) -c $< -o $@
