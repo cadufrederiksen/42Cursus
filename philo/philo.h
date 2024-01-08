@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:05:30 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/12/15 11:57:17 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/01/08 11:37:39 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ typedef struct s_philo //estrutura do filosofo
 	struct s_data *data;// ponteiro para data
 	int id;//número de id de cada philo
 	size_t last_meal;//tempo da ultima refeiçao
-	int laps; // numero de vezes que ja comeu
-	
-	pthread_mutex_t *l_fork;// vai apontar para o garfo da frente dentro do array fork
-	pthread_mutex_t *r_fork;// aponta para o garfo à direita
+	int laps;//numero de vezes que ja comeu
+	pthread_mutex_t *l_fork;//vai apontar para o garfo da frente dentro do array fork
+	pthread_mutex_t *r_fork;//aponta para o garfo à direita
+
 }	t_philo;
 
 typedef struct s_data
@@ -44,16 +44,18 @@ typedef struct s_data
 	size_t start_time; //tempo que começou o programa (milisegundos)
 	pthread_mutex_t done;
 	pthread_mutex_t write;
+	pthread_mutex_t lap;
 	pthread_mutex_t *forks; //array com mutex para os garfos
 	
 }	t_data;
 
+void	*laps_count(void *arg);
 void	print_msg(int status, t_philo *philo);
 void	*routine(void *arg);
 int		ft_atoi(const char *str);
 size_t	get_time(void);
 int		init_data(t_data *data, int argc, char **argv);
-void	free_mutex(t_data *data);
+void	ft_free(t_data *data);
 int		ft_usleep (size_t time);
 void	dream(t_philo *philo);
 void	think(t_philo *philo);

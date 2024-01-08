@@ -6,11 +6,24 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:07:37 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/12/14 16:15:12 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/01/08 11:33:08 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
+
+void join_th(t_data *data, pthread_t *dead)
+{
+	int x;
+
+	x = 0;
+	while (x < data->num_philo)
+	{
+		pthread_join(data->tid[x], NULL);
+		x++;
+	}
+	pthread_join(*dead, NULL);
+}
 
 int	main(int argc, char **argv)
 {
@@ -28,12 +41,10 @@ int	main(int argc, char **argv)
 		pthread_create(&data.tid[x], NULL, &routine, (void *)&data.philo[x]);
 		x++;
 	}
-	x = 0;
-	pthread_create(&dead, NULL, &ft_dead, (void *)&data);
-	while (x < data.num_philo)
-	{
-		pthread_join(data.tid[x], NULL);
-		x++;
-	}
+	if (data.num_philo > 1)
+		pthread_create(&dead, NULL, &ft_dead, (void *)&data);	
+	join_th(&data, &dead);
+	ft_free(&data);
 	return (0);
 }
+
