@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 07:24:59 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/01/09 08:41:50 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/01/09 09:37:50 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,7 @@ void dead_check(t_philo *philo)
 {
 	int lm;
 
-	pthread_mutex_lock(&philo->data->lap);
-	if (philo->laps >= philo->data->final_lap)//se ele ja comeu o quanto tinha que comer ele nao pode morrer
-	{
-		pthread_mutex_unlock(&philo->data->lap);
-		return ;
-	}
+ 	pthread_mutex_lock(&philo->data->lap);
 	lm = philo->last_meal;
 	pthread_mutex_unlock(&philo->data->lap);
 	if (lm + philo->data->death_time < (get_time() - philo->data->start_time))
@@ -109,15 +104,8 @@ void	*routine(void *arg)
 			break ;
 		}
 		pthread_mutex_unlock(&philo->data->done);
-		if (philo->laps >= philo->data->final_lap && philo->data->final_lap != -1)
-			break;
-		if ((philo->id % 2 == 0 || philo->id == philo->data->num_philo) && philo->laps == 0)
-		{
-			print_msg(3, philo);
-			ft_usleep(philo->data->eat_time);
-		}
 		eat(philo);
-		dream(philo);
+		//dream(philo);
 	}
 	return (0);
 }

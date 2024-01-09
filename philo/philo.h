@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 07:26:35 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/01/09 07:36:15 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/01/09 09:39:57 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ typedef struct s_data
 	pthread_mutex_t	write;
 	pthread_mutex_t	lap;
 	pthread_mutex_t	*forks;
-	int				argc;
 
 }					t_data;
 
@@ -57,7 +56,6 @@ size_t				get_time(void);
 int					init_data(t_data *data, int argc, char **argv);
 void				ft_free(t_data *data);
 int					ft_usleep(size_t time);
-void				dream(t_philo *philo);
 void				think(t_philo *philo);
 void				eat(t_philo *philo);
 int					check_args(int argc, char **argv);
