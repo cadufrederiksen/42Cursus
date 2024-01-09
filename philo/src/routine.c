@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 07:24:59 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/01/09 07:57:02 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/01/09 08:41:50 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ void dead_check(t_philo *philo)
 	int lm;
 
 	pthread_mutex_lock(&philo->data->lap);
+	if (philo->laps >= philo->data->final_lap)//se ele ja comeu o quanto tinha que comer ele nao pode morrer
+	{
+		pthread_mutex_unlock(&philo->data->lap);
+		return ;
+	}
 	lm = philo->last_meal;
 	pthread_mutex_unlock(&philo->data->lap);
 	if (lm + philo->data->death_time < (get_time() - philo->data->start_time))

@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 07:23:22 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/01/09 08:17:01 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/01/09 08:36:32 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ void	dream(t_philo *philo)
 	}
 	pthread_mutex_unlock(&philo->data->done);
 	print_msg(2, philo);
+	pthread_mutex_lock(&philo->data->lap);
+	philo->laps++;
+	pthread_mutex_unlock(&philo->data->lap);
 	ft_usleep(philo->data->sleep_time);
 	print_msg(3, philo);
 }
@@ -57,7 +60,6 @@ void	eat(t_philo *philo)
 	print_msg(4, philo);
 	print_msg(1, philo);
 	pthread_mutex_lock(&philo->data->lap);
-	philo->laps++;
 	philo->last_meal = get_time() - philo->data->start_time;//essa subtracao da o num pequeno
 	pthread_mutex_unlock(&philo->data->lap);
 	ft_usleep(philo->data->eat_time);

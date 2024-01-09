@@ -36,5 +36,3 @@ fclean: clean
 re: fclean all
 
 .PHONY:re all fclean clean bonus
-
-#-fsanitize=thread -g3
