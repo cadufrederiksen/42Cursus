@@ -6,13 +6,13 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 07:24:06 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/01/09 07:24:16 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/01/09 07:37:33 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-int	init_mutex(t_data *data)//inicializa os mutexes e aponta os ponteiros
+int	init_mutex(t_data *data)
 {
 	int	x;
 

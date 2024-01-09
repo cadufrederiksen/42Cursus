@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 07:24:59 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/01/09 07:25:02 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/01/09 07:57:02 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,14 @@ void	case_one(t_data *data)
 	pthread_mutex_unlock(&data->write);
 }
 
-int dead_check(t_philo *philo)
+void dead_check(t_philo *philo)
 {
 	int lm;
+
 	pthread_mutex_lock(&philo->data->lap);
 	lm = philo->last_meal;
 	pthread_mutex_unlock(&philo->data->lap);
-	if (lm + philo->data->death_time < (get_time() - philo->data->start_time))//se o tempo atual é menor que a ultima refeicao + o tmp de morte
+	if (lm + philo->data->death_time < (get_time() - philo->data->start_time))
 	{
 		pthread_mutex_lock(&philo->data->done);
 		philo->data->break_flag = 1;
@@ -37,7 +38,6 @@ int dead_check(t_philo *philo)
 		printf("%ld Philo %d died\n", (get_time() - philo->data->start_time), philo->id);
 		pthread_mutex_unlock(&philo->data->write);
 	}
-	return (0);
 }
 
 void	ft_laps(t_data *data)
@@ -69,16 +69,21 @@ void	*ft_end(void *arg)
 {
 	t_data	*data;
 	int		x;
+	int		flag;
 
+	flag = 0;
 	x = 0;
 	data = (t_data *)arg;
-	while (data->break_flag != 1)
+	while (flag != 1)
 	{
 		ft_laps(data);
 		dead_check(&data->philo[x]);
 		x++;
 		if (x == data->num_philo - 1)
 			x = 0;
+		pthread_mutex_lock(&data->done);
+		flag = data->break_flag;
+		pthread_mutex_unlock(&data->done);
 	}
 	return (0);
 }
