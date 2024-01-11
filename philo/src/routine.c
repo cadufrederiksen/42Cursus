@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 07:24:59 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/01/09 09:37:50 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/01/11 11:11:44 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	case_one(t_data *data)
 {
 	data->break_flag = 1;
 	pthread_mutex_lock(&data->write);
-	printf("%ld Philo 1 has taken a fork\n", (get_time() - data->start_time));
+	printf("%ld 1 has taken a fork\n", (get_time() - data->start_time));
 	ft_usleep(data->death_time);
-	printf("%ld Philo 1 died\n", (get_time() - data->start_time));
+	printf("%ld 1 died\n", (get_time() - data->start_time));
 	pthread_mutex_unlock(&data->write);
 }
 
@@ -105,7 +105,6 @@ void	*routine(void *arg)
 		}
 		pthread_mutex_unlock(&philo->data->done);
 		eat(philo);
-		//dream(philo);
 	}
 	return (0);
 }

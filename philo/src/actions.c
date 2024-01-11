@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 07:23:22 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/01/09 09:39:51 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/01/11 11:11:34 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ void	print_msg(int status, t_philo *philo)
 	pthread_mutex_unlock(&philo->data->done);
 	pthread_mutex_lock(&philo->data->write);
 	if (status == 1)
-		printf("%ld Philo %d is eating\n", (get_time() - philo->data->start_time), philo->id);
+		printf("%ld %d is eating\n", (get_time() - philo->data->start_time), philo->id);
 	if (status == 2)
-		printf("%ld Philo %d is sleeping\n", (get_time() - philo->data->start_time), philo->id);
+		printf("%ld %d is sleeping\n", (get_time() - philo->data->start_time), philo->id);
 	if (status == 3)
-		printf("%ld Philo %d is thinking\n", (get_time() - philo->data->start_time), philo->id);
+		printf("%ld %d is thinking\n", (get_time() - philo->data->start_time), philo->id);
 	if (status == 4)
 	{
-		printf("%ld Philo %d has taken a fork\n", (get_time() - philo->data->start_time), philo->id);
-		printf("%ld Philo %d has taken a fork\n", (get_time() - philo->data->start_time), philo->id);
+		printf("%ld %d has taken a fork\n", (get_time() - philo->data->start_time), philo->id);
+		printf("%ld %d has taken a fork\n", (get_time() - philo->data->start_time), philo->id);
 	}
 	pthread_mutex_unlock(&philo->data->write);
 }
