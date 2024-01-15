@@ -1,7 +1,7 @@
 #---------------PADRÃO------------
 
 NAME = minishell
-INCLUDES = libft/include -I/opt/readline/include 
+INCLUDES = libft/include -I/opt/vagrant/embedded/include/readline
 SRCS_DIR = src/
 OBJS_DIR = obj/
 LIBFT = libft
@@ -33,7 +33,7 @@ $(NAME):$(OBJSF)	$(OBJS_UTILS) $(OBJS_MAIN)
 	make -C $(LIBFT)
 	cp $(LIBFT)/libft.a .
 	mv libft.a $(NAME)
-	$(CC) $(OBJS_UTILS) $(OBJS_MAIN) -L/opt/readline/lib -lreadline  -o $(NAME) $(LIBFT)/libft.a
+	$(CC) $(OBJS_UTILS) $(OBJS_MAIN) -lreadline -L/opt/vagrant/embedded/include/readline -o $(NAME) $(LIBFT)/libft.a
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c 
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
