@@ -2,7 +2,7 @@
 NAME = philo
 SRCS_DIR = src/
 OBJS_DIR = obj/
-CC = gcc -fsanitize=thread -g3
+CC = gcc #-fsanitize=thread -g3
 CFLAGS = -Wall -Wextra -Werror -pthread
 RM = rm -f
 AR = ar rcs

@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 07:23:22 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/01/11 11:11:34 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/01/24 14:28:19 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,15 @@ void	print_msg(int status, t_philo *philo)
 
 void	eat(t_philo *philo)
 {
+	if(philo->id % 2 == 0 && philo->laps == 0)//se é um philo com id par espere um pouco
+	{
+		pthread_mutex_unlock(&philo->data->write);
+		printf("%ld %d is thinking\n", 
+			(get_time() - philo->data->start_time), philo->id);
+		pthread_mutex_unlock(&philo->data->write);
+		ft_usleep(100);
+		
+	}
 	pthread_mutex_lock(philo->r_fork);
 	pthread_mutex_lock(philo->l_fork);
 	print_msg(4, philo);

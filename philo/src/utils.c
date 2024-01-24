@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 07:25:21 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/01/09 07:25:37 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/01/16 13:46:00 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,6 @@ int	ft_usleep (size_t time)//desse jeito conseguimos esperar o tempo certo que p
 
 	start = get_time();//guarda o tempo que começa
 	while ((get_time() - start) < time)//enquanto tempo atual - tempo guardado é menor que o tempo que eu quero
-		usleep(100);//espera meio segundo
+		usleep(500);//espera meio segundo
 	return (0);	
 }

@@ -1,0 +1,1 @@
+cuando pasamos ese output << nos crea un nodo mas pero vacio y el type no funciona

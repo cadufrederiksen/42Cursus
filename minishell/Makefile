@@ -1,41 +1,39 @@
 #---------------PADRÃO------------
 
 NAME = minishell
-INCLUDES = libft/include -I/opt/vagrant/embedded/include/readline
+INCLUDES = libft/include -I/Users/$(USER)/.brew/opt/readline/include
 SRCS_DIR = src/
 OBJS_DIR = obj/
-LIBFT = libft
+LIBFT = includes/libft
+LIBFLAG = -lreadline -L/Users/$(USER)/.brew/opt/readline/lib
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I
+CFLAGS = -g -Wall -Wextra -Werror -I
 RM = rm -f
 AR = ar rcs
 
 #---------------SRC------------
 
-SRC_FILES = 
+SRC_FILES = main \
+			lexer/lexer_split lexer/lexer lexer/tokens lexer/lst_init\
+			parser/parser_types parser/parser parser/find_path parser/lst_mini
 
-MAIN_FILE = main
 
-BONUS_FILE = 
 #=============SRC=============#
 
-OBJS_MAIN = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(MAIN_FILE)))
-
-OBJS_UTILS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRC_FILES)))
-
-OBJS_BONUS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(BONUS_FILE)))
+OBJS_SRC = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRC_FILES)))
 
 OBJSF = $(OBJS_DIR)
 
 all:$(NAME)
 
-$(NAME):$(OBJSF)	$(OBJS_UTILS) $(OBJS_MAIN)
+$(NAME):$(OBJSF)	$(OBJS_SRC)
 	make -C $(LIBFT)
 	cp $(LIBFT)/libft.a .
 	mv libft.a $(NAME)
-	$(CC) $(OBJS_UTILS) $(OBJS_MAIN) -lreadline -L/opt/vagrant/embedded/include/readline -o $(NAME) $(LIBFT)/libft.a
+	$(CC) $(OBJS_SRC) $(LIBFLAG) -o $(NAME) $(LIBFT)/libft.a
 
-$(OBJS_DIR)%.o : $(SRCS_DIR)%.c 
+$(OBJS_DIR)%.o : $(SRCS_DIR)%.c
+	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(OBJSF):
