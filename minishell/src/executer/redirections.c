@@ -6,66 +6,83 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 12:42:14 by isporras          #+#    #+#             */
-/*   Updated: 2024/01/24 12:14:50 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/01/25 15:36:05 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	ft_fork_execve(t_mini *mini)
+void	ft_fork_execve(t_mini **mini)
 {
-	int fork;
+	int		pid;
+	t_mini	*aux;
+	int		total_cmnds;
+	int		i;
+	int		tmpin;
+	int		tmpout;
 
-	fork = fork();
-	if(fork == 0)
-	{
-		execvp(mini->full_cmd[i][0], mini->full_cmd[i][1]);
-		perror("execvp:");
-		exit(1);
-	}
-}
-
-void	ft_redirections(t_mini **mini)
-{
-	//guardar in/out
-	t_redir	redir;
-	int	i;
-
-	redir.tmpin = dup(0);
-	redir.tmpout = dup(1);
+	tmpin = dup(STDIN_FILENO);
+	tmpout = dup(STDOUT_FILENO);
+	aux = *mini;
+	if (!aux)
+		return ;
+	total_cmnds = aux->total_cmnds;
 	i = 0;
-	while (i < numsimplecommands)
+	while (i < total_cmnds)
 	{
-		dup2(mini->infile, 0);//redirijir input
-		close(redir.fdin);
-		if (i == numsimplecommands1) // Último comando
+		dup2(aux->infile, STDIN_FILENO);
+		close(aux->infile);
+		//if ()
+		dup2(aux->outfile, STDOUT_FILENO);
+		close(aux->outfile);
+		pid = fork();
+		if (pid == 0)
 		{
-			if(outfile)
-				redir.fdout = open(mini->outfile);
-			else
-				redir.fdout = dup(redir.tmpout);
+			execve(aux->full_path, aux->full_cmd, NULL);
+			perror("execve:");
+			exit(EXIT_FAILURE);
 		}
-		else //Demás comandos
+		else if (pid < 0)
 		{
-			pipe(redir.fdpipe);
-			redir.fdout = redir.fdpipe[1];
-			redir.fdin = redir.fdpipe[0];
+			perror("fork");
+			exit(EXIT_FAILURE);
 		}
-		dup2(redir.fdout, 1);// Redirijir output
-		close(redir.fdout);
-		redir.fork = fork();// Crear proceso hijo
-		if(redir.fork == 0)
-		{
-			execvp(mini->full_cmd[i][0], mini->full_cmd[i][1]);
-			perror("execvp:");
-			exit(1);
-		}
+		else
+			waitpid(pid, NULL, 0);
 		i++;
 	}
-	dup2(redir.tmpin, 0);//Restaurar in/out
-	dup2(redir.tmpout, 1);
-	close(redir.tmpin);
-	close(redir.tmpout);
-	if (!background)// Esperar al último comando
-		waitpid(redir.fork, NULL)
+	dup2(tmpin, STDIN_FILENO);
+	dup2(tmpout, STDOUT_FILENO);
+	close(tmpin);
+	close(tmpout);
 }
+
+// void	ft_pipes(t_mini **mini)
+// {
+// 	int		fds[2];
+// 	int		total_commands;
+// 	int		i;
+// 	t_mini	*aux;
+
+// 	aux = *mini;
+// 	if (!aux)
+// 		return ;
+// 	total_commands = aux->total_cmnds;
+// 	if (total_commands < 2)
+// 		return ;
+// 	i = 0;
+// 	while (i < total_commands - 1)
+// 	{
+// 		if (pipe(fds) == -1) {
+// 			perror("pipe");
+// 			exit(EXIT_FAILURE);
+// 		}
+// 		aux->outfile = fds[1];
+// 		if (aux->next)
+// 		{
+// 			(aux->next)->infile = fds[0];
+// 			aux = aux->next;
+// 		}
+// 		i++;
+// 	}
+// }

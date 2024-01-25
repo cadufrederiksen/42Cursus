@@ -93,7 +93,8 @@ void	ft_extend_var(char **lexer)
 char	**ft_lexer(t_lexer **lst_lexer, char *input)
 {
 	char	**str_lexer;
-
+	if (!input)
+		return (NULL);
 	str_lexer = ft_split_lexer(input, ' ');
 	ft_extend_var(str_lexer);
 	str_lexer = ft_get_tokens(str_lexer);

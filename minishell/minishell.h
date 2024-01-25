@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 07:26:35 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/01/24 15:10:18 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/01/25 17:07:30 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define MINISHELL_H
 
 # include <pthread.h>
+# include <signal.h>
+# include <sys/wait.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <sys/time.h>
@@ -51,10 +53,11 @@ typedef struct s_mini
 {
 	char			**full_cmd;//comando y sus argumentos
 	char			*full_path;//camino del ejecutable si no es un builtin
-	int				cmd_laps;
-	int				cmd_id;
+	int				total_cmnds;//total de comandos
+	int				id;//pos en la lista
 	int				infile;//fd de entrada
 	int				outfile;//fd de salida
+	char			**envp;
 	struct s_mini	*next;//puntero al siguiente nodo
 }		t_mini;
 
@@ -68,22 +71,32 @@ typedef struct s_redir
 	int	fdpipe[2];
 }		t_redir;
 
+//-----------------------LEXER---------------------------
 char		**ft_lexer(t_lexer **lexer, char *input);
 void		ft_extend_var(char **lexer);
 char		**ft_split_lexer(char const *s, char c);
 void		create_nodes(t_lexer **lexer, char **input);
 void		ft_print_list(t_lexer **lexer);
 void		free_node(t_lexer **node);
-void		ft_types(t_lexer **lexer);
 char		**ft_get_tokens(char **lexer);
 char const	*ft_check_quotes(char const *s);
+void		ft_free_lexer_lst(t_lexer **node);
+
+//-----------------------PARSER---------------------------
+void		ft_types(t_lexer **lexer);
 t_mini		**ft_parser(t_lexer **lexer, t_mini **mini, char **envp);
 char		*ft_find_cmnd_path(char **envp, char *cmnd);
 char		**ft_full_cmnd(t_lexer *lexer);
 t_mini		**ft_to_mini_lst(t_lexer **lexer, t_mini **mini, char **envp);
 void		ft_free_mini_lst(t_mini **mini);
-void		ft_free_lexer_lst(t_lexer **node);
-void		ft_error(char *error, char *boole, int errint);
 void		ft_set_io(t_mini *m_node, t_lexer **lexer, int lap);
+void		ft_cmnd_error(char *error, char *boole);
+void		ft_file_error(int infd, char *infile);
+
+//----------------------EXECUTER---------------------------
+void	ft_pipes(t_mini **mini);
+void	ft_fork_execve(t_mini **mini);
+int		ft_builtins(t_mini *mini);
+
 
 #endif

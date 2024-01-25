@@ -5,12 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/22 11:59:30 by isporras          #+#    #+#             */
-/*   Updated: 2024/01/24 14:07:20 by carmarqu         ###   ########.fr       */
+/*   Created: 2024/01/25 14:13:15 by carmarqu          #+#    #+#             */
+/*   Updated: 2024/01/25 17:10:09 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+void	ft_total_cmnds(t_mini **mini, int total_cmnds)
+{
+	int		i;
+	t_mini	*aux;
+	
+	aux = *mini;
+	i = 0;
+	while (i < total_cmnds)
+	{
+		aux->total_cmnds = total_cmnds;
+		aux = aux->next;
+		i++;
+	}
+}
 
 void	ft_free_mini_lst(t_mini **mini)
 {
@@ -35,9 +50,11 @@ t_mini	*ft_mini_new(t_lexer *l_node, char **envp, t_lexer **lexer, int lap)
 	mini = malloc(sizeof(t_mini));
 	mini->full_cmd = ft_full_cmnd(l_node);
 	mini->full_path = ft_find_cmnd_path(envp, l_node->word);
-	ft_error(l_node->word, mini->full_path, ENOENT);
+	ft_cmnd_error(l_node->word, mini->full_path);
 	mini->infile = STDIN_FILENO;
 	mini->outfile = STDOUT_FILENO;
+	mini->envp = envp;
+	mini->id = lap;
 	mini->next = NULL;
 	ft_set_io(mini, lexer, lap);
 	return (mini);
@@ -82,5 +99,6 @@ t_mini	**ft_to_mini_lst(t_lexer **lexer, t_mini **mini, char **envp)
 			mini_add_new(mini, ft_mini_new(aux, envp, lexer, lap));
 		aux = aux->next;
 	}
+	ft_total_cmnds(mini, lap + 1);
 	return (mini);
 }
