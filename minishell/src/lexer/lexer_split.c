@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_split.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 12:00:49 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/01/24 11:44:39 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/01/31 13:31:06 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,21 @@ void	ft_malloc_no_quotes(char const *s, int *i, int *j, char **str)
 
 	len = 0;
 	while (s[*i + len] != ' ' && s[*i + len] != '\0')
+	{
 		len++;
+		if (s[*i + len] == '\"')//Consideramos si hay comillas internas (osea no están al principio de la palabra)
+		{
+			len++;
+			while (s[*i + len] != '\"' && s[*i + len] != '\0')
+				len++;
+		}
+		else if (s[*i + len] == '\'')
+		{
+			len++;
+			while (s[*i + len] != '\'' && s[*i + len] != '\0')
+				len++;
+		}
+	}
 	str[*j] = (char *)malloc(sizeof(char) * (len + 1));
 	ft_strlcpy(str[*j], s + *i, len + 1);
 	*i += len;

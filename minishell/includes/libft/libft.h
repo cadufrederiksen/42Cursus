@@ -70,6 +70,7 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 int		countn(long n);
 char	*ft_strjoinfree(char *line, char *buffer);
+char	*ft_strjoin_nofree(char const *s1, char const *s2);
 char	*ft_read_stdinput(void);
 char	*ft_read_fd(int fd);
 int		ft_count_lines(char *map);

@@ -1,1 +1,4 @@
-cuando pasamos ese output << nos crea un nodo mas pero vacio y el type no funciona
+dos builtins con pipe no funcionam (no pipe)
+signal handling (ctrl+C, ctrl+D, ctrl+\)
+cat <"./test_files/infile_big" 
+broken pipe

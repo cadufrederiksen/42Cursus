@@ -19,15 +19,22 @@ NC = \033[0m
 
 #----------------SRC---------------#
 
-SRC_FILES = main \
-			lexer/lexer_split lexer/lexer lexer/tokens lexer/lst_init \
+MAIN = main
+
+MAIN_DEBUG = main_debug
+
+SRC_FILES = lexer/lexer_split lexer/lexer lexer/tokens lexer/lst_init lexer/ft_quotes lexer/syntax_errors \
 			parser/parser_types parser/parser parser/find_path parser/lst_mini parser/errors \
-			executer/redirections executer/builtins
+			executer/execute executer/here_doc \
+			builtins/builtins builtins/ft_cd builtins/ft_export builtins/ft_unset builtins/ft_echo \
+			builtins/ft_exit builtins/ft_pwd builtins/ft_env \
+			clean/ft_free_lst \
+			signals/signals \
+			sys_var/init_var sys_var/lst_envp sys_var/log
 
+OBJS_SRC = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRC_FILES) $(MAIN)))
 
-#=============SRC=============#
-
-OBJS_SRC = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRC_FILES)))
+OBJS_SRC_DEBUG = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRC_FILES) $(MAIN_DEBUG)))
 
 OBJSF = $(OBJS_DIR)
 
@@ -41,6 +48,16 @@ $(NAME):$(OBJSF)	$(OBJS_SRC)
 	@echo "$(GREEN)Libft compiled!$(NC)"
 	@echo "$(BLUE)Compiling minishell...$(NC)"
 	@$(CC) $(OBJS_SRC) $(LIBFLAG) -o $(NAME) $(LIBFT)/libft.a
+	@echo "$(GREEN)Succesful compilation!$(NC)"
+
+debug: $(OBJSF) $(OBJS_SRC_DEBUG)
+	@echo "$(BLUE)Compiling libft...$(NC)"
+	@make -s -C $(LIBFT)
+	@cp $(LIBFT)/libft.a .
+	@mv libft.a $(NAME)
+	@echo "$(GREEN)Libft compiled!$(NC)"
+	@echo "$(BLUE)Compiling minishell...$(NC)"
+	@$(CC) $(OBJS_SRC_DEBUG) $(LIBFLAG) -o mini_debug $(LIBFT)/libft.a
 	@echo "$(GREEN)Succesful compilation!$(NC)"
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c

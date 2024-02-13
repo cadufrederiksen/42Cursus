@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_debug.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/11 14:19:24 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/02/13 12:25:38 by carmarqu         ###   ########.fr       */
+/*   Created: 2024/02/09 12:46:14 by isporras          #+#    #+#             */
+/*   Updated: 2024/02/13 12:28:22 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-int last_status;
 
 void	ft_print_mini_lst(t_mini **mini)
 {
@@ -53,45 +51,33 @@ void	final_free(char *input, char *log, t_envp **envp)
 	free(input);
 }
 
+int last_status;
+
+//MAIN DEBUG
  int	main(int argc, char **argv, char **envp)
  {
- 	char	*input;
  	t_lexer	*lexer;
  	t_mini	*mini;
  	t_envp	*envp_list;
- 	char	*log;
+ 	int		last_status;
 
-	envp_list = NULL;
-	lexer = NULL;
-	mini = NULL;
-	last_status = 0;
-	if (argc > 1 && argv)
-	{
-		printf("Wrong number of arguments\n");
-		return (1);
-	}
-	ft_init_var(envp, &envp_list);
-	log = ft_refresh_log();
-	singal_init();
-	while ((input = readline(log)))//lee la línea
-	{
-		if (ft_strncmp(input, "\0", 1) != 0)//si esta vacio no adiciona al historial
-		{
-			add_history(input);
-			ft_quotes_input(&input);//devuelve el control al usuario si hay comillas sin cerrar
-			if (ft_lexer(&lexer, input) != NULL)//crea la lista de tokens
-			{
-				ft_parser(&lexer, &mini, envp, &envp_list);//los builtins se ejecutan en el parser
-				ft_executer(&mini);
-			}
-			//printf("last status: %d\n", last_status);
-			//ft_print_list(&lexer);
-			//ft_print_mini_lst(&mini);
-			ft_free_lsts(&lexer, &mini, log);
-			log = ft_refresh_log();
-		}	
-	}
-	final_free(input, log, &envp_list);
-	clear_history();
-}
-
+ 	envp_list = NULL;
+ 	lexer = NULL;
+ 	mini = NULL;
+ 	last_status = 0;
+ 	char	*input = ft_strdup("env | sort | grep -v SHLVL | grep -v ^_");
+ 	if (!argv && !argc)
+ 		return (1);
+ 	ft_init_var(envp, &envp_list);
+ 	ft_quotes_input(&input);
+ 	if (ft_lexer(&lexer, input) != NULL)//crea la lista de tokens
+ 	{
+ 		//ft_print_list(&lexer);
+ 		ft_parser(&lexer, &mini, envp, &envp_list);//los builtins se ejecutan en el parser
+ 		ft_executer(&mini);
+ 	}
+ 	//ft_print_mini_lst(&mini);
+ 	//ft_free_lsts(&lexer, &mini);
+ 	return (0);
+ }
+//cat ./test_files/infile_big | grep oi

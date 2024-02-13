@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_split.c                                   :+:      :+:    :+:   */
+/*   log.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 13:59:08 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/01/30 17:48:36 by carmarqu         ###   ########.fr       */
+/*   Created: 2024/02/05 12:36:48 by isporras          #+#    #+#             */
+/*   Updated: 2024/02/05 12:36:48 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../minishell.h"
 
-void	ft_print_split(char **split)
+char	*ft_refresh_log()
 {
-	int	i;
+	char	*log;
+	char	buffer[1024];
 
-	i = 0;
-	if (!split || !*split)
-		return ;
-	while (split[i])
-	{
-		printf("%s\n", split[i]);
-		i++;
-	}
+	log = ft_strjoin_nofree(getenv("USER"), "@minishell ~");
+	log = ft_strjoin(log, getcwd(buffer, sizeof(buffer)));
+	log = ft_strjoin(log, "> ");
+	return (log);
 }

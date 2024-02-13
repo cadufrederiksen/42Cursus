@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_split.c                                   :+:      :+:    :+:   */
+/*   init_var.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 13:59:08 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/01/30 17:48:36 by carmarqu         ###   ########.fr       */
+/*   Created: 2024/01/30 11:39:26 by isporras          #+#    #+#             */
+/*   Updated: 2024/01/30 12:14:53 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../minishell.h"
 
-void	ft_print_split(char **split)
+void	ft_set_term_var()
 {
-	int	i;
+	setenv("TERM", "xterm", 0);
+}
 
-	i = 0;
-	if (!split || !*split)
-		return ;
-	while (split[i])
-	{
-		printf("%s\n", split[i]);
-		i++;
-	}
+void	ft_init_var(char **envp, t_envp **envp_list)
+{
+	create_envp(envp_list, envp);
+	ft_set_term_var();
 }

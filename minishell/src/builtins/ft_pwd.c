@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_split.c                                   :+:      :+:    :+:   */
+/*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 13:59:08 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/01/30 17:48:36 by carmarqu         ###   ########.fr       */
+/*   Created: 2024/02/07 11:31:16 by carmarqu          #+#    #+#             */
+/*   Updated: 2024/02/09 12:27:35 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../minishell.h"
 
-void	ft_print_split(char **split)
+void	ft_pwd(int fd)
 {
-	int	i;
+	char buffer[1024];
+	char *pwd;
+	int i;
 
 	i = 0;
-	if (!split || !*split)
-		return ;
-	while (split[i])
+	pwd = ft_strdup(getcwd(buffer, sizeof(buffer)));
+	while (pwd[i])
 	{
-		printf("%s\n", split[i]);
+		write(fd, &pwd[i], 1);
 		i++;
 	}
+	write(fd, "\n", 1);
+	free(pwd);
 }
