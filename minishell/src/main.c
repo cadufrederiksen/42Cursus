@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 14:19:24 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/02/13 12:41:58 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/02/14 17:41:07 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	final_free (char *log, t_envp **envp)
 	envp_list = NULL;
 	lexer = NULL;
 	mini = NULL;
-	last_status = 0;
 	if (argc > 1 && argv)
 	{
 		printf("Wrong number of arguments\n");
@@ -80,7 +79,10 @@ void	final_free (char *log, t_envp **envp)
 		if (ft_lexer(&lexer, input) != NULL)//crea la lista de tokens
 		{
 			if (ft_parser(&lexer, &mini, envp, &envp_list) == -1)
+			{	
+				last_status = IN_CMD;
 				last_status = ft_executer(&mini);
+			}
 		}
 		//printf("last status: %d\n", last_status);
 		//ft_print_list(&lexer);

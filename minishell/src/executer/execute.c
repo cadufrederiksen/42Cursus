@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 12:42:14 by isporras          #+#    #+#             */
-/*   Updated: 2024/02/14 12:50:04 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/02/14 17:25:15 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	ft_executer(t_mini **mini)
 	int		last_status;
 	int		i;
 
-	last_status = 0;
+	last_status = IN_CMD;
 	exec = malloc(sizeof(t_exec));
 	if (!exec)
 		return (1);
