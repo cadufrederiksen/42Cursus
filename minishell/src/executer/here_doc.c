@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:28:59 by isporras          #+#    #+#             */
-/*   Updated: 2024/02/08 16:13:44 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/02/14 13:06:53 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ft_here_doc(t_mini *mini, char *eof)
 	pipe(fd);
 	while (1)
 	{
+		last_status = HEREDOC;
 		line = readline("> ");
 		if (ft_strncmp(line, eof, ft_strlen(line)) == 0)
 		{

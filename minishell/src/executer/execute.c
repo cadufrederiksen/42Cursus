@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 12:42:14 by isporras          #+#    #+#             */
-/*   Updated: 2024/02/13 12:36:31 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/02/14 12:50:04 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	ft_close_wait(t_exec *exec, int i)
 		return (WEXITSTATUS(status));
 	else
 		return (1);//Si no terminó normalmente, devolvemos 1
+	return (0);
 }
 
 void	ft_set_next_pipe(t_exec *exec)
@@ -32,7 +33,8 @@ void	ft_set_next_pipe(t_exec *exec)
 	if (exec->total_cmnds > 1)
 	{
 		pipe(exec->fdpipe);
-		(exec->aux->next)->infile = exec->fdpipe[0];
+		if ((exec->aux->next)->infile == 0)
+			(exec->aux->next)->infile = exec->fdpipe[0];
 		exec->aux->outfile = exec->fdpipe[1];
 	}
 }
@@ -42,13 +44,19 @@ void	ft_child_process(t_mini *aux)
 	dup2(aux->infile, STDIN_FILENO);//Cambiamos el standar input por el fd de entrada deseado
 	if (aux->infile != 0)//Asegurarse de que no estás cerrando la entrada estándar original
 		close(aux->infile);
-	printf("aqui\n");
 	dup2(aux->outfile, STDOUT_FILENO);
 	if (aux->next != NULL) //Cerramos el fd de entrada del siguiente nodo
 		close ((aux->next)->infile);
-	execve(aux->full_path, aux->full_cmd, NULL);
-	ft_perror(aux->full_path);
-	exit(EXIT_FAILURE);
+	if (ft_is_builtin(aux->full_cmd[0]) == 1)
+	{
+		ft_builtins(aux->envp, aux);
+		exit(last_status);
+	}
+	else if (execve(aux->full_path, aux->full_cmd, NULL) == -1)
+	{
+		ft_perror(aux->full_path);
+		exit(EXIT_FAILURE);
+	}
 }
 
 int	ft_init_data_exec(t_mini **mini, t_exec **exec)
@@ -85,12 +93,12 @@ int	ft_executer(t_mini **mini)
 	if (ft_init_data_exec(mini, &exec) == 1) //Inicializamos los datos necesarios para la función en una estructura
 		return (last_status); //error
 	i = 0;
-	while (i < exec->total_cmnds && exec->aux)
+	while (i < exec->total_cmnds)
 	{
-		if (!is_a_bltin(exec->aux))
+		if (exec->total_cmnds > 1 && i < exec->total_cmnds - 1)
+			ft_set_next_pipe(exec);//Si hay más de un comando, establecemos el siguiente pipe
+		if (ft_is_cd(exec->aux->full_cmd[0]) == 0)//cd se ejecuta en el proceso padre
 		{
-			if (exec->total_cmnds > 1 && i < exec->total_cmnds - 1)
-				ft_set_next_pipe(exec);//Si hay más de un comando, establecemos el siguiente pipe
 			exec->pid = fork();
 			if (exec->pid == 0)
 				ft_child_process(exec->aux);
@@ -99,6 +107,8 @@ int	ft_executer(t_mini **mini)
 			else
 				last_status = ft_close_wait(exec, i);
 		}
+		else
+			last_status = ft_cd(exec->aux, exec->aux->envp);
 		i++;
 		exec->aux = exec->aux->next;
 	}

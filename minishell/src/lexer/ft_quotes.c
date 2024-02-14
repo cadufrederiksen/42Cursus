@@ -57,35 +57,67 @@ char	which_quotes(char *str)
 	return (0);
 }
 
-void	ft_remove_quotes(char **str_lexer)
+// void	old_ft_remove_quotes(char **str_lexer)
+// {
+// 	char	**final;
+// 	char	*no_quotes;
+// 	int		x;
+// 	int 	i;
+// 	char c;
+
+// 	x = 0;
+// 	while (str_lexer[x])
+// 	{
+// 		c = which_quotes(str_lexer[x]);//que tipo dequotes es
+// 		if (c)
+// 		{
+// 			no_quotes = ft_calloc(1, 1);
+// 			i = 0;
+// 			final = ft_split(str_lexer[x], c);//divide str a cada quote
+// 			while(final[i])
+// 			{
+// 				no_quotes = ft_strjoin(no_quotes, final[i]);//hace un join de todo
+// 				i++;
+// 			}
+// 			str_lexer[x] = ft_strdup(no_quotes);
+// 			ft_free_2d(final);
+// 			free(no_quotes);
+// 		}
+// 		if (which_quotes(str_lexer[x]))//si todavia hay algo que quitar
+// 			ft_remove_quotes(str_lexer);
+// 		x++;
+// 	}
+// }
+
+void	ft_remove_quotes(t_lexer **lexer)
 {
 	char	**final;
 	char	*no_quotes;
-	int		x;
+	t_lexer	*aux;
 	int 	i;
 	char c;
 
-	x = 0;
-	while (str_lexer[x])
+	aux = *lexer;
+	while (aux)
 	{
-		c = which_quotes(str_lexer[x]);//que tipo dequotes es
+		c = which_quotes(aux->word);//que tipo dequotes es
 		if (c)
 		{
 			no_quotes = ft_calloc(1, 1);
 			i = 0;
-			final = ft_split(str_lexer[x], c);//divide str a cada quote
+			final = ft_split(aux->word, c);//divide str a cada quote
 			while(final[i])
 			{
 				no_quotes = ft_strjoin(no_quotes, final[i]);//hace un join de todo
 				i++;
 			}
-			str_lexer[x] = ft_strdup(no_quotes);
+			aux->word = ft_strdup(no_quotes);
 			ft_free_2d(final);
 			free(no_quotes);
 		}
-		if (which_quotes(str_lexer[x]))//si todavia hay algo que quitar
-			ft_remove_quotes(str_lexer);
-		x++;
+		if (which_quotes(aux->word))//si todavia hay algo que quitar
+			ft_remove_quotes(lexer);
+		aux = aux->next;
 	}
 }
 

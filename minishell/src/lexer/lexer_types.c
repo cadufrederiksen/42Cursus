@@ -70,7 +70,6 @@ void	ft_types(t_lexer **lexer)
 			}
 			else if (aux->word[0] == '-')//es una flag
 				aux->type = FLAG;
-
 			else
 				aux->type = STRING;
 		}

@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 07:26:35 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/02/13 12:06:36 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/02/14 13:16:56 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <pthread.h>
 # include <signal.h>
+# include <sys/types.h>
+# include <sys/stat.h>
 # include <sys/wait.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -25,7 +27,8 @@
 # include <readline/history.h>
 # include "includes/libft/libft.h"
 # include <errno.h>
-#include <string.h>
+# include <string.h>
+# include <sys/ioctl.h>
 
 # define CMND 1
 # define FLAG 2
@@ -37,6 +40,11 @@
 # define D_GREATER 8
 # define D_LESS 9
 # define DELIMITER 10
+
+# define HEREDOC 99
+# define HEREDOC_END 100
+# define DELIMITER 10
+
 
 //int	g_status; variavel global
 
@@ -88,16 +96,17 @@ char	**ft_lexer(t_lexer **lexer, char *input);
 void	ft_extend_var(char **lexer);
 char	**ft_split_lexer(char const *s, char c);
 void	create_nodes(t_lexer **lexer, char **input);
+void	ft_delete_node(t_lexer **lexer, int x);
 void	ft_print_list(t_lexer **lexer);//borrar
 char	**ft_get_tokens(char **lexer);
 int		ft_check_quotes(char const *s);
 void	ft_quotes_input(char **input);
-void	ft_remove_quotes(char **str_lexer);
+void	ft_remove_quotes(t_lexer **lexer);
 int		ft_between_quotes(char *str, int x);
 char	**ft_check_syntax(char **str_lexer);
+void	ft_types(t_lexer **lexer);
 
 //-----------------------PARSER---------------------------
-void	ft_types(t_lexer **lexer);
 int		ft_parser(t_lexer **lexer, t_mini **mini, char **envp, t_envp **envp_list);
 char	*ft_find_cmnd_path(char **envp, char *cmnd);
 int		ft_set_path_cmnd(t_mini **mini, t_lexer **lexer, char **envp);
@@ -107,8 +116,10 @@ t_mini	**ft_to_mini_lst(t_lexer **lexer, t_mini **mini, t_envp **envp_list);
 int		ft_set_io(t_mini **mini, t_lexer **lexer);
 int		ft_cmnd_error(char *error, char *boole);
 int		ft_file_error(int infd, char *infile);
+void	ft_perror_mod(char *error, char *mod, int exit);
 void	ft_perror(char *error);
 void	ft_syntax_error(char *error);
+void	ft_delete_pipe(t_lexer **lexer, int pipe);
 
 //----------------------EXECUTER---------------------------
 void	ft_pipes(t_mini **mini);
@@ -130,8 +141,9 @@ void	add_new_envp(t_envp **lst, t_envp *new);
 t_envp	*envp_new(char *envp);
 char	*out_quotes(char *str);
 void	change_env(t_envp **envp, char *find, char *new_value);
-int		is_a_bltin(t_mini *mini);
-void	ft_print_envp_list(t_envp *envp);//borrar
+void	ft_print_envp_list(t_envp *envp);
+int		ft_is_builtin(char *cmd);
+int		ft_is_cd(char *cmd);
 
 //------------------------FREE---------------------------
 void	ft_free_envp_list(t_envp **envp);

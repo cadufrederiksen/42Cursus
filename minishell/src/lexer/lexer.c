@@ -90,9 +90,9 @@ char	** ft_lexer(t_lexer **lst_lexer, char *input)
 	str_lexer = ft_split_lexer(input, ' ');
 	ft_extend_var(str_lexer);
 	str_lexer = ft_get_tokens(str_lexer);
-	ft_remove_quotes(str_lexer);
 	str_lexer = ft_check_syntax(str_lexer); //Chequea errores sintacticos como un < o > o << o >> al final de la línea
 	create_nodes(lst_lexer, str_lexer);
-	free(input);//free del input
+	ft_types(lst_lexer);
+	ft_remove_quotes(lst_lexer);
 	return (str_lexer);
 }
