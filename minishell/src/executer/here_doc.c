@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:28:59 by isporras          #+#    #+#             */
-/*   Updated: 2024/02/19 17:36:27 by isporras         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:48:19 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
