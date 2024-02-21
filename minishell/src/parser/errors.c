@@ -19,7 +19,7 @@ void	ft_perror_mod(char *error, char *mod, int exit)
 	ft_putstr_fd(": ", 2);
 	ft_putstr_fd(mod, 2);
 	ft_putstr_fd("\n", 2);
-	last_status = exit;
+	g_status = exit;
 }
 
 void	ft_perror(char *error)
@@ -45,22 +45,22 @@ int	ft_cmnd_error(char *error, char *boole)
 		ft_putstr_fd("bash: ", 2);
 		ft_putstr_fd(error, 2);
 		ft_putstr_fd(": command not found\n", 2);
-		last_status = 127;
+		g_status = 127;
 		return (1);
 	}
 	return (0);
 }
 
-int	ft_file_error(int infd, char *infile)
+int	ft_file_error(int infd, char *file)
 {
 	if (infd == -1)
 	{
 		ft_putstr_fd("bash: ", 2);
-		ft_putstr_fd(infile, 2);
+		ft_putstr_fd(file, 2);
 		ft_putstr_fd(": ", 2);
 		ft_putstr_fd(strerror(errno), 2);
 		ft_putstr_fd("\n", 2);
-		last_status = 1;
+		g_status = 1;
 		return (1);
 	}
 	return (0);

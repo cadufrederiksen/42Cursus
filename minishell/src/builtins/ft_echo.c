@@ -6,22 +6,22 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 12:29:47 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/02/13 10:15:50 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/02/15 16:09:14 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void 	echo_flag (char **cmd, int *flag, int *x)
+void	echo_flag(char **cmd, int *flag, int *x)
 {
-	int i;
+	int	i;
 
 	while (cmd[*x])
 	{
-		if (cmd[*x] && !ft_strncmp(cmd[*x], "-n", 2))//compara si empeza con -n
+		if (cmd[*x] && !ft_strncmp(cmd[*x], "-n", 2))
 		{
 			i = 2;
-			while (cmd[*x][i] == 'n' && cmd[*x][i])//checkea si hasta el final solo hay n
+			while (cmd[*x][i] == 'n' && cmd[*x][i])
 				i++;
 			if (i != ft_strlen(cmd[*x]))
 			{
@@ -30,29 +30,28 @@ void 	echo_flag (char **cmd, int *flag, int *x)
 			}
 			*flag = 1;
 		}
-		else	
+		else
 			return ;
 		(*x)++;
 	}
-	
 }
 
 void	ft_echo(char **cmd, int fd)
 {
-	int x;
-	int i;
-	int flag;
+	int	x;
+	int	i;
+	int	flag;
 
 	x = 1;
 	flag = 0;
-	echo_flag(cmd, &flag, &x);//checkea si hay flag y cuantas
+	echo_flag(cmd, &flag, &x);
 	while (cmd[x])
 	{
 		i = 0;
-		while(cmd[x][i])
+		while (cmd[x][i])
 		{
 			write(fd, &cmd[x][i], 1);
-			i++;	
+			i++;
 		}
 		if (cmd[x + 1])
 			write(fd, " ", 1);
@@ -60,4 +59,5 @@ void	ft_echo(char **cmd, int fd)
 	}
 	if (!flag)
 		write(fd, "\n", 1);
+	g_status = 0;
 }

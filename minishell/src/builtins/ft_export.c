@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+ /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:02:59 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/02/12 14:40:53 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/02/15 16:06:47 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,18 @@ int	export_error(char *str)
 	ft_putchar_fd('\'', 2);
 	ft_putstr_fd(": ", 2);
 	ft_putstr_fd("not a valid identifier\n", 2);
-	last_status = 1;
+	g_status = 1;
 	return (0);
 }
 
 int	check_errors(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (str[0] == '=' || str[0] == '0' || ft_atoi(str))
 		return (export_error(str));
-	else if (ft_strchr(str, '-')) 
+	else if (ft_strchr(str, '-'))
 	{
 		while (str && str[i] != '=')
 		{
@@ -48,15 +48,15 @@ int	check_errors(char *str)
 
 void	ft_export(t_envp **envp_list, char **new_var)
 {
-	char **splitted;
-	char *id;
-	char *value;
-	int x;
-	
+	char	**splitted;
+	char	*id;
+	char	*value;
+	int		x;
+
 	x = 0;
 	while (new_var[x])
 	{
-		if (check_errors(new_var[x]) && new_var[x])//checkear si el formato es HOLA="hoal"
+		if (check_errors(new_var[x]) && new_var[x])
 		{
 			splitted = ft_split(new_var[x], '=');
 			id = ft_strdup(splitted[0]);

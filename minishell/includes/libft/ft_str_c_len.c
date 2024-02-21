@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_var.c                                         :+:      :+:    :+:   */
+/*   ft_str_c_len.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 11:39:26 by isporras          #+#    #+#             */
-/*   Updated: 2024/02/17 17:27:41 by carmarqu         ###   ########.fr       */
+/*   Created: 2024/02/20 12:38:41 by isporras          #+#    #+#             */
+/*   Updated: 2024/02/20 12:38:41 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
-
-void	ft_set_term_var(void)
+//Cuenta cuantos caracteres hay hasta el caracter c
+int	ft_str_c_len(const char *s, char c)
 {
-	setenv("TERM", "xterm", 0);
-}
+	int	i;
 
-void	ft_init_var(char **envp, t_envp **envp_list)
-{
-	singal_init();
-	create_envp(envp_list, envp);
-	ft_set_term_var();
+	i = 0;
+	while (s[i] && s[i] != c)
+		i++;
+	return (i);
 }

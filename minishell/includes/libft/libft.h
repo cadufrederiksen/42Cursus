@@ -25,6 +25,7 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+int		ft_str_c_len(const char *s, char c);
 void	*ft_memset(void *b, int c, size_t len);
 int		ft_strlen(const char *s);
 void	ft_bzero(void *s, size_t n);

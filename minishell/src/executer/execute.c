@@ -3,29 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 12:42:14 by isporras          #+#    #+#             */
-/*   Updated: 2024/02/14 12:50:04 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/02/19 17:48:14 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	ft_close_wait(t_exec *exec, int i)
+void	ft_close_wait(t_exec *exec)
 {
 	int	status;
 
-	if (i < exec->total_cmnds - 1)
-		close(exec->aux->outfile);//Cerramos el fd de escritura si no estamos en el ultimo comando para que el siguiente reciba el EOF
+	waitpid(exec->pid, &status, 0);
+	close(exec->aux->outfile);
 	if (exec->aux->next == NULL)
 		close(exec->aux->infile);
-	waitpid(exec->pid, &status, 0);
-	if (WIFEXITED(status))//Comprueba si el proceso hijo terminó normalmente
-		return (WEXITSTATUS(status));
+	if (WIFEXITED(status))
+		g_status = WEXITSTATUS(status);
 	else
-		return (1);//Si no terminó normalmente, devolvemos 1
-	return (0);
+		g_status = 1;
 }
 
 void	ft_set_next_pipe(t_exec *exec)
@@ -33,86 +31,79 @@ void	ft_set_next_pipe(t_exec *exec)
 	if (exec->total_cmnds > 1)
 	{
 		pipe(exec->fdpipe);
-		if ((exec->aux->next)->infile == 0)
+		if (exec->aux->next && (exec->aux->next)->infile == STDIN_FILENO)
 			(exec->aux->next)->infile = exec->fdpipe[0];
-		exec->aux->outfile = exec->fdpipe[1];
+		else if (exec->aux->next && (exec->aux->next)->infile != STDIN_FILENO)
+			close(exec->fdpipe[0]);
+		if (exec->aux->outfile == STDOUT_FILENO)
+			exec->aux->outfile = exec->fdpipe[1];
+		else if (exec->aux->outfile != STDOUT_FILENO)
+			close(exec->fdpipe[1]);
 	}
 }
 
 void	ft_child_process(t_mini *aux)
 {
-	dup2(aux->infile, STDIN_FILENO);//Cambiamos el standar input por el fd de entrada deseado
-	if (aux->infile != 0)//Asegurarse de que no estás cerrando la entrada estándar original
+	dup2(aux->infile, STDIN_FILENO);
+	if (aux->infile != 0)
 		close(aux->infile);
 	dup2(aux->outfile, STDOUT_FILENO);
-	if (aux->next != NULL) //Cerramos el fd de entrada del siguiente nodo
+	if (aux->next != NULL)
 		close ((aux->next)->infile);
 	if (ft_is_builtin(aux->full_cmd[0]) == 1)
-	{
 		ft_builtins(aux->envp, aux);
-		exit(last_status);
-	}
 	else if (execve(aux->full_path, aux->full_cmd, NULL) == -1)
 	{
-		ft_perror(aux->full_path);
-		exit(EXIT_FAILURE);
+		ft_perror_mod(aux->full_path, strerror(errno), 1);
+		ft_check_permission(aux->full_path);
 	}
+	exit(g_status);
 }
 
-int	ft_init_data_exec(t_mini **mini, t_exec **exec)
+void	ft_exec_cases(t_exec *x)
 {
-	if (!*exec)
-		return 1;
-	(*exec)->aux = *mini;
-	if (!(*exec)->aux)
-		return 1;
-	(*exec)->total_cmnds = (*exec)->aux->total_cmnds;
-	(*exec)->tmpin = dup(STDIN_FILENO);
-	(*exec)->tmpout = dup(STDOUT_FILENO);
-	return 0;
-}
-
-void	ft_close_restore(t_exec *exec)
-{
-	dup2(exec->tmpin, STDIN_FILENO);
-	close(exec->tmpin);
-	dup2(exec->tmpout, STDOUT_FILENO);
-	close(exec->tmpout);
+	if (x->total_cmnds > 1 && x->i < x->total_cmnds - 1)
+		ft_set_next_pipe(x);
+	if (((x->aux->broken == 0 && x->aux->next && x->aux->next->broken == 0)
+			|| (!x->aux->next && x->aux->broken == 0))
+		&& ((x->aux->full_cmd && ft_is_parent(x->aux->full_cmd[0]) == 0
+				&& ft_is_builtin(x->aux->full_cmd[0]) == 1)
+			|| (x->aux->full_path && ft_is_builtin(x->aux->full_cmd[0]) == 0)))
+	{
+		x->pid = fork();
+		if (x->pid == 0)
+			ft_child_process(x->aux);
+		else if (x->pid < 0)
+			ft_perror("fork");
+		else
+			ft_close_wait(x);
+	}
+	else if (x->aux->full_cmd && ft_is_parent(x->aux->full_cmd[0]) != 0
+		&& x->aux->broken == 0)
+		ft_bt_parent(x->aux, x->aux->envp);
+	else if (x->aux->broken == 1)
+		close(x->aux->outfile);
 }
 
 int	ft_executer(t_mini **mini)
 {
 	t_exec	*exec;
-	int		last_status;
-	int		i;
 
-	last_status = 0;
-	exec = malloc(sizeof(t_exec));
-	if (!exec)
-		return (1);
-	if (ft_init_data_exec(mini, &exec) == 1) //Inicializamos los datos necesarios para la función en una estructura
-		return (last_status); //error
-	i = 0;
-	while (i < exec->total_cmnds)
+	if (ft_init_data_exec(mini, &exec) > 0)
+		return (g_status);
+	if (exec->total_cmnds == 1 && ft_is_builtin(exec->aux->full_cmd[0])
+		&& exec->aux->broken == 0)
+		ft_builtins(exec->aux->envp, exec->aux);
+	else
 	{
-		if (exec->total_cmnds > 1 && i < exec->total_cmnds - 1)
-			ft_set_next_pipe(exec);//Si hay más de un comando, establecemos el siguiente pipe
-		if (ft_is_cd(exec->aux->full_cmd[0]) == 0)//cd se ejecuta en el proceso padre
+		while (exec->aux && exec->i < exec->total_cmnds)
 		{
-			exec->pid = fork();
-			if (exec->pid == 0)
-				ft_child_process(exec->aux);
-			else if (exec->pid < 0)
-				ft_perror("fork");
-			else
-				last_status = ft_close_wait(exec, i);
+			ft_exec_cases(exec);
+			exec->i++;
+			exec->aux = exec->aux->next;
 		}
-		else
-			last_status = ft_cd(exec->aux, exec->aux->envp);
-		i++;
-		exec->aux = exec->aux->next;
 	}
 	ft_close_restore(exec);
 	free(exec);
-	return (last_status);
+	return (g_status);
 }

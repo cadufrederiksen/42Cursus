@@ -6,13 +6,13 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:31:41 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/02/07 14:23:04 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/02/15 16:07:57 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int		env_error(char *wrong)//en el subject pone sin argumento o opciones
+int	env_error(char *wrong)//en el subject pone sin argumento o opciones
 {
 	ft_putstr_fd("bash: ", 2);
 	ft_putstr_fd("cd: ", 2);
@@ -22,10 +22,10 @@ int		env_error(char *wrong)//en el subject pone sin argumento o opciones
 	return (1);
 }
 
-int	ft_env(int fd, t_envp **envp_list, char **cmd)//no actualiza PWD y OLDPWD cuando hace env
+int	ft_env(int fd, t_envp **envp_list, char **cmd)
 {
-	int i;
-	t_envp *aux;
+	int		i;
+	t_envp	*aux;
 
 	aux = *envp_list;
 	if (cmd[0])

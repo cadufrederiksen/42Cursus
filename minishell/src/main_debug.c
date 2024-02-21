@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_debug.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:46:14 by isporras          #+#    #+#             */
-/*   Updated: 2024/02/13 12:41:44 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/02/19 18:11:40 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,15 @@ void	ft_print_list(t_lexer **lexer)
 	t_lexer	*tmp;
 
 	tmp = *lexer;
+	printf("LISTA:\n");
 	while (tmp)
 	{
 		printf("word: %s\n", tmp->word);
 		printf("id: %d\n", tmp->id);
-		printf("type: %d\n\n", tmp->type);
+		printf("type: %d\n", tmp->type);
+		printf("broken: %d\n\n", tmp->broken);
 		tmp = tmp->next;
 	}
-}
-
-void	final_free(char *input, char *log, t_envp **envp)
-{
-	ft_free_envp_list(envp);//hay que quedar fuera del bucle
-	free(log);
-	free(input);
 }
 
 int last_status;
@@ -59,27 +54,27 @@ int last_status;
  	t_lexer	*lexer;
  	t_mini	*mini;
  	t_envp	*envp_list;
- 	int		last_status;
 
  	envp_list = NULL;
  	lexer = NULL;
  	mini = NULL;
  	last_status = 0;
- 	char	*input = ft_strdup("ech <123 <infile hi >outfile1| >outfile");
+ 	char	*input = ft_strdup("echo <\"minishell_tester/test_files/infile\" <mis <\"minishell_tester/test_files/infile\"");
  	if (!argv && !argc)
  		return (1);
  	ft_init_var(envp, &envp_list);
  	ft_quotes_input(&input);
- 	if (ft_lexer(&lexer, input) != NULL)//crea la lista de tokens
- 	{
- 		if (ft_parser(&lexer, &mini, envp, &envp_list) == -1)
-				last_status = ft_executer(&mini);
- 		//ft_print_list(&lexer);
-		//ft_print_mini_lst(&mini);
- 	}
+	ft_lexer(&lexer, input);
+	if (ft_parser(&lexer, &mini, &envp_list) == -1)
+	{
+		ft_print_list(&lexer);
+		ft_executer(&mini);
+	}
+	//ft_print_mini_lst(&mini);
+	ft_free_lsts(&lexer, &mini);
  	//ft_print_mini_lst(&mini);
-	printf("last status: %d\n", last_status);
  	//ft_free_lsts(&lexer, &mini);
+	printf("last status end: %d\n", last_status);
  	return (0);
  }
 //cat ./test_files/infile_big | grep oi

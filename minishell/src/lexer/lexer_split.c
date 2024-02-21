@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_split.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 12:00:49 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/01/31 13:31:06 by isporras         ###   ########.fr       */
+/*   Updated: 2024/02/17 16:04:42 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_malloc_quotes(char const *s, int *i, int *j, char **str)
 	if (s[*i + len] == '\'')
 	{
 		len++;
-		while (s[*i + len] != '\'') //Importante proteger antes de la llegada a esta función que todas las comillas están cerradas
+		while (s[*i + len] != '\'')
 			len++;
 		while (s[*i + len] != ' ' && s[*i + len] != '\0')
 			len++;
@@ -98,7 +98,7 @@ void	ft_malloc_no_quotes(char const *s, int *i, int *j, char **str)
 	while (s[*i + len] != ' ' && s[*i + len] != '\0')
 	{
 		len++;
-		if (s[*i + len] == '\"')//Consideramos si hay comillas internas (osea no están al principio de la palabra)
+		if (s[*i + len] == '\"')
 		{
 			len++;
 			while (s[*i + len] != '\"' && s[*i + len] != '\0')
@@ -132,9 +132,9 @@ char	**ft_split_lexer(char const *s, char c)
 		while (s[i] == c)
 			i++;
 		if (s[i] == '\'' || s[i] == '\"')
-			ft_malloc_quotes(s, &i, &j, str);//split con comillas
+			ft_malloc_quotes(s, &i, &j, str);
 		else
-			ft_malloc_no_quotes(s, &i, &j, str);//split sin comillas
+			ft_malloc_no_quotes(s, &i, &j, str);
 		j++;
 	}
 	str[j] = NULL;

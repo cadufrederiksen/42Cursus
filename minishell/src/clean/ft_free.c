@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_var.c                                         :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/30 11:39:26 by isporras          #+#    #+#             */
-/*   Updated: 2024/02/17 17:27:41 by carmarqu         ###   ########.fr       */
+/*   Created: 2024/02/20 13:32:05 by isporras          #+#    #+#             */
+/*   Updated: 2024/02/21 16:28:26 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	ft_set_term_var(void)
+void	final_free(char *log, char *input, t_envp **envp)
 {
-	setenv("TERM", "xterm", 0);
+	ft_free_envp_list(envp);
+	free(input);
+	free(log);
+	clear_history();
 }
 
-void	ft_init_var(char **envp, t_envp **envp_list)
+void	ft_clean_log(char *log, char *input, char **split_input)
 {
-	singal_init();
-	create_envp(envp_list, envp);
-	ft_set_term_var();
+	free(log);
+	free(input);
+	ft_free_2d(split_input);
 }
