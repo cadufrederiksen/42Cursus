@@ -12,8 +12,6 @@
 
 #include "../../minishell.h"
 
-
-
 char	*ft_refresh_log(t_main *main)
 {
 	char	buffer[1024];

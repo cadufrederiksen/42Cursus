@@ -19,6 +19,8 @@ char	*ft_find_cmnd_path(t_envp **envp, char *cmnd)
 	char	*fullpath;
 
 	j = 0;
+	if (!cmnd || !cmnd[0])
+		return (NULL);
 	path_split = ft_split(find_env(envp, "PATH="), ':');
 	while (path_split[j])
 	{

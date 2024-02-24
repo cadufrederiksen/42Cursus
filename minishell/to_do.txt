@@ -1,5 +1,37 @@
 signal handling (ctrl+C, ctrl+D, ctrl+\)
 cat <"./test_files/infile_big" 
-doesntexist | $EMPTY //CASO muy cabron porque shell devuelve exit code 0 
 
-ejemplo: echo hola | cat -e | ls -l
+Cuando estas en un readline por un pipe al final del input, no va ctrl+d ni ctr+c
+
+DUDA GRANDE: No sé si tenemos que implementar los ";" (En la hoja de evaluación no piden nada relacionado)
+
+unset $PATH no funciona (Revisar funcón de unset)//eso esta bien pero al hacer eso y ejecutar un cmd da seg fault
+
+APARTADO SEÑALES DE LA HOJA DE EVALUACIÓN
+
+Check the global variable. This global variable cannot provide any other information or data access than the number of a received signal. //Esto hay que checkearlo porque en realidad nosotros la usamos para el exit_status
+
+ctrl-C in an empty prompt should display a new line with a new prompt.
+ctrl-\ in an empty prompt should not do anything.
+ctrl-D in an empty prompt should quit minishell --> RELAUNCH!
+ctrl-C in a prompt after you wrote some stuff should display a new line with a new prompt.
+The buffer should be clean too. Press "Enter" to make sure nothing from the previous line is executed.
+ctrl-D in a prompt after you wrote some stuff should not do anything.
+ctrl-\ in a prompt after you wrote some stuff should not do anything.
+Try ctrl-C after running a blocking command like cat without arguments or grep “something“.
+Try ctrl-\ after running a blocking command like cat without arguments or grep “something“.
+Try ctrl-D after running a blocking command like cat without arguments or grep “something“.
+Repeat multiple times using different commands.
+If something crashes, select the "crash" flag.
+If something doesn't work, select the "incomplete work" flag.
+
+
+PUNTOS FLACOS XD
+
+	doesntexist | $EMPTY //CASO muy cabron porque shell devuelve exit code 0 
+
+	Putadita: echo '"$USER"' debería imprimir "$USER" pero esta imprimiendo $USER
+
+	cat -e < "mini
+	shell.h"		//Saltos de línea entre comillados (putadísima)
+

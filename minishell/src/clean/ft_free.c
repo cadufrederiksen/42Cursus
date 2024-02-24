@@ -20,9 +20,15 @@ void	final_free(char *log, char *input, t_envp **envp)
 	clear_history();
 }
 
-void	ft_clean_log(char *log, char *input, char **split_input)
+void	ft_clean_log(t_main *m)
 {
-	free(log);
-	free(input);
-	ft_free_2d(split_input);
+	if (m->log)
+		free(m->log);
+	m->log = NULL;
+	if (m->input)
+		free(m->input);
+	m->input = NULL;
+	if (m->split_input)
+		ft_free_2d(m->split_input);
+	m->split_input = NULL;
 }

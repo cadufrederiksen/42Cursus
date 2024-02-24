@@ -69,6 +69,7 @@ char	**ft_case_single_double(char **lexer, char *token, int *i, int *j)
 		token = ft_substr(lexer[*i], *j, 1);
 		tmp = ft_add_token(lexer, *i, token, 1, *j);
 	}
+	free(token);
 	ft_free_2d(lexer);
 	return (tmp);
 }

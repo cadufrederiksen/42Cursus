@@ -60,7 +60,6 @@ char	which_quotes(char *str)
 void	ft_remove_quotes(t_lexer **lexer)
 {
 	char	**final;
-	char	*no_quotes;
 	t_lexer	*aux;
 	int		i;
 	char	c;
@@ -71,14 +70,13 @@ void	ft_remove_quotes(t_lexer **lexer)
 		c = which_quotes(aux->word);
 		if (c)
 		{
-			no_quotes = ft_calloc(1, 1);
 			i = 0;
 			final = ft_split(aux->word, c);
+			free(aux->word);
+			aux->word = calloc(1, 1);
 			while (final[i])
-				no_quotes = ft_strjoin(no_quotes, final[i++]);
-			aux->word = ft_strdup(no_quotes);
+				aux->word = ft_strjoin(aux->word, final[i++]);
 			ft_free_2d(final);
-			free(no_quotes);
 		}
 		if (which_quotes(aux->word))
 			ft_remove_quotes(lexer);

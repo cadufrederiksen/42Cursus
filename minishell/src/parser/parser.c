@@ -81,10 +81,10 @@ char	**ft_full_cmnd(t_lexer *lexer)
 
 int	ft_parser(t_lexer **lexer, t_mini **mini, t_envp **envp_list)
 {
-	ft_check_bad_input(lexer);
-	mini = ft_to_mini_lst(lexer, mini, envp_list);
 	if (!*lexer)
 		return (1);
+	ft_check_bad_input(lexer);
+	mini = ft_to_mini_lst(lexer, mini, envp_list);
 	ft_set_io(mini, lexer);
 	ft_set_full_cmnd(mini, lexer);
 	ft_set_path_cmnd(mini, lexer, envp_list);

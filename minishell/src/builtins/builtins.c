@@ -26,7 +26,7 @@ int	ft_is_parent(char *cmd)//cd, export y unset tienen que ser en el padre
 		return (0);
 }
 
-int	 ft_bt_parent(t_mini *mini, t_envp **envp)
+int	ft_bt_parent(t_mini *mini, t_envp **envp)
 {
 	if (!ft_strncmp(mini->full_cmd[0], "cd", 3) && !mini->next)
 		return (ft_cd(mini, envp));
@@ -37,7 +37,7 @@ int	 ft_bt_parent(t_mini *mini, t_envp **envp)
 	return (0);
 }
 
-int	 ft_is_builtin(char *cmd)
+int	ft_is_builtin(char *cmd)
 {
 	if (!cmd)
 		return (0);

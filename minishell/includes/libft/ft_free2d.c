@@ -21,8 +21,6 @@ void	ft_free_2d(char **str)
 		i = 0;
 		while (str[i] != NULL)
 		{
-			//printf("STR = %s\n", str[i]);
-			//printf("I = %d\n", i);
 			free(str[i]);
 			i++;
 		}

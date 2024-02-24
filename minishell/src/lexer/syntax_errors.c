@@ -20,22 +20,28 @@ int	ft_end_pipe(char *input)
 	while (input[i])
 		i++;
 	i--;
+	while (i > 0 && input[i] == ' ')
+		i--;
 	if (input[i] == '|')
 		return (1);
 	else
 		return (0);
 }
 
-void	ft_check_end_pipe(char **input)
+char	*ft_check_end_pipe(char *input)
 {
 	char	*new_input;
 
-	while (ft_end_pipe(*input) == 1)
+	while (ft_end_pipe(input) == 1)
 	{
 		new_input = readline(">");
 		if (new_input)
-			*input = ft_strjoin(*input, new_input);
+		{
+			input = ft_strjoin(input, new_input);
+			free(new_input);
+		}
 	}
+	return (input);
 }
 
 char	**ft_check_syntax(char **str_lexer)

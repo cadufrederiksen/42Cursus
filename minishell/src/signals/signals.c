@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:55:30 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/02/21 16:48:45 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/02/17 17:30:06 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,6 @@ void	signal_helper(void)
 	rl_redisplay();
 	g_status = CTRL_C;
 }
-
-void	signal_helper()
-{
-	rl_on_new_line();//indica al terminal que una nueva linea esta se inicializando
-	rl_redisplay();//fuerza atualizacion de la linea
-	ft_putchar_fd('\n', 1);
-	rl_replace_line("" , 0);
-	rl_on_new_line();//indica al terminal que una nueva linea esta se inicializando
-	rl_redisplay();//fuerza atualizacion de la linea
-	last_status = CTRL_C;
-} 
 
 void	ft_sigint(int sig)
 {

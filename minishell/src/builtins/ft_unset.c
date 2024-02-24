@@ -18,8 +18,8 @@ void	unset_node(t_envp *aux)
 	{
 		free(aux->next->id);
 		free(aux->next->value);
-		free(aux->next);
-		aux->next = aux->next->next;
+		free(aux->next); // Si haces free a aux->next, pierdes acceso a aux->next->next
+		aux->next = aux->next->next; // Además no se está enlazando el anterior nodo con el nuevo actual
 	}
 	else
 	{

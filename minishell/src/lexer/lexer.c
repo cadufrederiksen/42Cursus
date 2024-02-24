@@ -15,12 +15,17 @@
 char	*ft_status_var(char *lexer, char *tmp, int j)
 {
 	char	*value;
+	char	*substr;
 
 	value = ft_itoa(g_status);
 	tmp = ft_strdup("");
-	tmp = ft_strjoin(tmp, ft_substr(lexer, 0, j));
+	substr = ft_substr(lexer, 0, j);
+	tmp = ft_strjoin(tmp, substr);
+	free(substr);
 	tmp = ft_strjoin(tmp, value);
-	tmp = ft_strjoin(tmp, ft_substr(lexer, j + 2, ft_strlen(lexer)));
+	substr = ft_substr(lexer, j + 2, ft_strlen(lexer));
+	tmp = ft_strjoin(tmp, substr);
+	free(substr);
 	free(value);
 	return (tmp);
 }
@@ -91,14 +96,14 @@ void	ft_extend_var(char **lexer, t_envp **envp_list)
 	}
 }
 
-void	ft_lexer(t_lexer **lst_lexer, char *input, t_envp **envp_list)
+void	ft_lexer(t_lexer **lst_lexer, char **input, t_envp **envp_list)
 {
 	char	**str_lexer;
 
-	if (!input)
+	if (!*input)
 		return ;
-	ft_check_end_pipe(&input);
-	str_lexer = ft_split_lexer(input, ' ');
+	*input = ft_check_end_pipe(*input);
+	str_lexer = ft_split_lexer(*input, ' ');
 	ft_extend_var(str_lexer, envp_list);
 	str_lexer = ft_get_tokens(str_lexer);
 	str_lexer = ft_check_syntax(str_lexer);

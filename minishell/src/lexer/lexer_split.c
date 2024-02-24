@@ -70,7 +70,7 @@ void	ft_malloc_quotes(char const *s, int *i, int *j, char **str)
 	if (s[*i + len] == '\'')
 	{
 		len++;
-		while (s[*i + len] != '\'')
+		while (s[*i + len] != '\'' && s[*i + len] != '\0')
 			len++;
 		while (s[*i + len] != ' ' && s[*i + len] != '\0')
 			len++;
@@ -78,7 +78,7 @@ void	ft_malloc_quotes(char const *s, int *i, int *j, char **str)
 	else if (s[*i] == '\"')
 	{
 		len++;
-		while (s[*i + len] != '\"')
+		while (s[*i + len] != '\"' && s[*i + len] != '\0')
 			len++;
 		while (s[*i + len] != ' ' && s[*i + len] != '\0')
 			len++;

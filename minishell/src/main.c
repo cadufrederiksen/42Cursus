@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 14:19:24 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/02/21 16:47:40 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:31:56 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,15 +83,15 @@ int	main(int argc, char **argv, char **envp)
 		m.i = 0;
 		while (m.split_input[m.i])//Maneja que haya saltos de línea en el input
 		{
-			ft_lexer(&m.lexer, m.split_input[m.i], &m.envp_list);
+			ft_lexer(&m.lexer, &m.split_input[m.i], &m.envp_list);
 			if (ft_parser(&m.lexer, &m.mini, &m.envp_list) == 0)
-				g_status = ft_executer(&m.mini);	
+				g_status = ft_executer(&m.mini);
 			//ft_print_list(&m.lexer);
 			//ft_print_mini_lst(&m.mini);
 			ft_free_lsts(&m.lexer, &m.mini);
 			m.i++;
 		}
-		ft_clean_log(m.log, m.input, m.split_input);
+		ft_clean_log(&m);
 	}
 	final_free(m.log, m.input, &m.envp_list);
 }
