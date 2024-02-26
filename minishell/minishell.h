@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 07:26:35 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/02/21 16:27:32 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/02/26 18:14:58 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ typedef struct s_main
 	t_envp	*envp_list;
 	char	**split_input;
 	int		i;
+	int		exit_status;
 }	t_main;
 
 typedef struct s_exec
@@ -108,14 +109,15 @@ typedef struct s_exec
 	int		tmpout;
 	int		fdpipe[2];
 	int		i;
+	int		exit_status;
 }	t_exec;
 
 extern int	g_status;
 
 void		ft_init_var(char **envp, t_envp **envp_list);
 char		*ft_refresh_log(t_main *main);
-void		ft_lexer(t_lexer **lexer, char **input, t_envp **envp_list);
-void		ft_extend_var(char **lexer, t_envp **envp_list);
+void		ft_lexer(t_main *m);
+void		ft_extend_var(char **lexer, t_main *m);
 char		**ft_split_lexer(char const *s, char c);
 void		create_nodes(t_lexer **lexer, char **input);
 t_lexer		*ft_delete_node(t_lexer **lexer, int x);
@@ -128,9 +130,9 @@ int			ft_between_quotes(char *str, int x);
 char		**ft_check_syntax(char **str_lexer);
 char		*ft_check_end_pipe(char *input);
 void		ft_types(t_lexer **lexer);
-int			ft_parser(t_lexer **lexer, t_mini **mini, t_envp **envp_list);
+int			ft_parser(t_main *m);
 char		*ft_find_cmnd_path(t_envp **envp, char *cmnd);
-void		ft_set_path_cmnd(t_mini **mini, t_lexer **lexer, t_envp **envp);
+void		ft_set_path_cmnd(t_mini **mini, t_lexer **lexer, t_envp **envp, t_main *m);
 char		**ft_full_cmnd(t_lexer *lexer);
 int			ft_set_full_cmnd(t_mini **mini, t_lexer **lexer);
 t_mini		**ft_to_mini_lst(t_lexer **lexer, t_mini **mini,
@@ -138,30 +140,30 @@ t_mini		**ft_to_mini_lst(t_lexer **lexer, t_mini **mini,
 int			ft_set_io(t_mini **mini, t_lexer **lexer);
 int			ft_cmnd_error(char *error, char *boole);
 int			ft_file_error(int infd, char *infile);
-void		ft_perror_mod(char *error, char *mod, int exit);
+int			ft_perror_mod(char *error, char *mod, int exit);
 void		ft_perror(char *error);
 void		ft_syntax_error(char *error);
 t_lexer		*ft_delete_pipe(t_lexer **lexer, int pipe);
-void		ft_check_bad_input(t_lexer **lexer);
-void		ft_check_permission(char *path);
+void		ft_check_bad_input(t_lexer **lexer, t_main *m);
+int			ft_check_permission(char *path);
 int			ft_check_is_dir(char *path);
 void		ft_pipes(t_mini **mini);
-int			ft_executer(t_mini **mini);
+int			ft_executer(t_mini **mini, int e_sts);
 void		ft_here_doc(t_mini *mini, char *eof);
-int			ft_bt_parent(t_mini *mini, t_envp **envp);
+int			ft_bt_parent(t_mini *mini, t_envp **envp, t_exec *x);
 int			ft_is_parent(char *cmd);
 void		ft_close_restore(t_exec *exec);
 int			ft_init_data_exec(t_mini **mini, t_exec **exec);
-int			ft_builtins(t_envp **envp_list, t_mini *mini);
+int			ft_builtins(t_envp **envp_list, t_mini *mini, t_exec *x);
 int			ft_cd(t_mini *mini, t_envp **envp);
 void		ft_echo(char **cmd, int fd);
 void		ft_pwd(int fd);
 void		ft_unset(t_envp **envp, char **id);
 int			ft_env(int fd, t_envp **envp_list, char **cmd);
-void		ft_exit(char **cmd);
+void		ft_exit(char **cmd, int exit_sts);
 char		*find_env(t_envp **envp, char *find);
 void		create_envp(t_envp **envp_list, char **envp);
-void		ft_export(t_envp **envp_list, char **new_var);
+int			ft_export(t_envp **envp_list, char **new_var, t_exec *exec);
 void		add_new_envp(t_envp **lst, t_envp *new);
 t_envp		*envp_new(char *envp);
 char		*out_quotes(char *str);

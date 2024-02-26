@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 14:59:45 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/02/21 16:04:49 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:59:46 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ int	cd_error(char *not_find)
 	ft_putstr_fd(": ", 2);
 	ft_putstr_fd(strerror(errno), 2);
 	ft_putchar_fd('\n', 2);
-	g_status = 1;
 	return (1);
 }
 
@@ -94,7 +93,7 @@ int	ft_cd(t_mini *mini, t_envp **envp)
 		free(oldpwd);
 		cd_error(dst);
 		free(dst);
-		return (1);
+		return (1);//exit status
 	}
 	pwd = ft_strdup(getcwd(buffer, sizeof(buffer)));
 	change_env(envp, "PWD=", pwd);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:39:10 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/02/15 15:58:43 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:32:50 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	ft_unset(t_envp **envp, char **args)
 			{
 				aux = *envp;
 				ft_unset_helper(aux, id);
-				g_status = 0;
 			}
 			free(id);
 		}

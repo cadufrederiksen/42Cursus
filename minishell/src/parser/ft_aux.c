@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_aux.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:55:05 by isporras          #+#    #+#             */
-/*   Updated: 2024/02/19 18:20:41 by isporras         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:44:47 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,21 @@ int	ft_check_is_dir(char *path)
 	if (stat(path, &s) == 0)
 	{
 		if (S_ISDIR(s.st_mode))
-			return (ft_perror_mod(path, "Is a directory", 126), 1);
+			return (ft_perror_mod(path, "Is a directory", 126));
 		return (0);
 	}
 	else
 	{
 		ft_perror(path);
-		g_status = 127;
-		return (1);
+		return (127);
 	}
 }
 
-void	ft_check_permission(char *path)
+int	ft_check_permission(char *path)
 {
 	if (access(path, X_OK) != 0)
-		g_status = 126;
+		return (126);
+	return (0);
 }
 
 void	ft_broken_pipe(t_lexer **lexer, int pipe)
@@ -53,7 +53,7 @@ void	ft_broken_pipe(t_lexer **lexer, int pipe)
 	}
 }
 
-void	ft_check_bad_input(t_lexer **lexer)
+void	ft_check_bad_input(t_lexer **lexer, t_main *m)
 {
 	t_lexer	*x;
 	int		pipe;
@@ -73,7 +73,7 @@ void	ft_check_bad_input(t_lexer **lexer)
 					|| (x->type == D_GREATER
 						&& open((x->next)->word, 1 | O_CREAT | O_APPEND, 0644) == -1)))
 			{
-				ft_perror_mod((x->next)->word, strerror(errno), 1);
+				m->exit_status = ft_perror_mod((x->next)->word, strerror(errno), 1);
 				ft_broken_pipe(lexer, pipe);
 			}
 		}

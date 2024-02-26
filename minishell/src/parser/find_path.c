@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 11:38:32 by isporras          #+#    #+#             */
-/*   Updated: 2024/02/19 16:57:23 by isporras         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:25:29 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,23 @@ char	*ft_find_cmnd_path(t_envp **envp, char *cmnd)
 	return (NULL);
 }
 
-void	ft_set_path_cmnd2(t_lexer *aux_lexer, t_mini *aux_mini, t_envp **envp)
+void	ft_set_path_cmnd2(t_lexer *aux_lexer, t_mini *aux_mini, t_envp **envp, t_main *m)
 {
 	if (ft_strchr(aux_lexer->word, '/') != NULL)
 	{
 		aux_mini->full_path = ft_strdup(aux_lexer->word);
-		if (ft_check_is_dir(aux_mini->full_path) == 1)
+		m->exit_status = ft_check_is_dir(aux_mini->full_path);
+		if (m->exit_status != 0)//
 			aux_mini->full_path = NULL;
 		return ;
 	}
 	else
 		aux_mini->full_path = ft_find_cmnd_path(envp, aux_lexer->word);
 	if (!aux_mini->full_path)
-		ft_cmnd_error(aux_lexer->word, aux_mini->full_path);
+		m->exit_status = ft_cmnd_error(aux_lexer->word, aux_mini->full_path);
 }
 
-void	ft_set_path_cmnd(t_mini **mini, t_lexer **lexer, t_envp **envp)
+void	ft_set_path_cmnd(t_mini **mini, t_lexer **lexer, t_envp **envp, t_main *m)
 {
 	t_mini	*aux_mini;
 	t_lexer	*aux_lexer;
@@ -62,7 +63,7 @@ void	ft_set_path_cmnd(t_mini **mini, t_lexer **lexer, t_envp **envp)
 	{
 		if (aux_lexer->type == CMND && ft_is_builtin(aux_lexer->word) == 0)
 		{
-			ft_set_path_cmnd2(aux_lexer, aux_mini, envp);
+			ft_set_path_cmnd2(aux_lexer, aux_mini, envp, m);
 			aux_mini = aux_mini->next;
 		}
 		else if (aux_lexer->type == CMND)

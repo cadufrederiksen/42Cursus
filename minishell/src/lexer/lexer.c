@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 13:51:49 by isporras          #+#    #+#             */
-/*   Updated: 2024/02/21 15:29:57 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:52:14 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-char	*ft_status_var(char *lexer, char *tmp, int j)
+char	*ft_status_var(char *lexer, char *tmp, int j, int sts)
 {
 	char	*value;
 	char	*substr;
 
-	value = ft_itoa(g_status);
+	value = ft_itoa(sts);
 	tmp = ft_strdup("");
 	substr = ft_substr(lexer, 0, j);
 	tmp = ft_strjoin(tmp, substr);
@@ -55,21 +55,21 @@ char	*ft_put_var2(char **lx, t_envp **envp, int *i, int *j)
 	return (tmp);
 }
 
-void	ft_put_var(char **lexer, int *i, int *j, t_envp **envp)
+void	ft_put_var(char **lexer, int *i, int *j, t_main *m)
 {
 	char	*tmp;
 
 	tmp = NULL;
 	if (ft_strncmp(&lexer[*i][*j], "$?", 2) == 0)
-		tmp = ft_status_var(lexer[*i], tmp, *j);
+		tmp = ft_status_var(lexer[*i], tmp, *j, m->exit_status);
 	else
-		tmp = ft_put_var2(lexer, envp, i, j);
+		tmp = ft_put_var2(lexer, &m->envp_list, i, j);
 	free(lexer[*i]);
 	lexer[*i] = tmp;
 }
 
 //Extiende la variable global $ siempre que no esté entre comillas simples
-void	ft_extend_var(char **lexer, t_envp **envp_list)
+void	ft_extend_var(char **lexer, t_main *m)
 {
 	int	i;
 	int	j;
@@ -89,26 +89,26 @@ void	ft_extend_var(char **lexer, t_envp **envp_list)
 			if (lexer[i][j] == '$' && q == 0
 				&& lexer[i][j + 1] != ' ' && lexer[i][j + 1] != '\0'
 				&& ft_strncmp(lexer[i], "\"$\"", 3) != 0)
-				ft_put_var(lexer, &i, &j, envp_list);
+				ft_put_var(lexer, &i, &j, m);
 			j++;
 		}
 		i++;
 	}
 }
 
-void	ft_lexer(t_lexer **lst_lexer, char **input, t_envp **envp_list)
+void	ft_lexer(t_main *m)
 {
 	char	**str_lexer;
 
-	if (!*input)
+	if (!*m->input)
 		return ;
-	*input = ft_check_end_pipe(*input);
-	str_lexer = ft_split_lexer(*input, ' ');
-	ft_extend_var(str_lexer, envp_list);
+	m->input = ft_check_end_pipe(m->input);
+	str_lexer = ft_split_lexer(m->input, ' ');
+	ft_extend_var(str_lexer, m);
 	str_lexer = ft_get_tokens(str_lexer);
 	str_lexer = ft_check_syntax(str_lexer);
-	create_nodes(lst_lexer, str_lexer);
-	ft_types(lst_lexer);
-	ft_remove_quotes(lst_lexer);
+	create_nodes(&m->lexer, str_lexer);
+	ft_types(&m->lexer);
+	ft_remove_quotes(&m->lexer);
 	ft_free_2d(str_lexer);
 }
