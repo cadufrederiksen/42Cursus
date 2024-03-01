@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 12:42:14 by isporras          #+#    #+#             */
-/*   Updated: 2024/02/26 18:10:56 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/03/01 19:02:07 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ int	ft_executer(t_mini **mini, int e_sts)
 
 	if (ft_init_data_exec(mini, &exec) > 0)
 		return (1);
+	g_status = IN_CMD;
 	exec->exit_status = e_sts;
 	if (exec->total_cmnds == 1 && ft_is_builtin(exec->aux->full_cmd[0])
 		&& exec->aux->broken == 0)

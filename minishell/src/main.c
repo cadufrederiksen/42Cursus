@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 14:19:24 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/02/26 17:24:47 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/03/01 19:01:43 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int	main(int argc, char **argv, char **envp)
 	t_main	m;
 
 	ft_init_main_var(&m);
-	g_status = 0;
 	if (argc > 1 && argv)
 		return (printf("Wrong number of arguments\n"), 1);
 	ft_init_var(envp, &m.envp_list);
