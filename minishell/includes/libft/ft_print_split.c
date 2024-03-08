@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   ft_print_split.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 11:32:01 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/03/04 16:47:10 by carmarqu         ###   ########.fr       */
+/*   Created: 2024/01/24 13:59:08 by carmarqu          #+#    #+#             */
+/*   Updated: 2024/01/30 17:48:36 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "libft.h"
 
-void	ft_exit(char **cmd, int exit_sts)
+void	ft_print_split(char **split)
 {
-	if (cmd[1] && cmd[2])
-	{
-		ft_putstr_fd("bash: exit: too many arguments", 2);
+	int	i;
+
+	i = 0;
+	if (!split || !*split)
 		return ;
-	}
-	if (cmd[1])
+	while (split[i])
 	{
-		if (ft_atoi(cmd[1]) != 0)
-		{
-			exit(ft_atoi(cmd[1]));
-		}
-		else
-		{
-			ft_perror_mod("exit", "numeric argument required", 2);
-			exit(2);//255
-		}
+		printf("%s\n", split[i]);
+		i++;
 	}
-	else
-		exit(exit_sts);
 }

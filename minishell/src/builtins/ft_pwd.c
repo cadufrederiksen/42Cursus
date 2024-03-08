@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   log.c                                              :+:      :+:    :+:   */
+/*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/05 12:36:48 by isporras          #+#    #+#             */
-/*   Updated: 2024/03/08 17:42:18 by carmarqu         ###   ########.fr       */
+/*   Created: 2024/02/07 11:31:16 by carmarqu          #+#    #+#             */
+/*   Updated: 2024/02/15 16:05:06 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-char	*ft_refresh_log(t_main *main)
+void	ft_pwd(int fd)
 {
 	char	buffer[1024];
+	char	*pwd;
+	int		i;
 
-	printf("aqui\n");
-	ft_print_envp_list(&main->envp_list);
-	if (find_env(&main->envp_list, "USER"))
+	i = 0;
+	pwd = ft_strdup(getcwd(buffer, sizeof(buffer)));
+	while (pwd[i])
 	{
-		main->log = ft_strdup(find_env(&main->envp_list, "USER"));
+		write(fd, &pwd[i], 1);
+		i++;
 	}
-	else
-	{
-		main->log = ft_strdup("HOLA");
-	}
-	main->log = ft_strjoin(main->log, "@minishell ~");
-	main->log = ft_strjoin(main->log, getcwd(buffer, sizeof(buffer)));
-	main->log = ft_strjoin(main->log, "> ");
-	g_status = INIT;
-	return (main->log);
+	write(fd, "\n", 1);
+	free(pwd);
 }

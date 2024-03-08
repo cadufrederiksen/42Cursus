@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   ft_free2d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 11:32:01 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/03/04 16:47:10 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/11/15 16:46:48 by isporras          #+#    #+#             */
+/*   Updated: 2024/02/21 15:41:36 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "libft.h"
 
-void	ft_exit(char **cmd, int exit_sts)
+void	ft_free_2d(char **str)
 {
-	if (cmd[1] && cmd[2])
+	int	i;
+
+	if (str)
 	{
-		ft_putstr_fd("bash: exit: too many arguments", 2);
-		return ;
-	}
-	if (cmd[1])
-	{
-		if (ft_atoi(cmd[1]) != 0)
+		i = 0;
+		while (str[i] != NULL)
 		{
-			exit(ft_atoi(cmd[1]));
+			free(str[i]);
+			i++;
 		}
-		else
-		{
-			ft_perror_mod("exit", "numeric argument required", 2);
-			exit(2);//255
-		}
+		free(str);
 	}
-	else
-		exit(exit_sts);
 }

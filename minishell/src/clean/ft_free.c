@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 11:32:01 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/03/04 16:47:10 by carmarqu         ###   ########.fr       */
+/*   Created: 2024/02/20 13:32:05 by isporras          #+#    #+#             */
+/*   Updated: 2024/02/21 16:28:26 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	ft_exit(char **cmd, int exit_sts)
+void	final_free(char *log, char *input, t_envp **envp)
 {
-	if (cmd[1] && cmd[2])
-	{
-		ft_putstr_fd("bash: exit: too many arguments", 2);
-		return ;
-	}
-	if (cmd[1])
-	{
-		if (ft_atoi(cmd[1]) != 0)
-		{
-			exit(ft_atoi(cmd[1]));
-		}
-		else
-		{
-			ft_perror_mod("exit", "numeric argument required", 2);
-			exit(2);//255
-		}
-	}
-	else
-		exit(exit_sts);
+	ft_free_envp_list(envp);
+	free(input);
+	free(log);
+	clear_history();
+}
+
+void	ft_clean_log(t_main *m)
+{
+	if (m->log)
+		free(m->log);
+	m->log = NULL;
+	if (m->input)
+		free(m->input);
+	m->input = NULL;
+	if (m->split_input)
+		ft_free_2d(m->split_input);
+	m->split_input = NULL;
 }

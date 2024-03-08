@@ -1,36 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 11:32:01 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/03/04 16:47:10 by carmarqu         ###   ########.fr       */
+/*   Created: 2023/04/18 14:11:41 by isporras          #+#    #+#             */
+/*   Updated: 2024/01/29 11:46:27 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "libft.h"
 
-void	ft_exit(char **cmd, int exit_sts)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	if (cmd[1] && cmd[2])
+	size_t	i;
+
+	i = 0;
+	if (dst == src || !n)
+		return (dst);
+	while (i < n)
 	{
-		ft_putstr_fd("bash: exit: too many arguments", 2);
-		return ;
+		*((char *)dst + i) = *((char *)src + i);
+		i++;
 	}
-	if (cmd[1])
-	{
-		if (ft_atoi(cmd[1]) != 0)
-		{
-			exit(ft_atoi(cmd[1]));
-		}
-		else
-		{
-			ft_perror_mod("exit", "numeric argument required", 2);
-			exit(2);//255
-		}
-	}
-	else
-		exit(exit_sts);
+	return (dst);
 }
+//int main ()
+//{
+//	int b[] = {1,1,1,1,1};
+//	int a[] = {2,2,2,2,2};
+
+//	memcpy(b, a, 2);
+//	printf("%i",b[0]);
+//	return (0);
+//}
