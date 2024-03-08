@@ -6,103 +6,81 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 14:14:54 by isporras          #+#    #+#             */
-/*   Updated: 2024/02/17 17:35:25 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:52:07 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-char	**ft_add_token(char **src, int y, char *token, int d, int j)
-{
-	int		i;
-	int		x;
-	char	**dst;
-
-	i = 0;
-	while (src[i])
-		i++;
-	dst = malloc(sizeof(char *) * (i + 3));
-	i = 0;
-	x = 0;
-	while (src[i] && src[i][0] != '\0')
-	{
-		if (x == y && j == 0)
-		{
-			dst[x++] = ft_strdup(token);
-			dst[x++] = ft_substr(src[i], d, ft_strlen(&src[i][d]));
-			i++;
-		}
-		else if (x == y && j == ft_strlen(src[i]) - d)
-		{
-			dst[x++] = ft_substr(src[i], 0, ft_strlen(src[i]) - d);
-			dst[x++] = ft_strdup(token);
-			i++;
-		}
-		else if (x == y)
-		{
-			dst[x++] = ft_substr(src[i], 0, j);
-			dst[x++] = ft_strdup(token);
-			dst[x++] = ft_substr(src[i], j + d, ft_strlen(&src[i][j + d]));
-			i++;
-		}
-		else
-			dst[x++] = ft_strdup(src[i++]);
-	}
-	dst[x] = NULL;
-	return (dst);
-}
-
-char	**ft_case_single_double(char **lexer, char *token, int *i, int *j)
+char	**ft_case_single_double(t_token *t)
 {
 	char	**tmp;
 
-	if ((lexer[*i][*j] == '>' && lexer[*i][*j + 1] == '>')
-		|| (lexer[*i][*j] == '<' && lexer[*i][*j + 1] == '<')
-		|| (lexer[*i][*j] == '|' && lexer[*i][*j + 1] == '|'))
+	t->d = 0;
+	if ((t->lx[t->i][t->j] == '>' && t->lx[t->i][t->j + 1] == '>')
+		|| (t->lx[t->i][t->j] == '<' && t->lx[t->i][t->j + 1] == '<')
+		|| (t->lx[t->i][t->j] == '|' && t->lx[t->i][t->j + 1] == '|'))
 	{
-		token = ft_substr(lexer[*i], *j, 2);
-		tmp = ft_add_token(lexer, *i, token, 2, *j);
-		(*j)++;
+		t->d = 2;
+		t->tk = ft_substr(t->lx[t->i], t->j, 2);
+		tmp = ft_add_token(t);
+		(t->j)++;
 	}
 	else
 	{
-		token = ft_substr(lexer[*i], *j, 1);
-		tmp = ft_add_token(lexer, *i, token, 1, *j);
+		t->d = 1;
+		t->tk = ft_substr(t->lx[t->i], t->j, 1);
+		tmp = ft_add_token(t);
 	}
-	free(token);
-	ft_free_2d(lexer);
+	free(t->tk);
+	ft_free_2d(t->lx);
 	return (tmp);
+}
+
+int	is_token(char c)
+{
+	return (c == '>' || c == '<' || c == '|');
+}
+
+int	is_double_token(t_token *t)
+{
+	return ((ft_strncmp(&t->lx[t->i][t->j], "<<", 2) == 0)
+			|| (ft_strncmp(&t->lx[t->i][t->j], ">>", 2) == 0)
+			|| (ft_strncmp(&t->lx[t->i][t->j], "||", 2) == 0));
+}
+
+int	is_not_alone(t_token *t)
+{
+	return ((ft_strncmp(t->lx[t->i], "<<", 3) != 0)
+		&& (ft_strncmp(t->lx[t->i], ">>", 3) != 0)
+		&& (ft_strncmp(t->lx[t->i], "||", 3) != 0));
 }
 
 char	**ft_get_tokens(char **lexer)
 {
-	int		i;
-	int		j;
-	char	*token;
-	
-	token = NULL;
-	i = 0;
-	while (lexer[i])
+	t_token	t;
+
+	t.tk = NULL;
+	t.lx = lexer;
+	t.i = 0;
+	while (t.lx[t.i])
 	{
-		j = 0;
-		while (lexer[i][j])
+		t.j = 0;
+		while (t.lx[t.i][t.j])
 		{
-			if ((lexer[i][j] == '>' || lexer[i][j] == '<' || lexer[i][j] == '|')
-				&& (ft_strlen(lexer[i]) != 2) && (ft_between_quotes(lexer[i], j) == 0)
-				&& ((ft_strncmp(&lexer[i][j], "<<", 2) == 0) || (ft_strncmp(&lexer[i][j], ">>", 2) == 0)
-				|| (ft_strncmp(&lexer[i][j], "||", 2) == 0)))
-					lexer = ft_case_single_double(lexer, token, &i, &j);
-			else if ((lexer[i][j] == '>' || lexer[i][j] == '<' || lexer[i][j] == '|')
-				&& (ft_strlen(lexer[i]) != 1) && (ft_between_quotes(lexer[i], j) == 0)
-				&& (ft_strncmp(&lexer[i][j], "<<", 2) != 0) && (ft_strncmp(&lexer[i][j], ">>", 2) != 0)
-				&& (ft_strncmp(&lexer[i][j], "||", 2) != 0) && (ft_strncmp(lexer[i], "<<", 3) != 0)
-				&& (ft_strncmp(lexer[i], ">>", 3) != 0) && (ft_strncmp(lexer[i], "||", 3) != 0))
-					lexer = ft_case_single_double(lexer, token, &i, &j);
-			if (lexer[i][j])
-				j++;
+			if (is_token(t.lx[t.i][t.j]) && (ft_strlen(t.lx[t.i]) != 2)
+				&& (ft_between_quotes(t.lx[t.i], t.j) == 0)
+				&& is_double_token(&t))
+				t.lx = ft_case_single_double(&t);
+			else if (is_token(t.lx[t.i][t.j]) && (ft_strlen(t.lx[t.i]) != 1) &&
+					(ft_between_quotes(t.lx[t.i], t.j) == 0)
+					&& !is_double_token(&t) && is_not_alone(&t))
+				t.lx = ft_case_single_double(&t);
+			if (t.lx[t.i][t.j])
+				(t.j)++;
 		}
-		if (lexer[i])
-			i++;
+		if (t.lx[t.i])
+			(t.i)++;
 	}
-	return (lexer);
+	return (t.lx);
 }

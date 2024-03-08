@@ -23,7 +23,7 @@ MAIN = main
 
 MAIN_DEBUG = main_debug
 
-SRC_FILES = lexer/lexer_split lexer/lexer lexer/tokens lexer/lst_init lexer/ft_quotes lexer/syntax_errors lexer/lexer_types\
+SRC_FILES = lexer/lexer_split lexer/lexer lexer/tokens lexer/tokens_aux lexer/lst_init lexer/ft_quotes lexer/syntax_errors lexer/lexer_types\
 			parser/parser parser/find_path parser/lst_mini parser/errors parser/ft_aux\
 			executer/execute executer/here_doc executer/exec_aux \
 			builtins/builtins builtins/ft_cd builtins/ft_export builtins/ft_unset builtins/ft_echo \

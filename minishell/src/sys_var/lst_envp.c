@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 14:03:51 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/02/17 17:28:36 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:50:19 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ t_envp	*envp_new(char *envp)
 	char	**splitted;
 
 	new = malloc(sizeof(t_envp));
+	if (!new)
+		return (0);
 	splitted = ft_split(envp, '=');
 	new->id = ft_strdup(splitted[0]);
 	new->id = ft_strjoin(new->id, "=");

@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:39:10 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/02/15 15:58:43 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/03/08 17:50:45 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 void	unset_node(t_envp *aux)
 {
+	t_envp	*tmp;
+
 	if (aux->next->next)
 	{
+		tmp = aux->next->next;
 		free(aux->next->id);
 		free(aux->next->value);
-		free(aux->next); // Si haces free a aux->next, pierdes acceso a aux->next->next
-		aux->next = aux->next->next; // Además no se está enlazando el anterior nodo con el nuevo actual
+		free(aux->next);
+		aux->next = tmp;
 	}
 	else
 	{
@@ -28,6 +31,17 @@ void	unset_node(t_envp *aux)
 		free(aux->next);
 		aux->next = NULL;
 	}
+}
+
+void	unset_first(t_envp *aux)
+{
+	t_envp	*tmp;
+	
+	tmp = aux->next;
+	free(aux->id);
+	free(aux->value);
+	free(aux);
+	aux = tmp;
 }
 
 void	unset_error(char *str)
@@ -43,6 +57,8 @@ void	unset_error(char *str)
 
 void	ft_unset_helper(t_envp *aux, char *id)
 {
+	if (!ft_strncmp(aux->id, id, ft_strlen(id)))
+		unset_first(aux);
 	while (aux)
 	{
 		if (aux->next && !ft_strncmp(aux->next->id, id, ft_strlen(id)))
@@ -71,7 +87,6 @@ void	ft_unset(t_envp **envp, char **args)
 			{
 				aux = *envp;
 				ft_unset_helper(aux, id);
-				g_status = 0;
 			}
 			free(id);
 		}

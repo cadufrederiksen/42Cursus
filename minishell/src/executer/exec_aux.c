@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_aux.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:37:06 by isporras          #+#    #+#             */
-/*   Updated: 2024/02/20 17:37:06 by isporras         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:47:03 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ int	ft_init_data_exec(t_mini **mini, t_exec **exec)
 {
 	*exec = malloc(sizeof(t_exec));
 	if (!*exec)
-		return (ft_perror_mod("malloc error", "exec", 1), g_status);
+		return (ft_perror_mod("malloc error", "exec", 1), 1);
 	(*exec)->aux = *mini;
 	if (!(*exec)->aux)
-		return (g_status);
+		return (1);
 	(*exec)->total_cmnds = (*exec)->aux->total_cmnds;
 	(*exec)->tmpin = dup(STDIN_FILENO);
 	(*exec)->tmpout = dup(STDOUT_FILENO);

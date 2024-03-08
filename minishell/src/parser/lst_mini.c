@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_mini.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 14:13:15 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/02/19 17:59:42 by isporras         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:49:50 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ t_mini	*ft_mini_new(int lap, t_envp **envp_list, int broken)
 	t_mini	*mini;
 
 	mini = malloc(sizeof(t_mini));
+	if (!mini)
+		return (0);
 	mini->full_cmd = NULL;
 	mini->full_path = NULL;
 	mini->infile = STDIN_FILENO;

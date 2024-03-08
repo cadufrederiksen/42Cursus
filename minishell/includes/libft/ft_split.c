@@ -6,7 +6,7 @@
 /*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 17:10:28 by isporras          #+#    #+#             */
-/*   Updated: 2023/10/19 12:47:33 by isporras         ###   ########.fr       */
+/*   Updated: 2024/03/05 16:23:32 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ char	**ft_split(char const *s, char c)
 {
 	char	**ans;
 
+	if (!s)
+		return (NULL);
 	ans = (char **)malloc((ft_countl(s, c) + 1) * sizeof(char *));
 	if (!ans)
 		return (NULL);

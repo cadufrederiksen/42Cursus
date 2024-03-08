@@ -3,14 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   main_debug.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:46:14 by isporras          #+#    #+#             */
-/*   Updated: 2024/02/19 18:11:40 by isporras         ###   ########.fr       */
+/*   Updated: 2024/03/08 17:01:30 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	ft_print_envp_list(t_envp *envp)//borrar despues
+{
+	t_envp	*tmp;
+
+	tmp = envp;
+	printf("ENV LIST:\n");
+	while (tmp != NULL)
+	{
+		printf("%s", tmp->id);
+		printf("%s\n", tmp->value);
+		tmp = tmp->next;
+	}
+	printf("\n");
+}
 
 void	ft_print_mini_lst(t_mini **mini)
 {
@@ -46,32 +61,34 @@ void	ft_print_list(t_lexer **lexer)
 	}
 }
 
+void	ft_init_main_var(t_main *m)
+{
+	m->envp_list = NULL;
+	m->lexer = NULL;
+	m->mini = NULL;
+	m->log = NULL;
+}
+
 int g_status;
 
 //MAIN DEBUG
  int	main(int argc, char **argv, char **envp)
  {
- 	t_lexer	*lexer;
- 	t_mini	*mini;
- 	t_envp	*envp_list;
+ 	t_main	m;
 
- 	envp_list = NULL;
- 	lexer = NULL;
- 	mini = NULL;
- 	g_status = 0;
- 	char	*input = ft_strdup("ls -l |  ");
+	ft_init_main_var(&m);
+ 	ft_init_var(envp, &m.envp_list);
+ 	m.input = ft_strdup("unset USER");
  	if (!argv && !argc)
  		return (1);
- 	ft_init_var(envp, &envp_list);
- 	ft_quotes_input(&input);
-	ft_lexer(&lexer, input, &envp_list);
-	if (ft_parser(&lexer, &mini, &envp_list) == -1)
+ 	ft_quotes_input(&m.input);
+	ft_lexer(&m);
+	if (ft_parser(&m) == 0)
 	{
-		ft_print_list(&lexer);
-		ft_executer(&mini);
+		m.exit_status = ft_executer(&m.mini, m.exit_status);
 	}
 	//ft_print_mini_lst(&mini);
-	ft_free_lsts(&lexer, &mini);
+	ft_free_lsts(&m.lexer, &m.mini);
  	//ft_print_mini_lst(&mini);
  	//ft_free_lsts(&lexer, &mini);
 	printf("last status end: %d\n", g_status);

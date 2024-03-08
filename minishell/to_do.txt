@@ -1,15 +1,12 @@
 signal handling (ctrl+C, ctrl+D, ctrl+\)
 cat <"./test_files/infile_big" 
 
-Cuando estas en un readline por un pipe al final del input, no va ctrl+d ni ctr+c
+Cuando estas en un readline por un pipe al final del input, no va ctrl+d ni ctr+c //Caso raro pero lo miraria
 
 DUDA GRANDE: No sé si tenemos que implementar los ";" (En la hoja de evaluación no piden nada relacionado)
 
-unset $PATH no funciona (Revisar funcón de unset)//eso esta bien pero al hacer eso y ejecutar un cmd da seg fault
 
-APARTADO SEÑALES DE LA HOJA DE EVALUACIÓN
-
-Check the global variable. This global variable cannot provide any other information or data access than the number of a received signal. //Esto hay que checkearlo porque en realidad nosotros la usamos para el exit_status
+APARTADO SEÑALES DE LA HOJA DE EVALUACIÓNca
 
 ctrl-C in an empty prompt should display a new line with a new prompt.
 ctrl-\ in an empty prompt should not do anything.

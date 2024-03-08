@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:01:56 by isporras          #+#    #+#             */
-/*   Updated: 2024/02/22 17:01:56 by isporras         ###   ########.fr       */
+/*   Updated: 2024/02/26 18:12:20 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	export_error(char *str)
+int	export_error(char *str, t_exec *x)
 {
 	ft_putstr_fd("bash: ", 2);
 	ft_putstr_fd("cd: ", 2);
@@ -21,23 +21,23 @@ int	export_error(char *str)
 	ft_putchar_fd('\'', 2);
 	ft_putstr_fd(": ", 2);
 	ft_putstr_fd("not a valid identifier\n", 2);
-	g_status = 1;
+	x->exit_status = 1;
 	return (0);
 }
 
-int	check_errors(char *str)
+int	check_errors(char *str, t_exec *x)
 {
 	int	i;
 
 	i = 0;
 	if (str[0] == '=' || str[0] == '0' || ft_atoi(str))
-		return (export_error(str));
+		return (export_error(str, x));
 	else if (ft_strchr(str, '-'))
 	{
 		while (str && str[i] != '=')
 		{
 			if (str[i] == '-')
-				return (export_error(str));
+				return (export_error(str, x));
 			i++;
 		}
 	}
@@ -46,7 +46,7 @@ int	check_errors(char *str)
 	return (1);
 }
 
-void	ft_export(t_envp **envp_list, char **new_var)
+int	ft_export(t_envp **envp_list, char **new_var, t_exec *exec)
 {
 	char	**splitted;
 	char	*id;
@@ -56,7 +56,7 @@ void	ft_export(t_envp **envp_list, char **new_var)
 	x = 0;
 	while (new_var[x])
 	{
-		if (check_errors(new_var[x]) && new_var[x])
+		if (check_errors(new_var[x], exec) && new_var[x])
 		{
 			splitted = ft_split(new_var[x], '=');
 			id = ft_strdup(splitted[0]);
@@ -74,4 +74,5 @@ void	ft_export(t_envp **envp_list, char **new_var)
 		}
 		x++;
 	}
+	return (exec->exit_status);
 }

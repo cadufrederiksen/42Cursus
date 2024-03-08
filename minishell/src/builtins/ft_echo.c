@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 12:29:47 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/02/15 16:09:14 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:00:00 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,4 @@ void	ft_echo(char **cmd, int fd)
 	}
 	if (!flag)
 		write(fd, "\n", 1);
-	g_status = 0;
 }
