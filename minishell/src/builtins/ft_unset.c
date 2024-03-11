@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:39:10 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/03/08 17:50:45 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/03/11 16:53:58 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,16 @@ void	unset_node(t_envp *aux)
 	}
 }
 
-void	unset_first(t_envp *aux)
+void	unset_first(t_envp **envp)
 {
 	t_envp	*tmp;
 	
-	tmp = aux->next;
-	free(aux->id);
-	free(aux->value);
-	free(aux);
-	aux = tmp;
+	tmp = (*envp)->next;
+	free((*envp)->id);
+	free((*envp)->value);
+	free((*envp));
+	*envp = NULL;
+	*envp = tmp;
 }
 
 void	unset_error(char *str)
@@ -55,10 +56,13 @@ void	unset_error(char *str)
 	ft_putstr_fd("not a valid identifier\n", 2);
 }
 
-void	ft_unset_helper(t_envp *aux, char *id)
+void	ft_unset_helper(t_envp **envp, char *id)
 {
+	t_envp *aux;
+
+	aux = *envp;
 	if (!ft_strncmp(aux->id, id, ft_strlen(id)))
-		unset_first(aux);
+		unset_first(envp);
 	while (aux)
 	{
 		if (aux->next && !ft_strncmp(aux->next->id, id, ft_strlen(id)))
@@ -72,7 +76,6 @@ void	ft_unset_helper(t_envp *aux, char *id)
 
 void	ft_unset(t_envp **envp, char **args)
 {
-	t_envp	*aux;
 	int		x;
 	char	*id;
 
@@ -84,10 +87,7 @@ void	ft_unset(t_envp **envp, char **args)
 			id = ft_strdup(args[x]);
 			id = ft_strjoin(id, "=");
 			if (find_env(envp, id))
-			{
-				aux = *envp;
-				ft_unset_helper(aux, id);
-			}
+				ft_unset_helper(envp, id);
 			free(id);
 		}
 		else
