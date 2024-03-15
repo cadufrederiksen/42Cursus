@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_debug.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 12:46:14 by isporras          #+#    #+#             */
-/*   Updated: 2024/03/08 17:01:30 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/03/14 10:49:20 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int g_status;
 
 	ft_init_main_var(&m);
  	ft_init_var(envp, &m.envp_list);
- 	m.input = ft_strdup("unset USER");
+ 	m.input = ft_strdup("echo ");
  	if (!argv && !argc)
  		return (1);
  	ft_quotes_input(&m.input);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_errors.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: isporras <isporras@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 17:39:40 by isporras          #+#    #+#             */
-/*   Updated: 2024/02/17 15:45:35 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:41:13 by isporras         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ char	*ft_check_end_pipe(char *input)
 {
 	char	*new_input;
 
-	while (ft_end_pipe(input) == 1)
+	g_status = HEREDOC;
+	while (ft_end_pipe(input) == 1 && g_status != EXIT_CMD)
 	{
 		new_input = readline(">");
 		if (new_input)
@@ -41,6 +42,7 @@ char	*ft_check_end_pipe(char *input)
 			free(new_input);
 		}
 	}
+	g_status = HEREDOC_END;
 	return (input);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_aux.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:55:05 by isporras          #+#    #+#             */
-/*   Updated: 2024/02/26 17:44:47 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:38:57 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,6 @@ int	ft_check_is_dir(char *path)
 	}
 }
 
-int	ft_check_permission(char *path)
-{
-	if (access(path, X_OK) != 0)
-		return (126);
-	return (0);
-}
-
 void	ft_broken_pipe(t_lexer **lexer, int pipe)
 {
 	t_lexer	*aux;
@@ -53,6 +46,25 @@ void	ft_broken_pipe(t_lexer **lexer, int pipe)
 	}
 }
 
+void	bad_input_aux(t_lexer **lexer, t_main *m, t_lexer *x, int pipe)
+{
+	if (x->type == LESS || x->type == GREATER || x->type == D_GREATER)
+	{
+		if (x->broken == 0
+			&& ((x->type == LESS && open((x->next)->word, 0) == -1)
+				|| (x->type == GREATER
+					&& open((x->next)->word, 1 | O_CREAT
+						| O_TRUNC, 0644) == -1)
+				|| (x->type == D_GREATER
+					&& open((x->next)->word, 1 | O_CREAT
+						| O_APPEND, 0644) == -1)))
+		{
+			m->exit_status = ft_perror_mod((x->next)->word, strerror(errno), 1);
+			ft_broken_pipe(lexer, pipe);
+		}
+	}
+}
+
 void	ft_check_bad_input(t_lexer **lexer, t_main *m)
 {
 	t_lexer	*x;
@@ -65,20 +77,8 @@ void	ft_check_bad_input(t_lexer **lexer, t_main *m)
 		if (x->type == PIPE)
 			pipe++;
 		if (x->type == LESS || x->type == GREATER || x->type == D_GREATER)
-		{
-			if (x->broken == 0
-				&& ((x->type == LESS && open((x->next)->word, 0) == -1)
-					|| (x->type == GREATER
-						&& open((x->next)->word, 1 | O_CREAT | O_TRUNC, 0644) == -1)
-					|| (x->type == D_GREATER
-						&& open((x->next)->word, 1 | O_CREAT | O_APPEND, 0644) == -1)))
-			{
-				m->exit_status = ft_perror_mod((x->next)->word, strerror(errno), 1);
-				ft_broken_pipe(lexer, pipe);
-			}
-		}
-		if (x)
-			x = x->next;
+			bad_input_aux(lexer, m, x, pipe);
+		x = x->next;
 	}
 }
 

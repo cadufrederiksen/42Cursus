@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:32:01 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/03/04 16:47:10 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:52:44 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_exit(char **cmd, int exit_sts)
 		else
 		{
 			ft_perror_mod("exit", "numeric argument required", 2);
-			exit(2);//255
+			exit(255);
 		}
 	}
 	else

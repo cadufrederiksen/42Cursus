@@ -132,6 +132,8 @@ char	**ft_split_lexer(char const *s, char c)
 	{
 		while (s[i] == c)
 			i++;
+		if (s[i] == '\0')
+			break ;
 		if (s[i] == '\'' || s[i] == '\"')
 			ft_malloc_quotes(s, &i, &j, str);
 		else

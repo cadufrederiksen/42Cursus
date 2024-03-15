@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 14:03:51 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/03/04 15:50:19 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/03/15 16:55:38 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	create_envp(t_envp **envp_list, char **envp)
 	int	x;
 
 	x = 0;
+	
 	while (envp[x])
 	{
 		add_new_envp(envp_list, envp_new(envp[x]));

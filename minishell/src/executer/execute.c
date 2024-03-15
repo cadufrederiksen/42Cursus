@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 12:42:14 by isporras          #+#    #+#             */
-/*   Updated: 2024/03/04 15:40:48 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:07:41 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,7 @@ void	ft_child_process(t_mini *aux, t_exec *x)
 	else if (execve(aux->full_path, aux->full_cmd, NULL) == -1)
 	{
 		ft_perror_mod(aux->full_path, strerror(errno), 1);
-		ft_check_permission(aux->full_path);
-		x->exit_status = 1;
+		x->exit_status = ft_check_permission(aux->full_path);
 	}
 	exit(x->exit_status);
 }

@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 13:39:10 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/03/11 16:53:58 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:36:45 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	unset_node(t_envp *aux)
 void	unset_first(t_envp **envp)
 {
 	t_envp	*tmp;
-	
+
 	tmp = (*envp)->next;
 	free((*envp)->id);
 	free((*envp)->value);
@@ -58,7 +58,7 @@ void	unset_error(char *str)
 
 void	ft_unset_helper(t_envp **envp, char *id)
 {
-	t_envp *aux;
+	t_envp	*aux;
 
 	aux = *envp;
 	if (!ft_strncmp(aux->id, id, ft_strlen(id)))

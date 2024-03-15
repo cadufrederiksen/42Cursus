@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 17:01:56 by isporras          #+#    #+#             */
-/*   Updated: 2024/02/26 18:12:20 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:48:55 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	ft_export(t_envp **envp_list, char **new_var, t_exec *exec)
 {
 	char	**splitted;
 	char	*id;
-	char	*value;
 	int		x;
 
 	x = 0;
@@ -62,14 +61,12 @@ int	ft_export(t_envp **envp_list, char **new_var, t_exec *exec)
 			id = ft_strdup(splitted[0]);
 			id = ft_strjoin(id, "=");
 			if (splitted[1])
-				value = ft_strdup(splitted[1]);
+				ft_strdup(splitted[1]);
 			if (!find_env(envp_list, id))
 				add_new_envp(envp_list, envp_new(new_var[x]));
 			else
-				change_env(envp_list, id, value);
+				change_env(envp_list, id, splitted[1]);
 			free(id);
-			if (splitted[1])
-				free(value);
 			ft_free_2d(splitted);
 		}
 		x++;

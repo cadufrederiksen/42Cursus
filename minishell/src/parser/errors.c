@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:09:44 by isporras          #+#    #+#             */
-/*   Updated: 2024/02/26 17:42:31 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:31:52 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,13 @@ int	ft_cmnd_error(char *error, char *boole)
 		return (127);
 	}
 	return (0);
+}
+
+int	ft_check_permission(char *path)
+{
+	if (access(path, X_OK) != 0)
+		return (126);
+	return (1);
 }
 
 /* int	ft_file_error(int infd, char *file)
