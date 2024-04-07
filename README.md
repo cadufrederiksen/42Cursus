@@ -1,1 +1,1 @@
-Repository to my journey in 42 Málaga Telefónica
+Repository with my journey at 42 Málaga Telefónica
