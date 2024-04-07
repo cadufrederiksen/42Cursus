@@ -1,6 +1,6 @@
 <a href="#" onclick="return false;"><img alt="42 Logo" src="https://github.com/zafraedu/42/blob/master/public/42-malaga-logo.jpg"></a>
 
-42 Málaga es una academia disruptiva de programación que enfatiza los valores, habilidades técnicas y sociales. Con el respaldo de importantes entidades, ofrece formación adaptada a los desafíos y perfiles digitales del mercado laboral. Su enfoque innovador incluye gamificación, aprendizaje entre iguales y promoción de la creatividad y el trabajo en equipo. UPTOYOU permite a los estudiantes elegir su propio ritmo y área de estudio.
+Unlike traditional educational institutions, 42 operates on a tuition-free and merit-based admission model. It focuses on project-based learning and peer-to-peer collaboration, with no teachers or lectures. Instead, students learn through hands-on coding challenges and teamwork, developing practical skills in programming, problem-solving, and creativity. The school's innovative approach has gained international recognition for its ability to produce highly skilled software engineers in a short period of time. With campuses expanding globally, 42 continues to disrupt traditional education and empower individuals to succeed in the tech industry through self-directed learning and collaboration
 
 ## Etapas
 
