@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 13:55:30 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/03/04 15:35:14 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/03/16 16:56:19 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	signal_helper(void)
 {
 	rl_on_new_line();
 	rl_redisplay();
-	ft_putchar_fd('\n', 1);
 	rl_replace_line("", 0);
+	ft_putchar_fd('\n', 1);
 	rl_on_new_line();
 	rl_redisplay();
 	g_status = CTRL_C;

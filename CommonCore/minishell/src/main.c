@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 14:19:24 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/03/15 17:48:27 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/03/16 17:17:18 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,17 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_main	m;
 
+	char *new;
 	if (argc > 1 && argv)
 		return (printf("Wrong number of arguments\n"), 1);
+	//ft_print_split(envp);
 	ft_init_main_var(&m);//preciso passar char **envp para mini list
 	atexit(ft_leaks);
 	ft_init_var(envp, &m.envp_list);
+	new = find_env(&m.envp_list, "SHLVL");
+	new = ft_itoa(ft_atoi(new) + 1);
+	change_env(&m.envp_list, "SHLVL", new);
+	free(new);
 	ft_main_loop(&m);
 	final_free(m.log, m.input, &m.envp_list);
 }

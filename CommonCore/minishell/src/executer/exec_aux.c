@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:37:06 by isporras          #+#    #+#             */
-/*   Updated: 2024/03/15 18:03:14 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/03/16 17:03:14 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,15 @@ char	**envp_to_str(t_envp **envp_list)
 	int x;
 
 	x = 0;
-	envp = (char **)malloc((size_envp(envp_list) + 1) * sizeof(char *));
+	envp = malloc((size_envp(envp_list) * sizeof(char *)) + 1);
 	aux = *envp_list;
 	while (aux)
 	{
 		envp[x] = strdup(aux->id);
-		ft_strjoin(envp[x], aux->value);
+		envp[x] = ft_strjoin(envp[x], aux->value);
+		aux = aux->next;
 		x++;
 	}
+	envp[x] = NULL;
 	return (envp);
 }

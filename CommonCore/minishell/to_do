@@ -4,4 +4,4 @@ Segfault Tema carpeta actual borrada o permisos quitados arreglado
 Double free de comandos con espacio arreglado
 
 Falta:
-- No entiendo por qué la segunda instancia de minishell no hereda envp
+- No entiendo por qué la segunda instancia de minishell no hereda envp arreglado

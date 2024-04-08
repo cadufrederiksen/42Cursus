@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 12:42:14 by isporras          #+#    #+#             */
-/*   Updated: 2024/03/15 18:07:41 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/03/16 17:05:14 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ void	ft_set_next_pipe(t_exec *exec)
 
 void	ft_child_process(t_mini *aux, t_exec *x)
 {
+	char **str_env;
+
+	str_env = envp_to_str(aux->envp);
 	dup2(aux->infile, STDIN_FILENO);
 	if (aux->infile != 0)
 		close(aux->infile);
@@ -52,7 +55,7 @@ void	ft_child_process(t_mini *aux, t_exec *x)
 		close ((aux->next)->infile);
 	if (ft_is_builtin(aux->full_cmd[0]) == 1)
 		x->exit_status = ft_builtins(aux->envp, aux, x);
-	else if (execve(aux->full_path, aux->full_cmd, NULL) == -1)
+	else if (execve(aux->full_path, aux->full_cmd, str_env) == -1)
 	{
 		ft_perror_mod(aux->full_path, strerror(errno), 1);
 		x->exit_status = ft_check_permission(aux->full_path);
