@@ -8,7 +8,7 @@ Unlike traditional educational institutions, 42 operates on a tuition-free and m
   <a href="https://github.com/cadufrederiksen/42Cursus/tree/main/Piscina_42">
     <img src="https://github.com/zafraedu/42/blob/master/public/piscine.png" width="30%"/>
   </a>
-  <a href="https://github.com/cadufrederiksen/42Cursus">
+  <a href="https://github.com/cadufrederiksen/42Cursus/tree/main/CommonCore">
     <img src="https://github.com/zafraedu/42/blob/master/public/common_core.png" width="30%"/>
   </a>
   
