@@ -3,7 +3,7 @@
 
 void    ft_putstr(char *str, int* resultlen)
 {
-    if (!str)
+    if (!str)//se nao houver str, str  = (null)
         str ="(null)";
     while (*str)
     {
@@ -12,7 +12,7 @@ void    ft_putstr(char *str, int* resultlen)
     }
 }
 
-void    ft_putdigit(long long nbr, int base, int *resultlen)
+void    ft_putdigit(long long nbr, int base, int *resultlen)//long long int
 {
     char *str = "0123456789abcdef";
     if (nbr < 0)
@@ -20,7 +20,7 @@ void    ft_putdigit(long long nbr, int base, int *resultlen)
         nbr *= -1;
         *resultlen += write(1, "-", 1);
     }
-    if (nbr >= base)
+    if (nbr >= base)//putnbr normal
     {
         ft_putdigit((nbr / 10), base, resultlen);
         nbr %= base;
@@ -30,28 +30,27 @@ void    ft_putdigit(long long nbr, int base, int *resultlen)
 
 int ft_printf(const char *str, ...)
 {
+    int resultlen;//total de caracteres escritos
+    va_list args; //args
 
-    int resultlen;
-    va_list args;
-
-    resultlen = 0;
-    va_start (args, str);
+    resultlen = 0; 
+    va_start (args, str); //inicializa los args
     while (*str)
     {
-        if (*str == '%' && (*(str + 1) == 'c' || *(str + 1) == 'd' || *(str + 1) == 'x'))
+        if (*str == '%' && (*(str + 1) == 'c' || *(str + 1) == 'd' || *(str + 1) == 'x'))// si la posicion es un % busca a seguinte
         {
-            str++;
+            str++;//avança para a letra e filtra
             if (*str == 's')
-                ft_putstr(va_arg(args, char *), &resultlen);
+                ft_putstr(va_arg(args, char *), &resultlen); //putstr normal
             if (*str == 'd')
-                ft_putdigit(va_arg(args, long long int), 10, &resultlen);
+                ft_putdigit(va_arg(args, long long int), 10, &resultlen);//putnbr que serve para os dois 
             if (*str == 'x')      
                 ft_putdigit(va_arg(args, long long int), 16, &resultlen);
         }
         else 
-            resultlen += write(1, str, 1);
+            resultlen += write(1, str, 1); //se nao so escreve
         str++;
     }  
-    va_end(args);
+    va_end(args); //termina os argumentos
     return (resultlen);
 }

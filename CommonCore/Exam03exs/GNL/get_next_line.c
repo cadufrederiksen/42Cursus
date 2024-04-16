@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 17:12:09 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/04/16 13:51:20 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/04/16 14:51:37 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,11 @@ char *ft_strcpy(char *og, char *dest)
     return (dest);
 }
 
-char *ft_strdup(char *src, char *dest)
+char *ft_strdup(char *src)
 {
     int i;
-
+    char *dest;
+    
     i = 0;
     dest = (char *)malloc(ft_strlen(src) + 1);
     if (!dest)
@@ -98,30 +99,47 @@ char *ft_strjoin(char *src, char *dest)
 
 char *get_next_line (int fd)
 {
-    static char buff[BUFFER_SIZE + 1];
-    char *all;
-    char *line;
-    int line_end;
-    int bt_read;
+    static char buff[BUFFER_SIZE + 1];//guarda o que é lido
+    char *all; //guarda temporariamente o que há depois do '\n'
+    char *line; //linha a ser devolvida 
+    int line_end; //onde é o final da linha a ser devolvida
+    int bt_read; // quantidade de bts lidos
 
-    line = ft_strdup(line, buff);
-    while (!(all = ft_strchr(line, '\n')) && (bt_read = read(fd, buff, BUFFER_SIZE)) > 0)
+    line = ft_strdup(buff); //coloca o que esté em buff para line
+    while (!(all = ft_strchr(line, '\n')) && (bt_read = read(fd, buff, BUFFER_SIZE)) > 0)//enquanto n encontrar um salto de linha e tiver algo a ser lido (o que há depois do salto de linha é guardado em all)
     {
-        buff[BUFFER_SIZE] = '\0';
-        line = ft_strjoin(line, buff);
+        buff[BUFFER_SIZE] = '\0';//adiciona um nulo ao final
+        line = ft_strjoin(line, buff); //vai juntado tudo que for lido em line
     }
-    if (ft_strlen(line) == 0)
-        return (free(line), 0);
-    if (all != NULL)
+    if (ft_strlen(line) == 0)// se nao há nada em line
+        return (free(line), NULL); //free de line e devolve 0
+    if (all != NULL) // se há um \n
     {
-        line_end = (ft_strlen(all) - ft_strlen(line)) + 1;
-        ft_strcpy(buff, all);
+        line_end = all - line + 1; //final igual o (tamanho de tudo - o tamanho da linha) + 1
+        ft_strcpy(all + 1, buff);//atualiza o buff, copiando o que há depois do '\n' para buff
     }
     else
     {
-        line_end = ft_strlen(line);
-        buff[0] = '\0';
+        line_end = ft_strlen(line);//se nao houver \n copia tudo que tiver sido lido
+        buff[0] = '\0';//free de buff
     }
-    line[line_end] = '\0';
-    return (line);   
+    line[line_end] = '\0';//coloca um nulo ao final
+    return (line);  //devolve line
+}
+
+int main ()
+{
+    int fd;
+    char *line;
+    
+    fd = open("txt.txt", O_RDONLY);
+    line = get_next_line(fd);
+    printf("%s", line);
+    free(line);
+    line = get_next_line(fd);
+    printf("%s", line);
+    free(line);
+    line = get_next_line(fd);
+    printf("%s", line);
+    free(line);
 }
