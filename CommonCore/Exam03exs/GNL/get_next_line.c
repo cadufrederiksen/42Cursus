@@ -108,7 +108,7 @@ char *get_next_line (int fd)
     line = ft_strdup(buff); //coloca o que esté em buff para line
     while (!(all = ft_strchr(line, '\n')) && (bt_read = read(fd, buff, BUFFER_SIZE)) > 0)//enquanto n encontrar um salto de linha e tiver algo a ser lido (o que há depois do salto de linha é guardado em all)
     {
-        buff[BUFFER_SIZE] = '\0';//adiciona um nulo ao final
+        buff[bt_read] = '\0';//adiciona um nulo ao final
         line = ft_strjoin(line, buff); //vai juntado tudo que for lido em line
     }
     if (ft_strlen(line) == 0)// se nao há nada em line
