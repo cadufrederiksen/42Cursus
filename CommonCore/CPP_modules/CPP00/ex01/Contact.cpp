@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 14:57:00 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/09/22 19:05:15 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/10/25 12:43:41 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void		Contact::set_fname(void){
 	while(input.empty() && std::cin.good())
 	{
 		std::cout << "Please enter your first name: ";
-		std::getline(std::cin, input);
+		std::cin >> input;
 		if (input.empty())
 			std::cout << "First name can't be empty!" << std::endl;
 	}
@@ -58,7 +58,7 @@ void		Contact::set_lname(void)
 	while(input.empty() && std::cin.good())
 	{
 		std::cout << "Please enter your last name: ";
-		std::getline(std::cin, input);
+		std::cin >> input;
 		if (input.empty())
 			std::cout << "Last name can't be empty!" << std::endl;	
 	}
@@ -72,7 +72,7 @@ void		Contact::set_nickname(void)
 	while(input.empty() && std::cin.good())
 	{
 		std::cout << "Please enter your nickname: ";
-		std::getline(std::cin, input);
+		std::cin >> input;
 		if (input.empty())
 			std::cout << "Nickname can't be empty" << std::endl;
 	}
@@ -86,7 +86,7 @@ void		Contact::set_phone(void)
 	while (input.empty() && std::cin.good())
 	{
 		std::cout << "Please enter your number: ";
-		std::getline(std::cin, input);
+		std::cin >> input;
 		if (input.empty())
 			std::cout << "Number can't be empty" << std::endl;
 		else
@@ -112,7 +112,7 @@ void		Contact::set_secret(void)
 	while(input.empty() && std::cin.good())
 	{
 		std::cout << "Please enter your darkest secret: ";
-		std::getline(std::cin, input);
+		std::cin >> input;
 		if (input.empty())
 			std::cout << "Your darkest secret can't be empty" << std::endl;
 	}

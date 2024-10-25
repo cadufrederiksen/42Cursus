@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 12:04:13 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/09/22 21:15:13 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/10/25 12:44:13 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	PhoneBook::search(void)
 	}
 	std::string input;
 	std::cout << "Select a index: ";
-	std::getline(std::cin, input);
+	std::cin >> input;
 	if ((input[0] && (input[0] >= '0' && input[0] <= '7')) && input.length() == 1)
 	{
 		int idx = input[0] - '0';
