@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.hpp                                       :+:      :+:    :+:   */
+/*   Ice.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 19:03:16 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/10/25 13:07:54 by carmarqu         ###   ########.fr       */
+/*   Created: 2024/10/25 13:01:35 by carmarqu          #+#    #+#             */
+/*   Updated: 2024/10/25 13:04:43 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AMATERIA_HPP
-	#define AMATERIA_HPP
+#ifndef ICE_HPP
+	#define ICE_HPP
 
-#include <iostream>
+#include "AMateria.hpp"
 
-class Amateria{
-	
-	protected:
-		std::string type;
-		
+class Ice : public Amateria
+{
 	public:
-		Amateria(std::string const &type);
-		Amateria(const Amateria &orig);
-		Amateria& operator=(const Amateria &orig);
-		~Amateria();
-
-		std::string const &getType() const;
-		virtual Amateria* clone() const = 0;
-		//virtual void use(ICharacter &target);
+		Ice(std::string const type);
+		Ice(const Ice& orig);
+		Ice& operator=(const Ice& orig);
+		~Ice();
 };
 
 #endif
-

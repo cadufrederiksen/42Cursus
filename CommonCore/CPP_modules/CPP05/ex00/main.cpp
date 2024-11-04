@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.hpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 19:03:16 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/10/25 13:07:54 by carmarqu         ###   ########.fr       */
+/*   Created: 2024/11/04 17:59:40 by carmarqu          #+#    #+#             */
+/*   Updated: 2024/11/04 18:52:37 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AMATERIA_HPP
-	#define AMATERIA_HPP
+#include "Bureacraut.hpp"
 
-#include <iostream>
-
-class Amateria{
-	
-	protected:
-		std::string type;
-		
-	public:
-		Amateria(std::string const &type);
-		Amateria(const Amateria &orig);
-		Amateria& operator=(const Amateria &orig);
-		~Amateria();
-
-		std::string const &getType() const;
-		virtual Amateria* clone() const = 0;
-		//virtual void use(ICharacter &target);
-};
-
-#endif
-
+int main ()
+{
+    try 
+    {
+        Bureacraut b(150 + 1, "John");
+    }
+    catch (const Bureacraut::GradeTooLowException& e)
+    {
+        std::cerr << e.what();
+    }
+    catch (const Bureacraut::GradeTooHighException& c)
+    {
+        std::cerr << c.what();
+    }
+}
