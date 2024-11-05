@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:38 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/11/05 14:40:23 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/11/05 22:12:30 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,11 @@ std::ostream &operator<<(std::ostream &os, const Bureacraut &obj)
 {
 	os << obj.getGrade() << ", bureacraut grade " << obj.getGrade();
 	return (os);
+}
+
+void Bureacraut::signForm(Form& form)
+{ 
+	//usar excecao do form dentro do block try catch
+	//usar a funcao be signed do form
+	
 }
