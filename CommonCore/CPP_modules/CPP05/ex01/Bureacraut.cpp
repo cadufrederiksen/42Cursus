@@ -6,13 +6,13 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:38 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/11/06 23:36:12 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/11/06 23:37:37 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureacraut.hpp"
 
-Bureacraut::Bureacraut() : _grade(150), _name("name");
+Bureacraut::Bureacraut() : _grade(150), _name("name")
 {
 	std::cout << "Bureacraut default contructor called" << std::endl;
 }

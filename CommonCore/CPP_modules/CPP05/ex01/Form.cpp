@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:10:47 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/11/06 23:33:42 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/11/06 23:41:49 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,3 +40,27 @@ Form::Form(const Form &orig) : _name(orig._name), _gradeExec(orig._gradeExec), _
     std::cout << "Form copy constructor called" << std::endl;
 }
 
+Form::~Form()
+{
+    std::cout << "Form destructor called" << std::endl;
+}
+
+bool Form::getSigned()
+{
+    return _signed;
+}
+
+const std::string Form::getName()
+{
+    return _name;
+}
+
+const int Form::getGradeExec()
+{
+    return _gradeExec;
+}
+
+const int Form::getGradeSign()
+{
+    return _gradeSign;
+}
