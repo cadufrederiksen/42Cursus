@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:10:18 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/11/05 15:38:46 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/11/06 17:50:13 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,15 @@ class Form
 		const int _gradeExec;
 
 	public:
-		Form(std::string name, int _gradeSign, int _gradeExec);
+		Form();
+		Form(std::string name, int gradeSign, int gradeExec);
 		Form(const Form &orig);
 		Form &operator=(const Form &orig);
 		~Form();
 
 		void beSigned(const Form &obj);
-		bool getSigned();
+		
+		//bool getSigned(); getters
 		std::string getName();
 		int 		getGradeExec();
 		int 		getGradeSign();

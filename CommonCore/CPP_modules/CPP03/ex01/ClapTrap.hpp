@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 20:02:09 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/10/15 18:10:22 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/11/06 16:53:02 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ class ClapTrap{
 		unsigned int AttackDamage;
 		
 	public:
+		ClapTrap();
 		ClapTrap(std::string name);
 		ClapTrap(const ClapTrap& copy);
 		ClapTrap& operator=(const ClapTrap& copy);

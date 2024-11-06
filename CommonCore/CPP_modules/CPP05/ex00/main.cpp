@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:59:40 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/11/05 14:49:57 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/11/06 15:16:41 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int main ()
 {
     try 
     {
-        Bureacraut b(160, "John");
+        Bureacraut b(10, "John");
         std::cout << b << std::endl;
-        b.DecrementGrade(11);
+        b.DecrementGrade(1);
         std::cout << b << std::endl;
         b.IncrementGrade(12);
         std::cout << b << std::endl;

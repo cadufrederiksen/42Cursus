@@ -6,20 +6,25 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 00:03:28 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/10/18 15:37:57 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/11/06 17:04:14 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name), FragTrap(name), ScavTrap(name)
+DiamondTrap::DiamondTrap() : ClapTrap("name_clap_name"), FragTrap("name"), ScavTrap("name"), HitPoints(FragTrap::HitPoints), EnergyPoints(ScavTrap::EnergyPoints), AttackDamage(FragTrap::AttackDamage)
+{
+	std::cout << "DiamondTrap default constructor called" << std::endl;
+}
+
+DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), FragTrap(name), ScavTrap(name)
 {
 	this->_name = name;
-	ClapTrap::_name = name + "_clap_name";
+	//ClapTrap::_name = name + "_clap_name";
 	HitPoints = FragTrap::HitPoints;
 	EnergyPoints = ScavTrap::EnergyPoints;
 	AttackDamage = FragTrap::AttackDamage;
-	std::cout << "DiamondTrap constructor called";
+	std::cout << "DiamondTrap constructor called" << std::endl;
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap& orig) : ClapTrap(orig), FragTrap(orig),  ScavTrap(orig)
