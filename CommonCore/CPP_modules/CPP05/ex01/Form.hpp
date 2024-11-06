@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:10:18 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/11/06 17:50:13 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/11/06 23:10:17 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ class Form
 		int 		getGradeSign();
 		
 		
-	class ClassTooLowException : public std::exception
+	class GradeTooLowException : public std::exception
 	{
 		public:
 				const char *what() const throw() { return "Grade is lower than the range"; };	
