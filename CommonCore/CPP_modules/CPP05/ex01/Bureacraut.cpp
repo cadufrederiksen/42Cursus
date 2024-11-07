@@ -6,18 +6,18 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:38 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/11/06 17:33:14 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/11/06 23:37:37 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureacraut.hpp"
 
-Bureacraut::Bureacraut() : _grade(150), _name("name");
+Bureacraut::Bureacraut() : _grade(150), _name("name")
 {
 	std::cout << "Bureacraut default contructor called" << std::endl;
 }
 
-Bureacraut::Bureacraut(int grade, std::string name)
+Bureacraut::Bureacraut(int grade, const std::string name)
 {
 	std::cout << "Bureacraut constructor called" << std::endl;
 	if (grade < 1)
@@ -88,9 +88,9 @@ std::ostream &operator<<(std::ostream &os, const Bureacraut &obj)
 	return (os);
 }
 
-void Bureacraut::signForm(Form& form)
+/* void Bureacraut::signForm(Form& form)
 { 
 	//usar excecao do form dentro do block try catch
 	//usar a funcao be signed do form
 	
-}
+} */
