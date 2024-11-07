@@ -6,15 +6,19 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 23:37:08 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/11/06 17:00:13 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/11/07 12:30:02 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap() : ClapTrap("name"), HitPoints(100), EnergyPoints(100), AttackDamage(30)
+FragTrap::FragTrap() : ClapTrap("name")
 {
+	HitPoints = 100;
+	EnergyPoints = 100;
+	AttackDamage = 30;
 	std::cout << "FragTrap default constructor called" << std::endl;
+	
 }
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name)
@@ -23,6 +27,7 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name)
 	EnergyPoints = 100;
 	AttackDamage = 30;
 	std::cout << "FragTrap constructor called" << std::endl;
+	std::cout << this->_name << std::endl;
 }
 
 FragTrap& FragTrap::operator=(const FragTrap &orig)

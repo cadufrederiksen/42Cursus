@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_set.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:58:06 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/12/05 12:53:46 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/11/07 12:45:39 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,9 @@ int	border_check(t_data *data)
 
 void	flood_fill(int y, int x, t_data *data)
 {
-	printf("aqui\n");
 	printf("%d %d\n", y, x);
 	printf("%d %d\n", data->ver_len, data->hor_len);
 	printf("%d %d\n", data->y, data->x);
-
 	if (data->map[y][x] == '1' || data->map[y][x] == 'x'
 		|| data->map[y][x] == 'c' || data->map[y][x] == 'e')
 		return ;
