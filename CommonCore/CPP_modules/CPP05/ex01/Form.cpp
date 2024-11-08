@@ -6,13 +6,13 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:10:47 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/11/06 23:41:49 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:33:43 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
-Form::Form() : _name("name"), _signed(false), _gradeSign(150), _gradeExec(150)
+Form::Form() : _name("name"), _signed(false), _gradeSign(150), _gradeExec(0)
 {
     std::cout << "Form default constructor called" << std::endl;
 }
@@ -45,22 +45,33 @@ Form::~Form()
     std::cout << "Form destructor called" << std::endl;
 }
 
-bool Form::getSigned()
+bool Form::getSigned() const
 {
     return _signed;
 }
 
-const std::string Form::getName()
+const std::string Form::getName() const
 {
     return _name;
 }
 
-const int Form::getGradeExec()
+const int Form::getGradeExec() const
 {
     return _gradeExec;
 }
 
-const int Form::getGradeSign()
+const int Form::getGradeSign() const
 {
     return _gradeSign;
+}
+
+void Form::beSigned(const Bureacraut &obj)
+{
+    if (obj.getGrade() > this->_gradeSign)
+        throw Form::GradeTooLowException();
+    else
+    {
+        _signed = true;
+        std::cout << obj.getName() << " signed " << this->_name << std::endl;
+    }
 }
