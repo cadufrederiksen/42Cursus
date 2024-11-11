@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 17:47:41 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/11/06 16:53:17 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/11/08 12:38:29 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ class ScavTrap : public ClapTrap{
 		ScavTrap(const ScavTrap &copy);
 		ScavTrap &operator=(const ScavTrap& orig);
 		~ScavTrap();
+		
 		void attack(const std::string& target);
 		void guardGate();
 };
