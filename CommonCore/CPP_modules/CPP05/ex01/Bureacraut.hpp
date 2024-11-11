@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 13:49:13 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/11/06 23:09:30 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:30:21 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ class Bureacraut
 		~Bureacraut();
 		
 		std::string getName() const;
-		std::string getGrade() const;
+		int			getGrade() const;
 		
 		void IncrementGrade(int value);
 		void DecrementGrade(int value);

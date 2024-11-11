@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:10:18 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/11/06 23:40:21 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:29:11 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ class Form
 		Form &operator=(const Form &orig);
 		~Form();
 
-		void beSigned(const Form &obj);
+		void beSigned(const Bureacraut &obj);
 		
 		// getters
-		bool getSigned();
-		const std::string getName();
-		const int		getGradeExec();
-		const int		getGradeSign();
+		bool getSigned() const;
+		const std::string getName() const;
+		const int		getGradeExec() const;
+		const int		getGradeSign() const;
 		
 		
 	class GradeTooLowException : public std::exception

@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:38 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/11/06 23:37:37 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:49:27 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,9 @@ std::string Bureacraut::getName() const
 	return _name;
 }
 
-std::string Bureacraut::getGrade() const
+int Bureacraut::getGrade() const
 {
-	std::string str = std::to_string(_grade);
-	return str;
+	return _grade;
 }
 
 void Bureacraut::IncrementGrade(int value)
@@ -88,9 +87,14 @@ std::ostream &operator<<(std::ostream &os, const Bureacraut &obj)
 	return (os);
 }
 
-/* void Bureacraut::signForm(Form& form)
+void Bureacraut::signForm(Form& form)
 { 
-	//usar excecao do form dentro do block try catch
-	//usar a funcao be signed do form
-	
-} */
+	try
+	{
+		form.beSigned(*this);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << _name << " couldn't sign " << form.getName() << " because " << e.what() << '\n';
+	}
+}
