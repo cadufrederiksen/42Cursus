@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 20:28:15 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/11/07 11:38:15 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/11/12 16:50:43 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void ClapTrap::beRepaired (unsigned int amount)
 	}
 	else
 	{
-		std::cout << this->_name << " has realed " << amount << " hit points!" << std::endl;
+		std::cout << this->_name << " has healed " << amount << " hit points!" << std::endl;
 		this->HitPoints += amount;
 		this->EnergyPoints -= 1;
 	}
