@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 10:43:12 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/11/20 15:02:57 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/11/21 17:49:32 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	init_player(t_player *player)
 	player->pos_y = 0.0;
 	player->dir_x = 0.0;
 	player->dir_y = 0.0;
-	player->plane_x = 0.0;
-	player->plane_y = 0.0;
 	// Depuración para confirmar inicialización
 	printf("Player structure initialized with default values.\n");
 	printf("Player structure initialized with default values:\n");
@@ -27,15 +25,12 @@ void	init_player(t_player *player)
 	printf("pos_y: %f\n", player->pos_y);
 	printf("dir_x: %f\n", player->dir_x);
 	printf("dir_y: %f\n", player->dir_y);
-	printf("plane_x: %f\n", player->plane_x);
-	printf("plane_y: %f\n", player->plane_y);
 }
 
 int	init_game(t_game *game)
 {
 	game->mapsets = NULL;
 	game->textures = NULL;
-	game->pngs = NULL;
 	game->mapsets = malloc(sizeof(t_mapsets));
 	if (!game->mapsets)
 		return (1);
@@ -53,34 +48,14 @@ int	init_game(t_game *game)
 
 void	set_player_direction(t_player *player, char spawn)
 {
-	if (spawn == 'N')
-	{
-		player->dir_x = 0.0;
-		player->dir_y = -1.0;
-		player->plane_x = 0.66; //PI
-		player->plane_y = 0.0;
-	}
+	if (spawn == 'N') //define la direccion que esta mirando el jugador
+		player->angle = 2 * M_PI
 	else if (spawn == 'S')
-	{
-		player->dir_x = 0.0;
-		player->dir_y = 1.0;
-		player->plane_x = -0.66;
-		player->plane_y = 0.0;
-	}
+		player->angle = M_PI;
 	else if (spawn == 'E')
-	{
-		player->dir_x = 1.0;
-		player->dir_y = 0.0;
-		player->plane_x = 0.0;
-		player->plane_y = 0.66;
-	}
+		player->angle = M_PI / 2;
 	else if (spawn == 'W')
-	{
-		player->dir_x = -1.0;
-		player->dir_y = 0.0;
-		player->plane_x = 0.0;
-		player->plane_y = -0.66;
-	}
+		palyer->angle = (3 * M_PI) / 2;
 }
 
 void	init_player_from_map(t_game *game)
@@ -89,12 +64,8 @@ void	init_player_from_map(t_game *game)
 		exit(ft_fprintf(2, "Error: Player spawn not found\n"));
 	ft_printf("p_x: %d\n", game->mapsets->p_x);
 	ft_printf("p_y: %d\n", game->mapsets->p_y);
-	game->player.pos_x = (double)game->mapsets->p_x; // + 0.5 para centrar en la celda
-	game->player.pos_y = (double)game->mapsets->p_y; // + 0.5 para centrar en la celda
-	ft_printf("Calculated pos_x: %f, p_x + 0.5: %f\n", game->player.pos_x,
-		game->mapsets->p_x + 0.5);
-	ft_printf("Calculated pos_y: %f, p_y + 0.5: %f\n", game->player.pos_y,
-		game->mapsets->p_y + 0.5);
+	game->player.pos_x = game->mapsets->p_x * TILE_SIZE * TILE_SIZE / 2;// para centrar en la celda + 0,5
+	game->player.pos_y = game->mapsets->p_y * TILE_SIZE * TILE_SIZE / 2;// para centrar en la celda + 0,5
 	set_player_direction(&game->player, game->mapsets->spawn);
 	game->mapsets->map[game->mapsets->p_y][game->mapsets->p_x] = '0';
 }

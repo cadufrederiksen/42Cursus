@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:41:06 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/11/21 16:03:20 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/11/21 17:59:24 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # define SCREEN_HEIGHT 600
 # define IMG 64
 # define ROTATION_SPEED 0.05
+# define FOV 60 // FOV del player
+# define TILE_SIZE 30 //tamaño del bloque
 
 typedef struct s_mapsets
 {
@@ -55,12 +57,9 @@ typedef struct s_point
 
 typedef struct s_player
 {
-	double	pos_x;		// Posición del jugador
-	double	pos_y;		// Posición del jugador
-	double	dir_x;		// Dirección del jugador
-	double	dir_y;		// Dirección del jugador
-	double	plane_x;	// Plano de la cámara FOV
-	double	plane_y;	// Plano de la cámara FOV
+	int		pos_x;		// Posición del jugador
+	int		pos_y;		// Posición del jugador
+	double	angle;
 }				t_player;
 
 typedef struct s_ray
