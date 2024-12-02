@@ -7,10 +7,19 @@ SRCS_DIR = src/
 SRCS_BN_DIR = src_bonus/
 OBJS_DIR = obj/
 LIBFT = libft
-CC = clang
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 AR = ar rcs
-LIBS = $(LIBMLX)/libmlx42.a -lglfw -ldl -lm -L "usr/lib/x86_64-linux-gnu/"
+#LIBS = $(LIBMLX)/libmlx42.a -lglfw -ldl -lm -L "usr/lib/x86_64-linux-gnu/"
+
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S), Darwin)
+    LIBS = $(LIBMLX)/libmlx42.a -lglfw \
+           -framework Cocoa -framework OpenGL -framework IOKit
+    HEADERS += -I/usr/local/Cellar/glfw/3.4/include
+else
+    LIBS = $(LIBMLX)/libmlx42.a -lglfw -ldl -lm -L "/usr/lib/x86_64-linux-gnu/"
+endif
 
 
 #---------------SRC------------
@@ -31,7 +40,7 @@ $(NAME): $(OBJSF) $(OBJS_FILES)
 	make -C $(LIBFT)
 	cp $(LIBFT)/libft.a .
 	mv libft.a $(NAME)
-	$(CC) $(CFLAGS) $(OBJS_FILES) $(LIBFT)/libft.a $(LIBS) $(HEADERS) -o $(NAME) 
+	$(CC) $(CFLAGS) $(OBJS_FILES) $(LIBFT)/libft.a $(LIBS) $(HEADERS) -no-pie -o $(NAME) 
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 	$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@ 
