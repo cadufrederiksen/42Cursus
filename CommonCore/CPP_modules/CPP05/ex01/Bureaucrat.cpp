@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureacraut.cpp                                     :+:      :+:    :+:   */
+/*   BureacrautBureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:45:38 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/11/08 15:49:27 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:48:12 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureacraut.hpp"
+#include "Bureaucrat.hpp"
 
-Bureacraut::Bureacraut() : _grade(150), _name("name")
+Bureaucrat::Bureaucrat() : _grade(150), _name("name")
 {
-	std::cout << "Bureacraut default contructor called" << std::endl;
+	std::cout << "Bureaucrat default contructor called" << std::endl;
 }
 
-Bureacraut::Bureacraut(int grade, const std::string name)
+Bureaucrat::Bureaucrat(int grade, const std::string name)
 {
-	std::cout << "Bureacraut constructor called" << std::endl;
+	std::cout << "Bureaucrat constructor called" << std::endl;
 	if (grade < 1)
-		throw Bureacraut::GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 	else if (grade > 150)
 	{
-		throw Bureacraut::GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	}  
 	else
 	{
@@ -33,61 +33,61 @@ Bureacraut::Bureacraut(int grade, const std::string name)
 	}
 }
 
-Bureacraut& Bureacraut::operator=(const Bureacraut &orig)
+Bureaucrat& Bureaucrat::operator=(const Bureaucrat &orig)
 {
 	if (this != &orig)
 	{
 		this->_grade = orig._grade;
 		this->_name = orig._name;
 	}
-	std::cout << "Bureacraut copy operator called" << std::endl;
+	std::cout << "Bureaucrat copy operator called" << std::endl;
 	return *this;
 }
 
-Bureacraut::Bureacraut(const Bureacraut &orig)
+Bureaucrat::Bureaucrat(const Bureaucrat &orig)
 {
-	std::cout << "Bureacraut copy constructor called" << std::endl;
+	std::cout << "Bureaucrat copy constructor called" << std::endl;
 	*this = orig;
 }
 
-Bureacraut::~Bureacraut()
+Bureaucrat::~Bureaucrat()
 {
-	std::cout << "Bureacraut destructor called" << std::endl;
+	std::cout << "Bureaucrat destructor called" << std::endl;
 }
 
-std::string Bureacraut::getName() const
+std::string Bureaucrat::getName() const
 {
 	return _name;
 }
 
-int Bureacraut::getGrade() const
+int Bureaucrat::getGrade() const
 {
 	return _grade;
 }
 
-void Bureacraut::IncrementGrade(int value)
+void Bureaucrat::IncrementGrade(int value)
 {
 	if (_grade - value < 1)
-		throw Bureacraut::GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 	else 
 		_grade -= value;
 }
 
-void Bureacraut::DecrementGrade(int value)
+void Bureaucrat::DecrementGrade(int value)
 {
 	if (_grade + value > 150)
-		throw Bureacraut::GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	else
 		_grade += value;
 }
 
-std::ostream &operator<<(std::ostream &os, const Bureacraut &obj)
+std::ostream &operator<<(std::ostream &os, const Bureaucrat &obj)
 {
-	os << obj.getGrade() << ", bureacraut grade " << obj.getGrade();
+	os << obj.getGrade() << ", Bureaucrat grade " << obj.getGrade();
 	return (os);
 }
 
-void Bureacraut::signForm(Form& form)
+void Bureaucrat::signForm(Form& form)
 { 
 	try
 	{

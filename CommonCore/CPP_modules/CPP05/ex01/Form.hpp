@@ -6,14 +6,14 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:10:18 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/11/08 15:29:11 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:55:17 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FORM_HPP
 	#define FORM_HPP
 	
-#include "Bureacraut.hpp"	
+#include "Bureaucrat.hpp"	
 	
 class Form
 {
@@ -30,7 +30,7 @@ class Form
 		Form &operator=(const Form &orig);
 		~Form();
 
-		void beSigned(const Bureacraut &obj);
+		void beSigned(const Bureaucrat& obj);
 		
 		// getters
 		bool getSigned() const;
@@ -50,7 +50,6 @@ class Form
 		public:
 			const char *what() const throw() { return "Grade is higher than the range";}
 	};
-
 };
 
 #endif

@@ -2,7 +2,7 @@ NAME = bureacraut
 GCC = c++
 FLAG = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp Bureacraut.cpp
+SRC = main.cpp Bureaucrat.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)

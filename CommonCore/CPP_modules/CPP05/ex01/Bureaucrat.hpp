@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureacraut.hpp                                     :+:      :+:    :+:   */
+/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 13:49:13 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/11/08 15:30:21 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:49:03 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUREACRAUT_HPP
-	#define BUREACRAUT_HPP
+#ifndef Bureaucrat_HPP
+	#define Bureaucrat_HPP
 
 #include <iostream>
 #include <exception>
@@ -19,18 +19,18 @@
 #include <string>
 #include "Form.hpp"
 
-class Bureacraut
+class Bureaucrat
 {
 	private:
 		std::string _name;
 		int _grade;
 		
 	public:
-		Bureacraut();
-		Bureacraut(int grade, std::string name);
-		Bureacraut(const Bureacraut &orig);
-		Bureacraut& operator=(const Bureacraut &orig);
-		~Bureacraut();
+		Bureaucrat();
+		Bureaucrat(int grade, std::string name);
+		Bureaucrat(const Bureaucrat &orig);
+		Bureaucrat& operator=(const Bureaucrat &orig);
+		~Bureaucrat();
 		
 		std::string getName() const;
 		int			getGrade() const;
@@ -55,6 +55,6 @@ class Bureacraut
 		
 };
 
-std::ostream &operator<<(std::ostream &os, const Bureacraut &obj);
+std::ostream &operator<<(std::ostream &os, const Bureaucrat &obj);
 
 #endif

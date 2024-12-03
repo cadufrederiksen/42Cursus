@@ -6,28 +6,29 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:59:40 by carmarqu          #+#    #+#             */
-/*   Updated: 2024/11/05 14:49:57 by carmarqu         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:57:45 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureacraut.hpp"
+#include "Form.hpp"
+#include "Bureaucrat.hpp"
 
 int main ()
 {
     try 
     {
-        Bureacraut b(160, "John");
+        Bureaucrat b(160, "John");
         std::cout << b << std::endl;
         b.DecrementGrade(11);
         std::cout << b << std::endl;
         b.IncrementGrade(12);
         std::cout << b << std::endl;
     }
-    catch (const Bureacraut::GradeTooLowException& e)
+    catch (const Bureaucrat::GradeTooLowException& e)
     {
         std::cerr << e.what() << std::endl;
     }
-    catch (const Bureacraut::GradeTooHighException& c)
+    catch (const Bureaucrat::GradeTooHighException& c)
     {
         std::cerr << c.what() << std::endl;
     }
