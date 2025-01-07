@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
+/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/03 16:22:58 by carmarqu          #+#    #+#             */
-/*   Updated: 2025/01/07 15:44:27 by carmarqu         ###   ########.fr       */
+/*   Created: 2025/01/03 17:32:05 by carmarqu          #+#    #+#             */
+/*   Updated: 2025/01/07 15:44:45 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHRUBBERYCREATIONFORM_HPP
-	#define SHRUBBERYCREATIONFORM_HPP
+#ifndef PRESIDENTIALPARDONFORM_HPP
+	#define PRESIDENTIALPARDONFORM_HPP
 	
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 
-class ShrubberyCreationForm : public AForm
+class PresidentialPardonForm : public AForm
 {
 	public:
-		//ShrubberyCreationForm();
-		ShrubberyCreationForm(std::string target);
-		ShrubberyCreationForm(const ShrubberyCreationForm &orig);
-		ShrubberyCreationForm &operator=(const ShrubberyCreationForm &orig);
-		~ShrubberyCreationForm();
-
-	void execute(Bureaucrat const &executor) const;
-};	
+		//PresidentialPardonForm();
+		PresidentialPardonForm(std::string target);
+		PresidentialPardonForm(const PresidentialPardonForm &orig);
+		PresidentialPardonForm &operator=(const PresidentialPardonForm &orig);
+		~PresidentialPardonForm();
+		
+		void execute (Bureaucrat const &executor) const;
+};
 
 #endif
