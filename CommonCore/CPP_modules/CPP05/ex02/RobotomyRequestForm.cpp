@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 17:14:20 by carmarqu          #+#    #+#             */
-/*   Updated: 2025/01/07 00:01:32 by carmarqu         ###   ########.fr       */
+/*   Updated: 2025/01/07 14:16:35 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,14 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
 		int random_num = std::rand();
 		std::cout << "Making drilling noise ZzzZZzzzZZZ..." << std::endl;
 		if (random_num % 2 == 0)
-			std::cout << getTarget() << " has been robotomized successfully" << std::endl;
+			std::cout << executor.getName() << " has been robotomized successfully" << std::endl;
 		else
-			std::cout << getTarget() << " has failed while robototomized" << std::endl;
+			std::cout << executor.getName() << " has failed while robototomized" << std::endl;
 		
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << executor.getName() << " couldn't execute the form because " << e.what() << '\n';	
 	}
 	
 }

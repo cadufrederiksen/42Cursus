@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:10:47 by carmarqu          #+#    #+#             */
-/*   Updated: 2025/01/06 17:11:16 by carmarqu         ###   ########.fr       */
+/*   Updated: 2025/01/07 14:16:00 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,6 @@ void AForm::beSigned(const Bureaucrat &obj)
     else
     {
         _signed = true;
-        std::cout << obj.getName() << " signed " << this->_target << std::endl;
+        std::cout << obj.getName() << " signed the form" << std::endl;
     }
 }

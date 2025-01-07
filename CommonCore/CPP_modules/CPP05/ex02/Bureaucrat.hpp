@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 13:49:13 by carmarqu          #+#    #+#             */
-/*   Updated: 2025/01/07 00:00:12 by carmarqu         ###   ########.fr       */
+/*   Updated: 2025/01/07 14:04:16 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@
 #include <ostream>
 #include <string>
 #include <ctime>
+#include <fstream>
 #include "AForm.hpp"
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -42,6 +43,7 @@ class Bureaucrat
 		void DecrementGrade(int value);
 		
 		void signForm(AForm &form);
+		void executeForm(AForm const &form);
 		
 		class GradeTooLowException : public std::exception
 		{

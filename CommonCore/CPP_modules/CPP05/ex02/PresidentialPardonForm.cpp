@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 18:41:35 by carmarqu          #+#    #+#             */
-/*   Updated: 2025/01/06 22:50:58 by carmarqu         ###   ########.fr       */
+/*   Updated: 2025/01/07 14:18:28 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ void	PresidentialPardonForm::execute (Bureaucrat const &executor) const
 			throw AForm::FormNotSigned();
 		if (executor.getGrade() > this->getGradeExec())
 			throw AForm::GradeTooLowException();
-		std::cout << getTarget() << "  has been perdoned by Zaphod Beeblebrox" << std::endl;
+		std::cout << executor.getName() << " has been perdoned by Zaphod Beeblebrox" << std::endl;
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << executor.getName() << " couldn't execute the form because " << e.what() << '\n';	
 	}
 	
 }

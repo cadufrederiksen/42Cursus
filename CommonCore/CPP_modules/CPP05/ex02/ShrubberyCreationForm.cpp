@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 00:04:58 by carmarqu          #+#    #+#             */
-/*   Updated: 2025/01/07 00:23:36 by carmarqu         ###   ########.fr       */
+/*   Updated: 2025/01/07 14:17:01 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,32 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 
 void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
+	try
+	{
+		if (!getSigned())
+			throw AForm::FormNotSigned();
+		if (executor.getGrade() > this->getGradeExec())
+			throw AForm::GradeTooLowException();
+		std::ofstream newfile (getTarget() + "_shrubbery");
+		if (newfile.is_open())
+		{
+			newfile << "       _-_\n";
+      		newfile << "    /~~   ~~\\\n";
+        	newfile << " /~~         ~~\\\n";
+        	newfile << "{               }\n";
+        	newfile << " \\  _-     -_  /\n";
+        	newfile << "   ~  \\ //  ~\n";
+        	newfile << "_- -   | | _- _\n";
+        	newfile << "  _ -  | |   -_\n";
+        	newfile << "      // \\\n";
+			newfile.close();
+		}
+		else
+			std::cout << "Failure while opening file " << getTarget() << "_shrubbery" << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << executor.getName() << " couldn't execute the form because " << e.what() << '\n';	
+	}
 	
 }
