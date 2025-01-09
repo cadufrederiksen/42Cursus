@@ -6,11 +6,12 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 15:29:57 by carmarqu          #+#    #+#             */
-/*   Updated: 2025/01/07 15:42:08 by carmarqu         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:03:54 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Intern.hpp"
 
 Intern::Intern()
 {

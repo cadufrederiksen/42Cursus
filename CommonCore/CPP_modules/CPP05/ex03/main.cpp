@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:59:40 by carmarqu          #+#    #+#             */
-/*   Updated: 2025/01/07 16:05:24 by carmarqu         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:03:38 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int main ()
     try 
     {
         Intern randomGuy;
-        Bureaucrat bure(10, "Oliver");
-        AForm *form = randomGuy.makeForm("robotomy request", "Dom pedro");
+        Bureaucrat bure(1, "Oliver");
+        AForm *form = randomGuy.makeForm("presidential pardon", "Dom pedro");
         bure.signForm(*form);
         form->execute(bure);
         delete form;
