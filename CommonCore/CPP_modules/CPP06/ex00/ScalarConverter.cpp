@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:25:22 by carmarqu          #+#    #+#             */
-/*   Updated: 2025/01/09 15:48:30 by carmarqu         ###   ########.fr       */
+/*   Updated: 2025/01/10 14:04:52 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ void ScalarConverter::converter(const std::string &str)
 	double d = 0;
 	float f = 0;
 	int x = 0;
+	
 	while (x < 6 && str != types[x])
 		x++;
 	if (x == 6 && !std::isdigit(str[0]) && !std::isdigit(str[1]) && str.length() > 1)
 	{
-		std::cerr << "Invalid string as parameter" << std::endl;
+		std::cerr << "Error: Invalid input" << std::endl;
 		return ;
-	}
-
+	} 
 	if (str.length() == 1 && !std::isdigit(str[0]))//is a char
 	{
 		c = str[0];
@@ -71,8 +71,6 @@ void ScalarConverter::converter(const std::string &str)
 				i = static_cast<int>(d);
 			}
 		}
-		else
-			i = std::atoi(str.c_str());	
 	}
 	if (x > 5)
 	{	
