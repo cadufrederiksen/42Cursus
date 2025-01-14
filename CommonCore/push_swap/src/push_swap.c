@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 16:25:11 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/09/19 11:50:11 by carmarqu         ###   ########.fr       */
+/*   Updated: 2025/01/14 12:32:02 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	free_pile(t_state **pile)
 		free(*pile); //libera nó atual
 		*pile = pile_aux;
 	}
-	*pile = NULL;
+	free(*pile);
 }
 
 void push_swap(int argc, char **argv, int checker)
@@ -72,13 +72,13 @@ void push_swap(int argc, char **argv, int checker)
 	if(!check_all(argv, checker, &pile_a))
 	{
 		ft_putendl_fd("Error", 2);
-		exit(2);
+		return (free_pile(&pile_a));
 	} 
 	add_index(pile_a, argv, argc, checker);
 	if(check_pile(pile_a) == 1)
 	{
 		free_pile(&pile_a);
-		exit(0);
+		return ;
 	} 
 	select_alg(argc - x, &pile_a, &pile_b); 
 	free_pile(&pile_a);

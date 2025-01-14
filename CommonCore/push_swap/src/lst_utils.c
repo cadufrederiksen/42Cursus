@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carmarqu <carmarqu@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 14:49:26 by carmarqu          #+#    #+#             */
-/*   Updated: 2023/08/29 15:18:04 by carmarqu         ###   ########.fr       */
+/*   Updated: 2025/01/14 12:33:21 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_state	*create_newA(char *argv)
 {
 	t_state	*state;
 
-	state = allocate_state();//aqui pode ser o problema de mem
+	state = allocate_state();
 	state->value = ft_atoi(argv);
 	state->next = NULL;
 	return (state);
