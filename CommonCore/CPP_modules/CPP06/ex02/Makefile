@@ -2,7 +2,7 @@ NAME = base
 GCC = c++
 FLAG = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp A.cpp B.cpp C.cpp Base.cpp
+SRC = main.cpp Base.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
