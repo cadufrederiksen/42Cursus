@@ -1,25 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   whatever.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/10 15:40:29 by carmarqu          #+#    #+#             */
-/*   Updated: 2025/01/16 14:50:41 by carmarqu         ###   ########.fr       */
+/*   Created: 2025/01/16 14:36:13 by carmarqu          #+#    #+#             */
+/*   Updated: 2025/01/16 14:57:52 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Base.hpp"
+#ifndef WHATEVER_HPP
+	#define WHATEVER_HPP
 
-int main ()
+#include <iostream>
+
+template <typename T>
+void	swap(T &a, T&b)
 {
-	Base *obj= obj->generate();
-	Base *null = NULL;
-	obj->identify(obj);
-	obj->identify(*obj);
-	obj->identify(null);
-	obj->identify(*null);
-	delete obj;
-	return 0;
-}
+	T temp = b;
+	b = a;
+	a = temp;
+};
+
+template <typename T>
+T min(T&a, T&b)
+{
+	if (a < b)
+		return a;
+	else 
+		return b;
+};
+
+template <typename T>
+T max(T&a, T&b)
+{
+	if (a > b)
+		return a;
+	else 
+		return b;
+};
+
+#endif
