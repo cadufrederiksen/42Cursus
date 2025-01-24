@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:19:41 by carmarqu          #+#    #+#             */
-/*   Updated: 2025/01/23 14:56:51 by carmarqu         ###   ########.fr       */
+/*   Updated: 2025/01/24 15:38:29 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ Array<T>::Array(unsigned int n){
 
 template <typename T>	
 Array<T>::Array(const Array &orig){
-	len = orig.len;
 	*this = orig;
 	std::cout << "Array copy constructor called" << std::endl;
 };
