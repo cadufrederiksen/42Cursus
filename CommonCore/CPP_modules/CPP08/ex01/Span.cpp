@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:31:49 by carmarqu          #+#    #+#             */
-/*   Updated: 2025/01/24 16:25:11 by carmarqu         ###   ########.fr       */
+/*   Updated: 2025/01/27 10:32:38 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	Span::longestSpan() //devolve a maior diferenca entre dois valores
 {
 	if (_container.size() < 2)
 		throw std::out_of_range("Container too small to find a span");
-	int max = *std::max_element(_container.begin(), _container.end());
+	int max = *std::max_element(_container.begin(), _container.end());//devolve maior e menor int
 	int min = *std::min_element(_container.begin(), _container.end());
 	return max - min;
 }
@@ -76,6 +76,11 @@ int Span::shortestSpan()
 			diff = span;
 	}
 	return diff;
+}
+
+void Span::addManyNumbers(unsigned int size)
+{
+	for (std::vector<int>::iterator it = _container.begin(); it != ; )
 }
 
 Span::~Span()

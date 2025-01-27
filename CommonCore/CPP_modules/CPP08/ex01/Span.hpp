@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:24:58 by carmarqu          #+#    #+#             */
-/*   Updated: 2025/01/24 16:09:54 by carmarqu         ###   ########.fr       */
+/*   Updated: 2025/01/27 10:27:17 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ class Span
 		~Span();
 	
 	void	addNumber(int nbr);
+	void	addManyNumbers(unsigned int size);
 	int		shortestSpan();
 	int		longestSpan();
 	
