@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:31:49 by carmarqu          #+#    #+#             */
-/*   Updated: 2025/01/27 10:32:38 by carmarqu         ###   ########.fr       */
+/*   Updated: 2025/02/05 12:41:38 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,13 @@ int Span::shortestSpan()
 
 void Span::addManyNumbers(unsigned int size)
 {
-	for (std::vector<int>::iterator it = _container.begin(); it != ; )
+	std::srand(std::time(0));
+	for (int x = 0; x < size; x++)
+	{
+		int random = std::rand() % 10000 + 1;
+		std::cout << "random = " << random << std::endl;
+		_container.push_back(random);
+	}
 }
 
 Span::~Span()

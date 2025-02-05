@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:24:58 by carmarqu          #+#    #+#             */
-/*   Updated: 2025/01/27 10:27:17 by carmarqu         ###   ########.fr       */
+/*   Updated: 2025/02/05 12:37:25 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-//#include <stdexcept>
+#include <ctime>
 
 
 class Span
