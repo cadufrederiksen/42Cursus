@@ -2,6 +2,8 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <stdlib.h>
+#include <stdio.h>
+
 
 void err(char *str)
 {
@@ -52,7 +54,7 @@ int	exec(char **argv, int i, char **envp)
 	return WIFEXITED(status) && WEXITSTATUS(status);
 }
 
-int main(int, char **argv, char **envp)
+int main(int argc, char **argv, char **envp)
 {
 	int i = 0, status = 0;
 

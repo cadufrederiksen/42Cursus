@@ -1,4 +1,4 @@
-NAME = P,ergeMe
+NAME = PMergeMe
 GCC = c++
 FLAG = -Wall -Wextra -Werror -std=c++98
 
