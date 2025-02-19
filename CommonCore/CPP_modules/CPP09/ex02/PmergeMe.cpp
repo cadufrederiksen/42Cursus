@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 12:19:01 by carmarqu          #+#    #+#             */
-/*   Updated: 2025/02/05 14:35:09 by carmarqu         ###   ########.fr       */
+/*   Updated: 2025/02/11 12:06:18 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,26 @@ PmergeMe::~PmergeMe()
 
 void PmergeMe::InsertNums(const std::string &str)
 {
+	for (int x = 0; x < str.size(); x++)
+	{
+		if (!std::isdigit(str[x]))
+			throw std::invalid_argument("Error");
+	}
 	int num = std::atoi(str.c_str());
 	if (num < 0)
 		throw std::invalid_argument("Error"); 
 	_vector.push_back(num);
 	_list.push_back(num);
+}
+
+void PmergeMe::printContainers()
+{
+	std::cout << "vector: ";
+	for (int x = 0; x < _vector.size(); x++)
+		std::cout <<  _vector[x] << " ";
+	std::cout << std::endl;
+	std::cout << "list: ";
+	for (std::list<int>::iterator it = _list.begin(); it != _list.end(); it++)
+		std::cout << *it << " ";
+	std::cout << std::endl;
 }
