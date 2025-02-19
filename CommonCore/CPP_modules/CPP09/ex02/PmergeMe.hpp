@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 16:03:37 by carmarqu          #+#    #+#             */
-/*   Updated: 2025/02/11 11:51:22 by carmarqu         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:05:00 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,12 @@ class PmergeMe
 		PmergeMe &operator=(const PmergeMe &orig);
 		~PmergeMe();
 		
-		void	InsertNums(const std::string &str);
-		void	sortVector();
-		void	printContainers();
+		void			Pmerge();
+		void			InsertNums(const std::string &str);
+		std::list<int>	sortList(std::list<int> &vec);
+		std::list<int>	mergeList(std::list<int> &left, std::list<int> &right);
+		void			printList(const std::list<int> &lst) const;
+
 };
 
 #endif
