@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 15:29:57 by carmarqu          #+#    #+#             */
-/*   Updated: 2025/01/09 14:03:54 by carmarqu         ###   ########.fr       */
+/*   Updated: 2025/02/25 18:22:50 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ AForm *Intern::makeForm(std::string form, std::string target)
 		ptr = new PresidentialPardonForm(target);
 		return ptr;
 	default:
-		std::cout << "No such form, sorry boss" << std::endl;
+		throw std::invalid_argument("No such form, sorry boss!");
 		break;
 	}
 	return NULL;

@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:59:40 by carmarqu          #+#    #+#             */
-/*   Updated: 2025/01/09 14:03:38 by carmarqu         ###   ########.fr       */
+/*   Updated: 2025/02/25 18:22:59 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main ()
     {
         Intern randomGuy;
         Bureaucrat bure(1, "Oliver");
-        AForm *form = randomGuy.makeForm("presidential pardon", "Dom pedro");
+        AForm *form = randomGuy.makeForm("presidential pardo", "Dom pedro");
         bure.signForm(*form);
         form->execute(bure);
         delete form;
@@ -32,6 +32,9 @@ int main ()
     {
         std::cerr << c.what() << std::endl;
     }
-    
+    catch (const std::invalid_argument& e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
     return 0;
 }
