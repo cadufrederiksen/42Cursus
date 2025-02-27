@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:25:22 by carmarqu          #+#    #+#             */
-/*   Updated: 2025/02/26 13:33:53 by carmarqu         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:31:44 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void ScalarConverter::converter(const std::string &str)
 				i = static_cast<int>(d);
 			}
 		}
-		else
+		else if (x == 6)
 			i = std::stoi(str);
 	}
 	if (x > 5)
