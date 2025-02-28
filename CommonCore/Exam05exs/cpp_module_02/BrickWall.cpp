@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   BrickWall.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncolomer <ncolomer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 12:59:17 by ncolomer          #+#    #+#             */
-/*   Updated: 2020/02/13 16:40:08 by ncolomer         ###   ########.fr       */
+/*   Updated: 2025/02/28 13:13:34 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BrickWall.hpp"
-
+//alvo
 BrickWall::BrickWall():
 	ATarget("BrickWall Practice") {}
 
 BrickWall::~BrickWall() {}
 
-ATarget *BrickWall::clone(void) const {
+ATarget *BrickWall::clone(void) const {//cria um novo Brickwall
 	return (new BrickWall(*this));
 }

@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 20:37:27 by ncolomer          #+#    #+#             */
-/*   Updated: 2025/02/27 17:20:07 by carmarqu         ###   ########.fr       */
+/*   Updated: 2025/02/28 13:32:13 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class Warlock
 private:
 	std::string name;
 	std::string title;
-	SpellBook spellBook;
+	SpellBook spellBook;//possui um spell book dentro
 
 	Warlock();
 	Warlock(Warlock const &other);

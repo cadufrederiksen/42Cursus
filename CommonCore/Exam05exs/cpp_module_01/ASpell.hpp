@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 23:06:00 by ncolomer          #+#    #+#             */
-/*   Updated: 2025/02/27 16:43:40 by carmarqu         ###   ########.fr       */
+/*   Updated: 2025/02/28 13:09:35 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ class ATarget;
 
 class ASpell
 {
-private: //protected(?)
+private:
 	std::string name; //var
 	std::string effects; //var
 public:

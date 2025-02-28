@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 23:06:18 by ncolomer          #+#    #+#             */
-/*   Updated: 2025/02/27 17:09:08 by carmarqu         ###   ########.fr       */
+/*   Updated: 2025/02/28 13:10:36 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ class ASpell;
 
 class ATarget
 {
-protected:
+protected://protected
 	std::string type;
 public:
 	ATarget();

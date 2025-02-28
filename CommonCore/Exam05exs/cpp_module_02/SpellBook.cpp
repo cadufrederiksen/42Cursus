@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 12:54:32 by ncolomer          #+#    #+#             */
-/*   Updated: 2025/02/27 17:19:40 by carmarqu         ###   ########.fr       */
+/*   Updated: 2025/02/28 13:17:50 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ SpellBook::~SpellBook() {//destrutor de todos membros do vector
 	this->spells.clear();
 }
 
-void SpellBook::learnSpell(ASpell *spell) {
+void SpellBook::learnSpell(ASpell *spell) {//igual warlock.cpp
 	if (spell) {
 		std::vector<ASpell*>::iterator ite = this->spells.end();
 		for (std::vector<ASpell*>::iterator it = this->spells.begin(); it != ite; ++it)
@@ -31,7 +31,7 @@ void SpellBook::learnSpell(ASpell *spell) {
 	}
 }
 
-void SpellBook::forgetSpell(std::string const &spellName) {
+void SpellBook::forgetSpell(std::string const &spellName) { //igual warlock.cpp
 	std::vector<ASpell*>::iterator ite = this->spells.end();
 	for (std::vector<ASpell*>::iterator it = this->spells.begin(); it != ite; ++it) {
 		if ((*it)->getName() == spellName) {
@@ -44,7 +44,7 @@ void SpellBook::forgetSpell(std::string const &spellName) {
 ASpell *SpellBook::generateSpell(std::string const &spellName) {
 	std::vector<ASpell*>::iterator ite = this->spells.end();
 	for (std::vector<ASpell*>::iterator it = this->spells.begin(); it != ite; ++it) {
-		if ((*it)->getName() == spellName) {//procuta o spellname, se encontra devolve ele
+		if ((*it)->getName() == spellName) {//procura o spellname, se encontra devolve ele
 			return (*it);
 		}
 	}

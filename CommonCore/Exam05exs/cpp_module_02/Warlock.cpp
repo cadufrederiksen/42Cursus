@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Warlock.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncolomer <ncolomer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 20:37:13 by ncolomer          #+#    #+#             */
-/*   Updated: 2020/02/13 16:39:43 by ncolomer         ###   ########.fr       */
+/*   Updated: 2025/02/28 13:32:47 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void Warlock::introduce(void) const {
 	std::cout << this->name << ": My name is " << this->name << ", " << this->title << "!\n";
 }
 
+//todas essas funcoes agora estao em spellbook
 void Warlock::learnSpell(ASpell *spell) {
 	this->spellBook.learnSpell(spell);
 }
@@ -46,7 +47,7 @@ void Warlock::forgetSpell(std::string const &spellName) {
 }
 
 void Warlock::launchSpell(std::string const &spellName, ATarget const &target) {
-	ASpell *spell = this->spellBook.generateSpell(spellName);
+	ASpell *spell = this->spellBook.generateSpell(spellName);//usa a funcao de speelbook
 	if (spell)
 		spell->launch(target);
 }

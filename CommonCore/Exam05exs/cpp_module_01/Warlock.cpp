@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 20:37:13 by ncolomer          #+#    #+#             */
-/*   Updated: 2025/02/27 16:37:11 by carmarqu         ###   ########.fr       */
+/*   Updated: 2025/02/27 18:07:46 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ Warlock::~Warlock() {//destrutor faz delete do vector
 	this->spells.clear();//clear final
 }
 
+//getters
 std::string const &Warlock::getName(void) const {
 	return (this->name);
 }
@@ -33,6 +34,7 @@ std::string const &Warlock::getTitle(void) const {
 	return (this->title);
 }
 
+//setter
 void Warlock::setTitle(std::string const &title) {
 	this->title = title;
 }

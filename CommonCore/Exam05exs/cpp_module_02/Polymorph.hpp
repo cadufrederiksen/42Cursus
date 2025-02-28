@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Polymorph.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncolomer <ncolomer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 12:48:20 by ncolomer          #+#    #+#             */
-/*   Updated: 2020/02/04 13:00:59 by ncolomer         ###   ########.fr       */
+/*   Updated: 2025/02/28 13:14:50 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define POLYMORPH_HPP
 
 # include "ASpell.hpp"
-
+//feitico
 class Polymorph: public ASpell
 {
 public:

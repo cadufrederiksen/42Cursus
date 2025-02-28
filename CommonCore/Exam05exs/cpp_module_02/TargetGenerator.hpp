@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   TargetGenerator.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncolomer <ncolomer@student.42.fr>          +#+  +:+       +#+        */
+/*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 12:59:50 by ncolomer          #+#    #+#             */
-/*   Updated: 2020/02/13 16:42:37 by ncolomer         ###   ########.fr       */
+/*   Updated: 2025/02/28 13:29:50 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,15 @@
 class TargetGenerator
 {
 private:
-	std::vector<ATarget*> types;
+	std::vector<ATarget*> types;//vector com os diferentes tipos
 public:
 	TargetGenerator();
 	virtual ~TargetGenerator();
 
-	void learnTargetType(ATarget *type);
-	void forgetTargetType(std::string const &name);
-	ATarget *createTarget(std::string const &name);
+	//iguais que os spell de warlock.cpp
+	void learnTargetType(ATarget *type);//busca um tipo e se encontra adiciona ao vector(copiando)
+	void forgetTargetType(std::string const &name);//busca um tipo e se encontra deleta ele
+	ATarget *createTarget(std::string const &name);//busca um tipo e se encontra devolve ele
 };
 
 #endif
