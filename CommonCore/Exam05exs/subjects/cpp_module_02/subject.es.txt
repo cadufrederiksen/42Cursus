@@ -1,0 +1,75 @@
+Assignment name  : cpp_module_02
+Expected files   : Warlock.cpp Warlock.hpp
+                   ASpell.hpp ASpell.cpp
+				   ATarget.hpp ATarget.cpp
+				   Fwoosh.hpp Fwoosh.cpp
+				   Dummy.hpp Dummy.cpp
+				   Fireball.hpp Fireball.cpp
+				   Polymorph.hpp Polymorph.cpp
+				   BrickWall.hpp BrickWall.cpp
+				   SpellBook.hpp SpellBook.cpp
+				   TargetGenerator.hpp TargetGenerator.cpp
+--------------------------------------------------------------------------------
+
+El switch está totalmente PROHIBIDO en las clases Warlock, SpellBook y TargetGenerator y su uso saldaría con un -42.
+
+Cree los siguientes hechizos basándose en el modelo de Fwoosh:
+
+* Fireball (Nombre: "Fireball", Efecto: "burnt to a crisp")
+* Ponymorph (Nombre: "Polymorph", Efecto: "turned into a critter")
+
+Además, para evitar que solo tenga que atacar objetivos ficticios, cree para él un nuevo objetivo, que será BrickWall (Tipo: "Inconspicuous Red-brick Wall").
+
+Haga una clase SpellBook, de forma canónica, que no pueda ser ni copiada ni
+instanciada por copia. Tendrá las siguientes funciones:
+
+* void learnSpell(ASpell*), que COPIA un hechizo en el libro
+* void forgetSpell(string const &), que borra un hechizo del libro, si lo encuentra
+* ASpell* createSpell(string const &), que recibe una cadena correspondiente al nombre de un hechizo, lo crea y lo devuelve.
+
+Modifique ahora el Warlock para que tenga un SpellBook que se creará con él y se destuirá con él. Haga también lo necesario para que las funciones learnSpell y forgetSpell llamen a las del libro.
+
+La función launchSpell tendrá que utilizar el SpellBook para crear el hechizo que intenta lanzar.
+
+Para ello, haga una clase TargetGenerator de forma canónica, que no se pueda copiar (Como el SpellBook).
+
+Tendrá las siguientes funciones:
+
+* void learnTargetType(ATarget*), le enseña un objetivo al generador
+
+* void forgetTargetType(string const &), hace que el generador olvide un objetivo, si lo conoce
+
+* ATarget* createTarget(string const &), crea un objetivo del tipo indicado.
+
+Ya está... Aquí proponemos una prueba de su main. No es exhaustiva, por lo que le conviene asegurarse de que usa su propio aswell.
+
+int main()
+{
+  Warlock richard("Richard", "foo");
+  richard.setTitle("Hello, I'm Richard the Warlock!");
+  BrickWall model1;
+
+  Polymorph* polymorph = new Polymorph();
+  TargetGenerator tarGen;
+
+  tarGen.learnTargetType(&model1);
+  richard.learnSpell(polymorph);
+
+  Fireball* fireball = new Fireball();
+
+  richard.learnSpell(fireball);
+
+  ATarget* wall = tarGen.createTarget("Inconspicuous Red-brick Wall");
+
+  richard.introduce();
+  richard.launchSpell("Polymorph", *wall);
+  richard.launchSpell("Fireball", *wall);
+}
+
+~$ ./a.out | cat -e
+Richard: This looks like another boring day.$
+Richard: I am Richard, Hello, I'm Richard the Warlock!!$
+Inconspicuous Red-brick Wall has been turned into a critter!$
+Inconspicuous Red-brick Wall has been burnt to a crisp!$
+Richard: My job here is done!$
+~$
