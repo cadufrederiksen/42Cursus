@@ -6,7 +6,7 @@
 /*   By: carmarqu <carmarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:31:49 by carmarqu          #+#    #+#             */
-/*   Updated: 2025/02/05 12:41:38 by carmarqu         ###   ########.fr       */
+/*   Updated: 2025/03/06 12:37:53 by carmarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void Span::addManyNumbers(unsigned int size)
 	for (int x = 0; x < size; x++)
 	{
 		int random = std::rand() % 10000 + 1;
-		std::cout << "random = " << random << std::endl;
 		_container.push_back(random);
 	}
 }
