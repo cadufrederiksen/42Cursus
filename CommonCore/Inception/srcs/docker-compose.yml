@@ -8,7 +8,7 @@ services:
     depends_on:
       - wordpress
     volumes:
-      - wordpress_data:/var/www/html
+      - wordpress_data:/var/www/wordpress
     ports:
       - "443:443"
 
@@ -16,11 +16,12 @@ services:
     build: requirements/wordpress
     container_name: wordpress
     restart: always
-    env_file: .env
+    env_file:
+      - .env
     depends_on:
       - mariadb
     volumes:
-      - wordpress_data:/var/www/html
+      - wordpress_data:/var/www/wordpress
     networks:
       - inception
 
@@ -28,7 +29,8 @@ services:
     build: requirements/mariadb
     container_name: mariadb
     restart: always
-    env_file: .env
+    env_file:
+      - .env
     networks: 
       - inception
     volumes:
