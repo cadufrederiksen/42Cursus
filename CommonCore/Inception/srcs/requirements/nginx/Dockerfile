@@ -5,9 +5,9 @@ RUN apt update -y && apt upgrade -y \
 
 RUN mkdir -p /etc/nginx/ssl
 
-RUN openssl req -x509 -nodes -out /etc/nginx/ssl/nginx.crt \
-    -keyout /etc/nginx/ssl/nginx.key \
-    -subj "/C=MA/L=MA/O=42/OU=student/CN=carmarqu"
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+    -keyout inception.key -out inception.crt \
+    -subj "/C=ES/ST=Malaga/L=Malaga/O=42/CN=carmarqu.42.fr"
 
 COPY ./conf/nginx.conf /etc/nginx/nginx.conf
 
